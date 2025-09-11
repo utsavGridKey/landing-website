@@ -67,13 +67,14 @@ export const usePageHook = () => {
         scale: () => Math.max(window.innerWidth, window.innerHeight) / 10,
         duration: 1.5,
         ease: "power2.inOut",
+        background: "#ffffff",
         textShadow: "0px 2px 400px rgba(255,255,255)",
       });
 
       // Step 2.5: Fade background to white
       tl.to(
         containerRef.current,
-        { backgroundColor: "#ffffff", duration: 1, ease: "power2.inOut" },
+        { background: "#ffffff", duration: 1, ease: "power2.inOut" },
         "<",
       );
 

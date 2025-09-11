@@ -34,7 +34,6 @@ export default function WhyChooseUs() {
           end: "+=5000",
           scrub: true,
           pin: true,
-          markers: true, // remove later
         },
       });
 

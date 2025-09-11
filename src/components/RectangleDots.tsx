@@ -5,18 +5,12 @@ import { useEffect, useRef } from "react";
 export default function RectangleDots() {
   const containerOneRef = useRef<HTMLDivElement>(null);
 
-  const dotsPerRing = 50;
-
-  const halfWidth = 300;
-
-  const halfHeight = 150;
-
+  const totalDots = 500; // total number of dots
+  const areaWidth = 600; // horizontal spread
+  const areaHeight = 300; // vertical spread
   const spacingZ = 20;
-
   const speed = 0.3;
-
   const visibleDepth = 500;
-
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
 
   useEffect(() => {
@@ -35,7 +29,7 @@ export default function RectangleDots() {
         dot.style.transform = `translate3d(${x}px, ${y}px, ${newZ}px)`;
       });
     });
-  }, [rings, dotsPerRing, spacingZ, speed, containerOneRef]);
+  }, [rings, spacingZ, speed, containerOneRef]);
 
   return (
     <div
@@ -62,49 +56,29 @@ export default function RectangleDots() {
           boxShadow: "0 0 4000px 150px #000000",
         }}
       />
-      {[...Array(rings)].map((_, ring) =>
-        [...Array(dotsPerRing)].map((_, dot) => {
-          const side = Math.floor(dot / (dotsPerRing / 4));
-          const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
+      {Array.from({ length: totalDots }).map((_, i) => {
+        const x = gsap.utils.random(-areaWidth, areaWidth);
+        const y = gsap.utils.random(-areaHeight, areaHeight);
+        const z = gsap.utils.random(0, 1000);
 
-          let x = 0,
-            y = 0;
-
-          if (side === 0) {
-            x = -halfWidth + progress * (2 * halfWidth);
-            y = -halfHeight;
-          } else if (side === 1) {
-            x = halfWidth;
-            y = -halfHeight + progress * (2 * halfHeight);
-          } else if (side === 2) {
-            x = halfWidth - progress * (2 * halfWidth);
-            y = halfHeight;
-          } else {
-            x = -halfWidth;
-            y = halfHeight - progress * (2 * halfHeight);
-          }
-
-          const z = 1000 - ring * spacingZ;
-
-          return (
-            <div
-              key={`${ring}-${dot}`}
-              className="dot"
-              data-pos={`${x},${y},${z}`}
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                width: "3px",
-                height: "3px",
-                borderRadius: "50%",
-                background: "#006580",
-                transform: `translate3d(${x}px, ${y}px, ${z}px)`,
-              }}
-            />
-          );
-        }),
-      )}
+        return (
+          <div
+            key={i}
+            className="dot"
+            data-pos={`${x},${y},${z}`}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width: "3px",
+              height: "3px",
+              borderRadius: "50%",
+              background: "#006580",
+              transform: `translate3d(${x}px, ${y}px, ${z}px)`,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }

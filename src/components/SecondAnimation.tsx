@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import gsap from "gsap";
@@ -20,7 +19,7 @@ export default function SecondAnimation() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=10000", // same scroll distance
+          end: "+=8000", // same scroll distance
           scrub: true,
           pin: true,
         },
@@ -46,7 +45,7 @@ export default function SecondAnimation() {
       });
 
       // pause
-      tl.to({}, { duration: 4 });
+      tl.to({}, { duration: 2 });
 
       // 2. Dots fly in slowly
       tl.fromTo(
@@ -69,7 +68,7 @@ export default function SecondAnimation() {
       );
 
       // pause
-      tl.to({}, { duration: 4 });
+      tl.to({}, { duration: 2 });
 
       // 3. Hide dots → Show text
       tl.to(liDots, {
@@ -154,7 +153,7 @@ export default function SecondAnimation() {
   return (
     <div
       ref={containerRef}
-      className="min-h-[200vh] bg-gray-900 relative overflow-hidden"
+      className="min-h-[200vh] bg-black relative overflow-hidden"
     >
       {/* invisible anchors */}
       <div
@@ -177,7 +176,7 @@ export default function SecondAnimation() {
         className="fixed flex flex-col items-center justify-center text-white text-lg font-bold p-4 space-y-2"
       >
         <ol className="space-y-2">
-          {Array.from({ length: 6 }).map((_, i) => (
+          {Array.from({ length: 9 }).map((_, i) => (
             <li key={i} className="relative flex items-center justify-center">
               <span className="dot">●</span>
               <span className="text absolute opacity-0 ">Item </span>
