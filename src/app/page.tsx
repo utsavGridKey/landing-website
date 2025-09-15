@@ -23,7 +23,7 @@ export default function WhyChooseUs() {
   } = usePageHook();
 
   return (
-    <div className="overflow-x-hidden relative">
+    <div className="overflow-x-hidden relative bg-black">
       <FloatingNavbar />
       <RectangleDots />
       <LeftSection />
