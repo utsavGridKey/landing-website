@@ -1,202 +1,282 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLayoutEffect, useRef } from "react";
+import SolarShareIcon from "../../assets/solarShare.svg";
+import useLeftFirst from "./useLeftFirst";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function LeftSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // refs for left content
-  const leftRef = useRef<HTMLDivElement>(null);
-
-  // refs for right animation
-  const boxRef = useRef<HTMLDivElement>(null);
-  const boxRef1 = useRef<HTMLDivElement>(null);
-  const boxRef2 = useRef<HTMLDivElement>(null);
-  const boxRef3 = useRef<HTMLDivElement>(null);
-  const boxRef4 = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      if (leftRef.current) {
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top top",
-              end: "+=5000",
-              scrub: true,
-            },
-          })
-          .fromTo(
-            leftRef.current,
-            { y: 1000, opacity: 0, delay: 2 },
-            { y: 0, opacity: 1, delay: 2 },
-          )
-          .to(leftRef.current, { y: -500, opacity: 0 });
-      }
-
-      /** Right side train animation */
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=9000",
-          scrub: true,
-          pin: true,
-        },
-      });
-
-      gsap.set(boxRef.current, {
-        x: () => boxRef1.current?.offsetLeft ?? 0,
-        y: () => boxRef1.current?.offsetTop ?? 0,
-        autoAlpha: 0,
-      });
-
-      const liDots: any = boxRef.current?.querySelectorAll(".dot");
-      const liTexts: any = boxRef.current?.querySelectorAll(".text");
-      // pick only 3 dots
-      const firstThreeDots = Array.from(liDots).slice(0, 3);
-      const restDots = Array.from(liDots).slice(3);
-
-      tl.to(boxRef.current, {
-        x: () => boxRef2.current?.offsetLeft ?? 0,
-        y: () => boxRef2.current?.offsetTop ?? 0,
-        ease: "none",
-        duration: 2,
-        autoAlpha: 1,
-      });
-
-      tl.fromTo(
-        liDots,
-        { x: -100, y: -500, opacity: 0, scale: 0.2 },
-        {
-          x: 0,
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 4,
-          stagger: 0.3,
-          ease: "power1.out",
-        },
-      );
-
-      tl.to(liDots, {
-        opacity: 0,
-        duration: 2,
-        ease: "power1.inOut",
-      });
-      tl.to(liTexts, {
-        opacity: 1,
-        duration: 4,
-        stagger: 0.4,
-        ease: "power1.out",
-      });
-      tl.to(liTexts, { opacity: 0, duration: 2, ease: "power1.inOut" });
-      tl.to(liDots, { opacity: 1, scale: 1, duration: 1, ease: "power1.out" });
-      tl.to(liDots, { opacity: 0.6, duration: 1.5 });
-      tl.to(boxRef.current, {
-        x: 100,
-        y: () => boxRef3.current?.offsetTop ?? 0,
-        ease: "none",
-        duration: 3,
-      });
-      tl.to(liDots, { filter: "blur(0px)", opacity: 1, duration: 1 });
-      tl.to(liDots, { filter: "blur(0px)", opacity: 0, duration: 1 });
-      tl.to(liTexts, {
-        opacity: 1,
-        duration: 1,
-        stagger: 0.4,
-        ease: "power1.out",
-      });
-      tl.to(liTexts, {
-        opacity: 0,
-        duration: 1,
-        ease: "power1.out",
-      });
-      gsap.set(restDots, { opacity: 0, scale: 0 });
-      // Show only first 3 dots
-      tl.to(firstThreeDots, {
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power2.out",
-      });
-
-      // Animate them to merge into boxRef4
-      tl.to(firstThreeDots, {
-        x: () =>
-          (boxRef4.current?.offsetLeft ?? 0) -
-          (boxRef.current?.offsetLeft ?? 0),
-        y: () =>
-          (boxRef4.current?.offsetTop ?? 0) - (boxRef.current?.offsetTop ?? 0),
-        scale: 0.5,
-        opacity: 0,
-        duration: 5,
-        stagger: 0.2,
-        ease: "power2.inOut",
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+  const {
+    secondSectionContainerRef,
+    leftHandContentRef,
+    rightHandContentRef,
+    platformRef,
+    threeDotDestinationRef,
+    boxRef1,
+    boxRef2,
+    boxRef3,
+    boxRef4,
+  } = useLeftFirst();
 
   return (
-    <div
-      ref={containerRef}
-      className="min-h-screen bg-black flex flex-col md:flex-row gap-6 relative overflow-hidden p-4 sm:p-6"
-    >
-      <div
-        ref={leftRef}
-        className="flex flex-col items-center justify-center gap-4 w-full md:w-1/2 opacity-0 max-h-screen"
-      >
-        <img
-          src="https://cdn.mos.cms.futurecdn.net/pkcDt3oXduaP7JmkXbJWFC-681-80.webp"
-          alt="Sample"
-          className="rounded-xl shadow-lg w-full max-w-sm md:max-w-md"
-        />
-        <div className="text-center md:text-left">
-          <p className="text-2xl sm:text-3xl md:text-4xl font-bold">Content</p>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300">
-            This is some text on the left describing the image.
-          </p>
-        </div>
-      </div>
-
+    <div ref={secondSectionContainerRef} className="bg-black relative ">
       <div
         ref={boxRef1}
-        className="w-12 h-12 bg-transparent absolute left-1/2 top-[10%]"
-      />
-      <div
-        ref={boxRef2}
-        className="w-12 h-12 bg-transparent absolute right-1/3 top-[30%]"
-      />
-      <div ref={boxRef3} className="w-12 h-12 absolute left-5 bottom-[65vh] " />
-      <div ref={boxRef4} className="w-12 h-12 absolute left-[50%] bottom-[0]" />
-
-      <div
-        ref={boxRef}
-        className="absolute flex flex-col items-center justify-center text-white text-base sm:text-lg md:text-xl font-bold p-2 sm:p-4 space-y-2"
+        className="w-screen p-4 flex flex-col items-center justify-center gap-2 absolute top-0"
       >
-        <ol className="space-y-2">
-          {Array.from({ length: 9 }).map((_, i) => (
-            <li key={i} className="relative flex items-center justify-center">
-              <span className="dot">●</span>
-              <span className="text opacity-0">
-                <div className="bg-blue-950 border px-5 py-1">
-                  ItemItemItemItem {i + 1}
-                </div>
-              </span>
-            </li>
-          ))}
-        </ol>
+        {[
+          {
+            name: "Portfolio Management",
+            icon: "",
+            opacity: 0.2,
+            size: 12,
+          },
+          {
+            name: "Trade Order Execution",
+            icon: "",
+            opacity: 0.4,
+            size: 14,
+          },
+          {
+            name: "Revenue Management",
+            icon: "",
+            opacity: 0.6,
+            size: 16,
+          },
+          {
+            name: "CRM",
+            icon: "",
+            opacity: 0.8,
+            size: 18,
+          },
+          {
+            name: "Basket",
+            icon: "",
+            opacity: 1,
+            size: 24,
+          },
+          {
+            name: "Client Engagement",
+            icon: "",
+            opacity: 0.8,
+            size: 18,
+          },
+          {
+            name: "Partner Ecosystem",
+            icon: "",
+            opacity: 0.6,
+            size: 16,
+          },
+          {
+            name: "Partner Ecosystem",
+            icon: "",
+            opacity: 0.4,
+            size: 14,
+          },
+          {
+            name: "Complaint Resolution",
+            icon: "",
+            opacity: 0.2,
+            size: 12,
+          },
+        ].map((_, i) => {
+          return (
+            <div
+              key={i}
+              className="dot rounded-[16px]  bg-black-900 flex items-center gap-4 p-4 justify-center"
+            >
+              <SolarShareIcon color="#fff" height={_.size} width={_.size} />
+
+              <p
+                className={`text-white font-bold`}
+                style={{
+                  fontSize: _.size,
+                  opacity: _.opacity,
+                }}
+              >
+                {_.name}
+              </p>
+            </div>
+          );
+        })}
       </div>
+      <div
+        ref={boxRef4}
+        className="w-screen p-4 flex flex-col items-center justify-center gap-2 absolute top-0"
+      >
+        {[
+          {
+            name: "Portfolio Management",
+            icon: "",
+            opacity: 0.2,
+            size: 12,
+          },
+          {
+            name: "Trade Order Execution",
+            icon: "",
+            opacity: 0.4,
+            size: 14,
+          },
+          {
+            name: "Revenue Management",
+            icon: "",
+            opacity: 0.6,
+            size: 16,
+          },
+          {
+            name: "CRM",
+            icon: "",
+            opacity: 0.8,
+            size: 18,
+          },
+          {
+            name: "Basket",
+            icon: "",
+            opacity: 1,
+            size: 24,
+          },
+          {
+            name: "Client Engagement",
+            icon: "",
+            opacity: 0.8,
+            size: 18,
+          },
+          {
+            name: "Partner Ecosystem",
+            icon: "",
+            opacity: 0.6,
+            size: 16,
+          },
+          {
+            name: "Partner Ecosystem",
+            icon: "",
+            opacity: 0.4,
+            size: 14,
+          },
+          {
+            name: "Complaint Resolution",
+            icon: "",
+            opacity: 0.2,
+            size: 12,
+          },
+        ].map((_, i) => {
+          return (
+            <div
+              key={i}
+              className="dot rounded-[16px]  bg-black-900 flex items-center gap-4 p-4 justify-center"
+            >
+              <SolarShareIcon color="#fff" height={_.size} width={_.size} />
+              <p
+                className={`text-white font-bold`}
+                style={{
+                  fontSize: _.size,
+                  opacity: _.opacity,
+                }}
+              >
+                {_.name}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+      <section className="h-screen flex items-center justify-center ">
+        <div
+          ref={boxRef3}
+          className="w-1/2  flex items-center justify-center shadow-2xl "
+        >
+          <div
+            ref={leftHandContentRef}
+            className="flex flex-col w-[80%] gap-4 ml-50 rounded-full bg-[#000f13]"
+            style={{
+              boxShadow: "0 0 1000px 200px #000f13",
+            }}
+          >
+            <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
+              <p className="text-grey-500 uppercase text-">tech tools</p>
+            </div>
+            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[64px] font-bold">
+              A fully integrated suite of Tech Tools
+            </p>
+            <div>
+              <p className="text-grey-500 text-2xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Vehicula massa in enim luctus. Rutrum arcu.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div ref={boxRef2} className="w-1/2  flex items-center justify-center ">
+          <div
+            ref={rightHandContentRef}
+            className="flex flex-col w-[80%] gap-4 rounded-full bg-[#000f13]"
+            style={{
+              boxShadow: "0 0 1000px 200px #000f13",
+            }}
+          >
+            <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
+              <p className="text-grey-500 uppercase text-">tech tools</p>
+            </div>
+            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-6xl font-bold">
+              A fully integrated suite of Tech Tools
+            </p>
+            <div>
+              <p className="text-grey-500 text-2xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Vehicula massa in enim luctus. Rutrum arcu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div
+          ref={platformRef}
+          className="text-white absolute top-0 h-screen w-screen bg-gray-950 flex flex-col justify-center items-center gap-2 opacity-0"
+        >
+          {Array.from({ length: 3 }).map((_, i) => {
+            return (
+              <div
+                key={i}
+                className="three-dot rounded-[16px]  bg-white h-4 w-4 m-3"
+              ></div>
+            );
+          })}
+          <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[48px] font-bold">
+            One Platform, Many Solutions!
+          </p>
+          <div className="flex items-center w-1/3 gap-5">
+            <p ref={threeDotDestinationRef} className="w-[50px]">
+              I am
+            </p>
+            <div className="w-full border-b border-amber-300 p-2">asd</div>
+          </div>
+          <section className="flex items-center w-screen m-auto px-20">
+            <div className="w-1/2 flex justify-center flex-col items-center">
+              <div className="self-stretch justify-start text-[#ececec] text-[40px] font-medium font-['Inter'] leading-[52px]">
+                Stay informed through data driven insights
+              </div>{" "}
+              <div className="self-stretch justify-start text-[#828282] text-xl font-normal font-['Inter'] leading-loose">
+                Gain valuable insights and analysis of your investments and make
+                better informed decisions.
+                <br />
+                Advisor dashboards to get a comprehensive view of your business
+                <br />
+                Holdings Summary to get holistic perspective of client
+                investments
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-center items-center ">
+              <img
+                src="/productImg2.svg"
+                alt=""
+                width={"60%"}
+                height={"auto"}
+              />
+            </div>
+          </section>
+        </div>
+      </section>
     </div>
   );
 }

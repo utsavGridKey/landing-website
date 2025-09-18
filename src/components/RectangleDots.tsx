@@ -1,5 +1,6 @@
 "use client";
 import gsap from "gsap";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function RectangleDots() {
@@ -15,7 +16,7 @@ export default function RectangleDots() {
 
   const speed = 0.3;
 
-  const visibleDepth = 500;
+  const visibleDepth = 450;
 
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
 
@@ -70,7 +71,13 @@ export default function RectangleDots() {
         <div className="w-[784px] inline-flex flex-col justify-start items-center gap-10">
           <div className="self-stretch flex flex-col justify-start items-center gap-5">
             <div className="size- px-3 py-2.5 bg-[#222222]/40 rounded-[100px] backdrop-blur-[20px] inline-flex justify-center items-center gap-2">
-              <img src="verifiedCheck.svg" alt="" />
+              <Image
+                src="/verifiedCheck.svg"
+                alt="Verified check"
+                width={20}
+                height={20}
+                priority
+              />{" "}
               <div className="text-center justify-start text-[#cce0e6] text-sm font-normal font-['Inter'] leading-snug">
                 Some trustworthy small line{" "}
               </div>
@@ -108,7 +115,13 @@ export default function RectangleDots() {
                 Get Started
               </div>
               <div className="size-4 relative overflow-hidden">
-                <img src="rightArrow.svg" alt="" />
+                <Image
+                  src="/rightArrow.svg"
+                  alt="Arrow check"
+                  width={20}
+                  height={20}
+                  priority
+                />
               </div>
             </div>
           </div>

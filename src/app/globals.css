@@ -1,9 +1,77 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
+  /* Primary Palette */
+  --color-primary-900: #006580;
+  --color-primary-700: #338499;
+  --color-primary-500: #66a3b3;
+  --color-primary-300: #99c1cc;
+  --color-primary-100: #CCEOE6;
+  --color-primary-50: #e6f0f3;
+
+  /* Neutral Palette */
+  --color-neutral-900: #20272b;
+  --color-neutral-700: #44484f;
+  --color-neutral-500: #697586;
+  --color-neutral-300: #99a4b2;
+  --color-neutral-100: #d5dee5;
+  --color-neutral-50: #eef5fa;
+
+  /* Black & White */
+  --color-black-900: #222222;
+  --color-white: #ffffff;
+
+  /* Grey Palette */
+  --color-grey-900: #333333;
+  --color-grey-700: #4f4f4f;
+  --color-grey-500: #828282;
+  --color-grey-300: #bdbdbd;
+  --color-grey-100: #e0e0e0;
+  --color-grey-50: #ececec;
+
+  /* Status Colors */
+  --color-success-700: #15803d;
+  --color-success-400: #8ac09e;
+  --color-success-100: #e8f3ec;
+
+  --color-warning-700: #c35245;
+  --color-warning-400: #e1a9a2;
+  --color-warning-100: #f9eeed;
+
+  /* Backgrounds */
+  --color-grey-bg-200: #f1f0ec;
+  --color-grey-bg-100: #f8f8f8;
+  --color-neutral-bg-200: #d3dce3;
+  --color-neutral-bg-100: #f7fbfd;
+
+  /* Primary Dark Variants */
+  --color-primary-dark-900: #163f4a;
+  --color-primary-dark-700: #31535f;
+  --color-primary-dark-500: #4b6873;
+  --color-primary-dark-300: #657b89;
+  --color-primary-dark-100: #7f909d;
+  --color-primary-dark-50: #8d9aa8;
+
+  /* Orange */
+  --color-orange-700: #d5864e;
+  --color-orange-400: #e6b695;
+  --color-orange-100: #f7e7dc;
+
+  /* Yellow */
+  --color-yellow-700: #e3bc56;
+  --color-yellow-400: #eed79a;
+  --color-yellow-100: #f9f2dd;
+
+  /* Blue */
+  --color-blue-700: #007bff;
+  --color-blue-400: #4a90e2;
+  --color-blue-100: #e6f2ff;
+
+  /* Buttons */
+  --color-btn-primary-hover: #025d75;
+  --color-btn-delete-hover: #bd4b3d;
+  /* ================================================*/
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -49,7 +117,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(64.019% 0.18279 23.819);
+  --primary-900: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -76,40 +145,6 @@
   --sidebar-ring: oklch(0.708 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
 }
 
 @layer base {

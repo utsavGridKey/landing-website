@@ -1,19 +1,47 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function FloatingNavbar() {
+export default function FloatingNavbar({
+  secondContentRef,
+}: {
+  secondContentRef: any;
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [scrolledIntoSecond, setScrolledIntoSecond] = useState(false);
+
+  useEffect(() => {
+    if (!secondContentRef?.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setScrolledIntoSecond(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.8, // adjust how much should be visible before triggering
+      },
+    );
+
+    observer.observe(secondContentRef.current);
+
+    return () => {
+      if (secondContentRef.current)
+        observer.unobserve(secondContentRef.current);
+    };
+  }, [secondContentRef]);
 
   return (
     <nav
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 rounded-full px-6 py-3 flex items-center justify-between w-[90%] max-w-7xl"
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 rounded-full px-6 py-3 flex items-center justify-between w-[90%] max-w-7xl transition-colors duration-500`}
       style={{
         backdropFilter: "blur(10px)",
-        background: `rgba(255, 255, 255, 0.05)`,
+        background: "rgba(255, 255, 255, 0.05)",
         border: `1px solid rgba(255, 255, 255, 0.10)`,
+        boxShadow: `0 4px 16px 0 rgba(0, 0, 0, 0.10)`,
       }}
     >
       {/* Logo */}
@@ -29,7 +57,12 @@ export default function FloatingNavbar() {
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex gap-6 text-white relative">
-        <li className="hover:text-gray-300 cursor-pointer relative group">
+        <li
+          className="hover:text-gray-300 cursor-pointer relative group"
+          style={{
+            color: scrolledIntoSecond ? "black" : "white",
+          }}
+        >
           Our Products
           {/* Dropdown */}
           <ul className="absolute top-full left-0 mt-2 w-48 bg-white/90 text-black shadow-lg rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 invisible group-hover:visible">
@@ -44,8 +77,22 @@ export default function FloatingNavbar() {
             </li>
           </ul>
         </li>
-        <li className="hover:text-gray-300 cursor-pointer">About Us</li>
-        <li className="hover:text-gray-300 cursor-pointer">Contact Us</li>
+        <li
+          style={{
+            color: scrolledIntoSecond ? "black" : "white",
+          }}
+          className=" hover:text-gray-300 cursor-pointer"
+        >
+          About Us
+        </li>
+        <li
+          style={{
+            color: scrolledIntoSecond ? "black" : "white",
+          }}
+          className="hover:text-gray-300 cursor-pointer"
+        >
+          Contact Us
+        </li>
       </ul>
 
       {/* Desktop Sign In Button */}
