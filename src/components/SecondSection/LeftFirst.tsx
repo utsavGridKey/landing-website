@@ -17,6 +17,7 @@ export default function LeftSection() {
     boxRef2,
     boxRef3,
     boxRef4,
+    threeDotsContainerRef,
   } = useLeftFirst();
 
   return (
@@ -105,6 +106,16 @@ export default function LeftSection() {
         ref={boxRef4}
         className="w-screen p-4 flex flex-col items-center justify-center gap-2 absolute top-0"
       >
+        <div className="absolute">
+          {Array.from({ length: 3 }).map((_, i) => {
+            return (
+              <div
+                key={i}
+                className="three-dot rounded-[16px]  bg-white h-4 w-4 m-3 "
+              ></div>
+            );
+          })}
+        </div>
         {[
           {
             name: "Portfolio Management",
@@ -180,7 +191,10 @@ export default function LeftSection() {
           );
         })}
       </div>
-      <section className="h-screen flex items-center justify-center ">
+      <section
+        ref={threeDotsContainerRef}
+        className="h-screen flex items-center justify-center "
+      >
         <div
           ref={boxRef3}
           className="w-1/2  flex items-center justify-center shadow-2xl "
@@ -229,19 +243,12 @@ export default function LeftSection() {
           </div>
         </div>
       </section>
+
       <section>
         <div
           ref={platformRef}
-          className="text-white absolute top-0 h-screen w-screen bg-gray-950 flex flex-col justify-center items-center gap-2 opacity-0"
+          className="text-white absolute top-0 h-screen w-screen flex flex-col justify-center items-center gap-2 opacity-0"
         >
-          {Array.from({ length: 3 }).map((_, i) => {
-            return (
-              <div
-                key={i}
-                className="three-dot rounded-[16px]  bg-white h-4 w-4 m-3"
-              ></div>
-            );
-          })}
           <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[48px] font-bold">
             One Platform, Many Solutions!
           </p>

@@ -9,6 +9,7 @@ const useLeftFirst = () => {
   const leftHandContentRef = useRef<HTMLDivElement>(null);
   const rightHandContentRef = useRef<HTMLDivElement>(null);
   const platformRef = useRef<HTMLDivElement>(null);
+  const threeDotsContainerRef = useRef<HTMLDivElement>(null);
   const threeDotDestinationRef = useRef<HTMLDivElement>(null);
   const boxRef1 = useRef<HTMLDivElement>(null);
   const boxRef2 = useRef<HTMLDivElement>(null);
@@ -33,7 +34,7 @@ const useLeftFirst = () => {
         boxRef4.current?.querySelectorAll(".dot") || [],
       );
       const threeDots = gsap.utils.toArray<HTMLDivElement>(
-        platformRef.current?.querySelectorAll(".three-dot") || [],
+        boxRef4.current?.querySelectorAll(".three-dot") || [],
       );
       tl.fromTo(
         liDots,
@@ -51,9 +52,6 @@ const useLeftFirst = () => {
           ease: "power1.out",
         },
       );
-      {
-        /**========================================================================================== */
-      }
       tl.fromTo(
         leftHandContentRef.current,
         {
@@ -76,9 +74,6 @@ const useLeftFirst = () => {
         },
         "vanish",
       );
-      {
-        /**========================================================================================== */
-      }
       tl.to(
         liDots,
         {
@@ -136,97 +131,103 @@ const useLeftFirst = () => {
         y: -1000,
         opacity: 0,
       });
-      tl.to(newLiDots, {
-        x: (boxRef3.current?.offsetLeft ?? 0) - 700,
-        y: (boxRef3.current?.offsetTop ?? 0) - 200,
-        opacity: 0,
-        scale: 1,
-        ease: "power1.out",
-      });
-
+      tl.to(
+        newLiDots,
+        {
+          x: (boxRef3.current?.offsetLeft ?? 0) - 700,
+          y: (boxRef3.current?.offsetTop ?? 0) - 200,
+          opacity: 0,
+          scale: 1,
+          ease: "power1.out",
+        },
+        "fading9DotsShowing3Dots",
+      );
       tl.fromTo(
         threeDots,
         {
           x: (boxRef3.current?.offsetLeft ?? 0) - 700,
-          y: (boxRef3.current?.offsetTop ?? 0) - 500,
+          y: (boxRef3.current?.offsetTop ?? 0) - 300,
           opacity: 0,
-          scale: 1,
           borderRadius: 8,
           ease: "power1.out",
-          zIndex: 999,
+          zIndex: 9999,
         },
         {
           opacity: 1,
-          zIndex: 999,
-          scale: 1,
-          borderRadius: 8,
+          zIndex: 9999,
         },
+        "fading9DotsShowing3Dots",
+      );
+      // MOVING THE THREE DOTS FROM ITS PLACE TO THE I AM...
+      tl.to(
+        threeDots,
+        {
+          x: (i) => {
+            const targetRect =
+              threeDotDestinationRef.current?.getBoundingClientRect();
+            const dotRect = threeDots[i].getBoundingClientRect();
+            if (!targetRect) return 0;
+
+            // Move to the right edge of the "I am..." text, add spacing for each dot
+            const baseX = targetRect.right - 710;
+            return baseX - dotRect.left + i * 8; // 14px spacing
+          },
+          y: (i) => {
+            const targetRect =
+              threeDotDestinationRef.current?.getBoundingClientRect();
+            const dotRect = threeDots[i].getBoundingClientRect();
+            if (!targetRect) return 0;
+
+            // Align vertically with the middle of the text
+            const baseY = targetRect.top + targetRect.height - 940;
+            const dotCenterY = dotRect.top + dotRect.height / 2;
+            return baseY - dotCenterY;
+          },
+          scale: 0.2,
+          opacity: 1,
+          ease: "power2.out",
+          duration: 2,
+        },
+        "withTheThreeDots",
       );
       tl.fromTo(
         platformRef.current,
         {
           x: 0,
-          y: 0,
+          y: 1000,
           opacity: 0,
           ease: "power1.out",
         },
         {
+          x: 0,
+          y: 0,
           opacity: 1,
           ease: "power1.out",
         },
+        "withTheThreeDots",
       );
-      // MOVING THE THREE DOTS FROM ITS PLACE TO THE I AM...
-      tl.to(threeDots, {
-        x: (i) => {
-          const targetRect =
-            threeDotDestinationRef.current?.getBoundingClientRect();
-          const dotRect = threeDots[i].getBoundingClientRect();
-          if (!targetRect) return 0;
-
-          // Move to the right edge of the "I am..." text, add spacing for each dot
-          const baseX = targetRect.right - 710;
-          return baseX - dotRect.left + i * 8; // 14px spacing
+      tl.to(
+        platformRef.current,
+        {
+          x: 0,
+          y: -1000,
+          opacity: 0,
+          ease: "power1.out",
         },
-        y: (i) => {
-          const targetRect =
-            threeDotDestinationRef.current?.getBoundingClientRect();
-          const dotRect = threeDots[i].getBoundingClientRect();
-          if (!targetRect) return 0;
-
-          // Align vertically with the middle of the text
-          const baseY = targetRect.top + targetRect.height - 150;
-          const dotCenterY = dotRect.top + dotRect.height / 2;
-          return baseY - dotCenterY;
-        },
-        scale: 0.2,
-        opacity: 1,
-        ease: "power2.out",
-      });
+        "dotsToOWithFading",
+      );
       // MOVING THE THREE DOTS FROM ITS PLACE TO THE DOWNWARDS
-      tl.to(threeDots, {
-        x: 0,
-        y: 500,
-        scale: 1,
-        opacity: 1,
-        ease: "power2.out",
-      });
-      // MERGE DOTS INTO CENTER
-      tl.to(threeDots, {
-        x: (i, el, arr) => {
-          const centerX = arr[1].getBoundingClientRect().left; // middle dot
-          const dotRect = el.getBoundingClientRect();
-          return centerX - dotRect.left;
+      tl.to(
+        threeDots,
+        {
+          x: 0,
+          y: 300,
+          scale: 1,
+          opacity: 1,
+          ease: "power2.out",
         },
-        y: (i, el, arr) => {
-          const centerY = arr[1].getBoundingClientRect().top;
-          const dotRect = el.getBoundingClientRect();
-          return centerY - dotRect.top;
-        },
-        scale: 1.2,
-        ease: "power2.inOut",
-        duration: 1,
-      });
-      // FADE OUT DOTS
+        "dotsToOWithFading",
+      );
       tl.to(
         threeDots,
         {
@@ -235,13 +236,7 @@ const useLeftFirst = () => {
         },
         ">",
       );
-
-      // FADE IN ALPHABET "O"
-      tl.fromTo(
-        ".final-o",
-        { opacity: 0, scale: 0.2 },
-        { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(2)" },
-      );
+      /**===================================================================== */
     });
 
     return () => ctx.revert();
@@ -257,6 +252,7 @@ const useLeftFirst = () => {
     boxRef2,
     boxRef3,
     boxRef4,
+    threeDotsContainerRef,
   };
 };
 
