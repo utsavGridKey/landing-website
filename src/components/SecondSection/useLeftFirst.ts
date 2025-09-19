@@ -17,7 +17,13 @@ const useLeftFirst = () => {
   const boxRef3 = useRef<HTMLDivElement>(null);
   const boxRef4 = useRef<HTMLDivElement>(null);
   const chooseORef = useRef<HTMLDivElement>(null);
-  console.log("window", window.innerHeight / 4);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const firstTextRef = useRef<HTMLParagraphElement>(null);
+  const oRef = useRef<HTMLSpanElement>(null);
+  const secondContentRef = useRef<HTMLDivElement>(null);
+  const thirdContentRef = useRef<HTMLDivElement>(null);
+  const toolsRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -291,6 +297,52 @@ const useLeftFirst = () => {
           background: "#fff",
         },
       );
+      // Step 3: Fade out first text
+      tl.to(
+        firstTextRef.current,
+        {
+          opacity: 0,
+          textShadow: "0px 0px 0px rgba(0,0,0,0)",
+          duration: 1,
+          ease: "power2.out",
+        },
+        "-=0.5",
+      );
+
+      // Step 4: Fade in second content
+      tl.fromTo(
+        secondContentRef.current,
+        { opacity: 0, z: -400, transformPerspective: 1000 },
+        { opacity: 1, z: 0, duration: 1.5, ease: "power3.out" },
+        "<",
+      );
+
+      // Step 5: Scroll right side toolsRef content upward
+      tl.to(
+        toolsRef.current,
+        {
+          y: () =>
+            -(toolsRef.current!.scrollHeight - toolsRef.current!.clientHeight),
+          duration: 3,
+          ease: "none",
+        },
+        "+=0.5",
+      );
+
+      // ✅ Step 6: Fade in third content after scroll is done
+      tl.fromTo(
+        secondContentRef.current,
+        { opacity: 1, y: 0 },
+        { opacity: 1, y: -850, duration: 1.5, ease: "power3.out" },
+        "+=0.5",
+      );
+
+      tl.fromTo(
+        thirdContentRef.current,
+        { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" },
+        "+=0.5",
+      );
     });
 
     return () => ctx.revert();
@@ -309,6 +361,13 @@ const useLeftFirst = () => {
     boxRef4,
     whyChooseSectionRef,
     threeDotsContainerRef,
+    dotRef,
+    containerRef,
+    firstTextRef,
+    oRef,
+    secondContentRef,
+    thirdContentRef,
+    toolsRef,
   };
 };
 

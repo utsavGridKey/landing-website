@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 export default function RectangleDotsRandom() {
   const containerOneRef = useRef<HTMLDivElement>(null);
 
-  const dotsPerRing = 50;
+  const dotsPerRing = 30;
 
   const halfWidth = 150;
 
