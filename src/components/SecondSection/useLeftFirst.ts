@@ -6,6 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const useLeftFirst = () => {
   const secondSectionContainerRef = useRef<HTMLDivElement>(null);
+  const whyChooseSectionRef = useRef<HTMLDivElement>(null);
   const leftHandContentRef = useRef<HTMLDivElement>(null);
   const rightHandContentRef = useRef<HTMLDivElement>(null);
   const platformRef = useRef<HTMLDivElement>(null);
@@ -15,6 +16,8 @@ const useLeftFirst = () => {
   const boxRef2 = useRef<HTMLDivElement>(null);
   const boxRef3 = useRef<HTMLDivElement>(null);
   const boxRef4 = useRef<HTMLDivElement>(null);
+  const chooseORef = useRef<HTMLDivElement>(null);
+  console.log("window", window.innerHeight / 4);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -22,7 +25,7 @@ const useLeftFirst = () => {
         scrollTrigger: {
           trigger: secondSectionContainerRef.current,
           start: "top top",
-          end: "+=10000",
+          end: "+=11000",
           scrub: true,
           pin: true,
         },
@@ -45,8 +48,8 @@ const useLeftFirst = () => {
           scale: 0.1,
         },
         {
-          x: (boxRef2.current?.offsetLeft ?? 0) - 400,
-          y: (boxRef2.current?.offsetTop ?? 0) - 200,
+          x: (boxRef2.current?.offsetLeft ?? 0) - window.innerWidth / 5,
+          y: (boxRef2.current?.offsetTop ?? 0) - window.innerHeight / 4,
           opacity: 1,
           scale: 1,
           ease: "power1.out",
@@ -79,16 +82,16 @@ const useLeftFirst = () => {
         {
           scale: 0.3,
           borderRadius: 1000,
-          x: (boxRef2.current?.offsetLeft ?? 0) - 500,
-          y: (boxRef2.current?.offsetTop ?? 0) - 200,
+          x: (boxRef2.current?.offsetLeft ?? 0) - window.innerWidth / 5,
+          y: (boxRef2.current?.offsetTop ?? 0) - window.innerHeight / 4,
         },
         "vanish",
       );
       tl.fromTo(
         newLiDots,
         {
-          x: (boxRef2.current?.offsetLeft ?? 0) - 500,
-          y: (boxRef2.current?.offsetTop ?? 0) - 200,
+          x: (boxRef2.current?.offsetLeft ?? 0) - window.innerWidth / 5,
+          y: (boxRef2.current?.offsetTop ?? 0) - window.innerHeight / 4,
           opacity: 0,
           scale: 0.3,
           duration: 0.1,
@@ -106,8 +109,8 @@ const useLeftFirst = () => {
         duration: 0.1,
       });
       tl.to(newLiDots, {
-        x: (boxRef3.current?.offsetLeft ?? 0) - 700,
-        y: (boxRef3.current?.offsetTop ?? 0) - 200,
+        x: (boxRef3.current?.offsetLeft ?? 0) - window.innerWidth / 4,
+        y: (boxRef3.current?.offsetTop ?? 0) - window.innerHeight / 7,
         opacity: 1,
         scale: 1,
         borderRadius: 16,
@@ -134,8 +137,8 @@ const useLeftFirst = () => {
       tl.to(
         newLiDots,
         {
-          x: (boxRef3.current?.offsetLeft ?? 0) - 700,
-          y: (boxRef3.current?.offsetTop ?? 0) - 200,
+          x: (boxRef3.current?.offsetLeft ?? 0) - window.innerWidth / 4,
+          y: (boxRef3.current?.offsetTop ?? 0) - window.innerHeight / 7,
           opacity: 0,
           scale: 1,
           ease: "power1.out",
@@ -145,8 +148,8 @@ const useLeftFirst = () => {
       tl.fromTo(
         threeDots,
         {
-          x: (boxRef3.current?.offsetLeft ?? 0) - 700,
-          y: (boxRef3.current?.offsetTop ?? 0) - 300,
+          x: (boxRef3.current?.offsetLeft ?? 0) - window.innerWidth / 4,
+          y: (boxRef3.current?.offsetTop ?? 0) - window.innerHeight / 7,
           opacity: 0,
           borderRadius: 8,
           ease: "power1.out",
@@ -169,7 +172,7 @@ const useLeftFirst = () => {
             if (!targetRect) return 0;
 
             // Move to the right edge of the "I am..." text, add spacing for each dot
-            const baseX = targetRect.right - 710;
+            const baseX = targetRect.right - window.innerWidth / 3.9;
             return baseX - dotRect.left + i * 8; // 14px spacing
           },
           y: (i) => {
@@ -179,7 +182,8 @@ const useLeftFirst = () => {
             if (!targetRect) return 0;
 
             // Align vertically with the middle of the text
-            const baseY = targetRect.top + targetRect.height - 940;
+            const baseY =
+              targetRect.top + targetRect.height - window.innerHeight / 1.31;
             const dotCenterY = dotRect.top + dotRect.height / 2;
             return baseY - dotCenterY;
           },
@@ -221,7 +225,7 @@ const useLeftFirst = () => {
         threeDots,
         {
           x: 0,
-          y: 300,
+          y: 180,
           scale: 1,
           opacity: 1,
           ease: "power2.out",
@@ -229,14 +233,64 @@ const useLeftFirst = () => {
         "dotsToOWithFading",
       );
       tl.to(
-        threeDots,
+        threeDots[0],
         {
+          x: 0,
+          y: 240,
           opacity: 0,
-          duration: 0.5,
+          ease: "power2.inOut",
         },
-        ">",
+        "mergeIntoO",
+      );
+      tl.to(
+        threeDots[1],
+        {
+          x: 0,
+          y: 210,
+          opacity: 0,
+          ease: "power2.inOut",
+        },
+        "mergeIntoO",
       );
       /**===================================================================== */
+      tl.to(
+        threeDots[2],
+        {
+          scale: 0,
+          ease: "power2.inOut",
+        },
+        "showOandHideDot",
+      );
+      tl.fromTo(
+        whyChooseSectionRef.current,
+        {
+          x: 0,
+          y: 0,
+          opacity: 0,
+          scale: 0.2,
+          duration: 2,
+        },
+        {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+        },
+        "showOandHideDot",
+      );
+      tl.fromTo(
+        chooseORef.current,
+        {
+          scale: 1,
+          duration: 2,
+          opacity: 1,
+        },
+        {
+          scale: 200,
+          duration: 2,
+          background: "#fff",
+        },
+      );
     });
 
     return () => ctx.revert();
@@ -245,6 +299,7 @@ const useLeftFirst = () => {
   return {
     secondSectionContainerRef,
     leftHandContentRef,
+    chooseORef,
     rightHandContentRef,
     platformRef,
     threeDotDestinationRef,
@@ -252,6 +307,7 @@ const useLeftFirst = () => {
     boxRef2,
     boxRef3,
     boxRef4,
+    whyChooseSectionRef,
     threeDotsContainerRef,
   };
 };

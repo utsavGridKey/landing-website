@@ -3,12 +3,12 @@ import gsap from "gsap";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-export default function RectangleDots() {
+export default function RectangleDotsRandom() {
   const containerOneRef = useRef<HTMLDivElement>(null);
 
   const dotsPerRing = 50;
 
-  const halfWidth = 300;
+  const halfWidth = 150;
 
   const halfHeight = 150;
 
