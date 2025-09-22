@@ -2,8 +2,8 @@
 "use client";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import SolarShareIcon from "../../assets/solarShare.svg";
-import RectangleDots from "../RectangleDots";
 import useLeftFirst from "./useLeftFirst";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,11 +25,139 @@ export default function LeftSection() {
     secondContentRef,
     thirdContentRef,
     toolsRef,
+    containerOneRef,
+    dotsPerRing,
+    spacingZ,
+    rings,
   } = useLeftFirst();
+
+  const halfWidth = 200;
+  const halfHeight = 150;
 
   return (
     <div>
-      <RectangleDots />
+      <div
+        ref={containerOneRef}
+        style={{
+          position: "relative",
+          width: "100vw",
+          height: "100vh",
+          perspective: "1000px",
+          overflow: "hidden",
+          background: "black",
+        }}
+      >
+        {/* Overlay content */}
+        <div
+          style={{
+            background: "black",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "70vw",
+            minHeight: "50vh",
+            zIndex: 9999,
+            boxShadow: "0 0 4000px 150px #000000",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            gap: 40,
+          }}
+        >
+          <div className="w-[784px] inline-flex flex-col justify-start items-center gap-10">
+            <div className="self-stretch flex flex-col justify-start items-center gap-5">
+              <div className="px-3 py-2.5 bg-[#222222]/40 rounded-[100px] backdrop-blur-[20px] inline-flex justify-center items-center gap-2">
+                <Image
+                  src="/verifiedCheck.svg"
+                  alt="Verified check"
+                  width={20}
+                  height={20}
+                  priority
+                />
+                <div className="text-center text-neutral-100 text-sm">
+                  Simplify. Streamline. Succeed
+                </div>
+              </div>
+              <div className="self-stretch text-center text-white text-[56px] font-semibold">
+                One Platform to Power Your Entire Wealth Business
+              </div>
+              <div className="w-[600px] text-center text-neutral-300 text-base leading-7">
+                Designed for Family Offices, Financial Advisors, Portfolio
+                Managers, Brokers, and Wealth Businesses seeking to manage and
+                scale their business.
+              </div>
+            </div>
+            <div className="inline-flex justify-center items-center gap-4">
+              <div className="w-40 px-6 py-4 rounded-sm outline-[#d5dee5] flex justify-center items-center gap-2">
+                <div className="text-white text-sm font-medium">
+                  Request a Demo
+                </div>
+              </div>
+              <div className="w-40 px-6 py-4 bg-gradient-to-r from-[#006580] via-[#107281] to-[#4ca485] rounded-sm flex justify-center items-center gap-2">
+                <div className="text-white text-sm font-medium">
+                  Get Started
+                </div>
+                <div className="size-4 relative">
+                  <Image
+                    src="/rightArrow.svg"
+                    alt="Arrow check"
+                    width={20}
+                    height={20}
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Dots */}
+        {[...Array(rings)].map((_, ring) =>
+          [...Array(dotsPerRing)].map((_, dot) => {
+            const side = Math.floor(dot / (dotsPerRing / 4));
+            const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
+            let x = 0,
+              y = 0;
+
+            if (side === 0) {
+              x = -halfWidth + progress * (2 * halfWidth);
+              y = -halfHeight;
+            } else if (side === 1) {
+              x = halfWidth;
+              y = -halfHeight + progress * (2 * halfHeight);
+            } else if (side === 2) {
+              x = halfWidth - progress * (2 * halfWidth);
+              y = halfHeight;
+            } else {
+              x = -halfWidth;
+              y = halfHeight - progress * (2 * halfHeight);
+            }
+
+            const z = 1000 - ring * spacingZ;
+
+            return (
+              <div
+                key={`${ring}-${dot}`}
+                className="dot"
+                data-pos={`${x},${y},${z}`}
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  width: "3px",
+                  height: "3px",
+                  borderRadius: "50%",
+                  background: "#00b3b3",
+                  transform: `translate3d(${x}px, ${y}px, ${z}px)`,
+                  willChange: "transform", // ⚡ GPU acceleration
+                }}
+              />
+            );
+          }),
+        )}
+      </div>
       <div ref={secondSectionContainerRef} className="bg-black relative ">
         <div
           ref={boxRef1}
@@ -37,58 +165,58 @@ export default function LeftSection() {
         >
           {[
             {
-              name: "Portfolio Management",
+              name: "Streamlined Fee Tracking",
               icon: "",
               opacity: 0.2,
               size: 12,
             },
             {
-              name: "Trade Order Execution",
+              name: "Data-Driven Insights & Analytics",
               icon: "",
               opacity: 0.4,
               size: 14,
             },
             {
-              name: "Revenue Management",
+              name: "Intuitive Lead Handling",
               icon: "",
               opacity: 0.6,
               size: 16,
             },
             {
-              name: "CRM",
+              name: "Comprehensive Client Reporting",
               icon: "",
               opacity: 0.8,
               size: 18,
             },
             {
-              name: "Basket",
+              name: "Smooth Client Onboarding",
               icon: "",
               opacity: 1,
               size: 24,
             },
             {
-              name: "Client Engagement",
+              name: "Seamless Portfolio Management",
               icon: "",
               opacity: 0.8,
               size: 18,
             },
             {
-              name: "Partner Ecosystem",
+              name: "Scalable Partner Ecosystem",
               icon: "",
               opacity: 0.6,
               size: 16,
             },
             {
-              name: "Partner Ecosystem",
-              icon: "",
-              opacity: 0.4,
-              size: 14,
-            },
-            {
-              name: "Complaint Resolution",
+              name: "Effortless Compliance",
               icon: "",
               opacity: 0.2,
               size: 12,
+            },
+            {
+              name: "Frictionless Order Execution",
+              icon: "",
+              opacity: 0.4,
+              size: 14,
             },
           ].map((_, i) => {
             return (
@@ -128,55 +256,55 @@ export default function LeftSection() {
           </div>
           {[
             {
-              name: "Portfolio Management",
+              name: "PPF / EPF",
               icon: "",
               opacity: 0.2,
               size: 12,
             },
             {
-              name: "Trade Order Execution",
+              name: "Bonds",
               icon: "",
               opacity: 0.4,
               size: 14,
             },
             {
-              name: "Revenue Management",
+              name: "AIF",
               icon: "",
               opacity: 0.6,
               size: 16,
             },
             {
-              name: "CRM",
+              name: "Mutual Funds",
               icon: "",
               opacity: 0.8,
               size: 18,
             },
             {
-              name: "Basket",
+              name: "Equity Basket",
               icon: "",
               opacity: 1,
               size: 24,
             },
             {
-              name: "Client Engagement",
+              name: "PMS",
               icon: "",
               opacity: 0.8,
               size: 18,
             },
             {
-              name: "Partner Ecosystem",
+              name: "Private Equity",
               icon: "",
               opacity: 0.6,
               size: 16,
             },
             {
-              name: "Partner Ecosystem",
+              name: "Fixed Deposit",
               icon: "",
               opacity: 0.4,
               size: 14,
             },
             {
-              name: "Complaint Resolution",
+              name: "Gold / Silver",
               icon: "",
               opacity: 0.2,
               size: 12,
@@ -221,12 +349,11 @@ export default function LeftSection() {
                 <p className="text-grey-500 uppercase text-">tech tools</p>
               </div>
               <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[64px] font-bold">
-                A fully integrated suite of Tech Tools
+                Your Back-Office, Mid-Office & Front-Office, Digitized.{" "}
               </p>
               <div>
                 <p className="text-grey-500 text-2xl">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vehicula massa in enim luctus. Rutrum arcu.
+                  Your clients don’t invest in silos, why should your tools?
                 </p>
               </div>
             </div>
@@ -243,15 +370,17 @@ export default function LeftSection() {
               }}
             >
               <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
-                <p className="text-grey-500 uppercase text-">tech tools</p>
+                <p className="text-grey-500 uppercase text-">
+                  Financial assets
+                </p>
               </div>
               <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-6xl font-bold">
-                A fully integrated suite of Tech Tools
+                Integrated Holistic Portfolio Management Starts Here{" "}
               </p>
               <div>
                 <p className="text-grey-500 text-2xl">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vehicula massa in enim luctus. Rutrum arcu.
+                  Our intuitive app simplifies tracking and managing diverse
+                  financial assets.
                 </p>
               </div>
             </div>
@@ -261,7 +390,7 @@ export default function LeftSection() {
         <section>
           <div
             ref={platformRef}
-            className="text-white absolute top-0 h-screen w-screen flex flex-col justify-center items-center gap-2 opacity-0"
+            className="text-white absolute top-30 h-screen w-screen flex flex-col justify-center items-center gap-2 opacity-0 "
           >
             <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[48px] font-bold">
               One Platform, Many Solutions!
@@ -270,7 +399,17 @@ export default function LeftSection() {
               <p ref={threeDotDestinationRef} className="w-[50px]">
                 I am
               </p>
-              <div className="w-full border-b border-amber-300 p-2">asd</div>
+              <div
+                data-property-1="Selected"
+                className="w-full px-4 py-3 bg-[#111111] rounded-xl  outline-1 outline-offset-[-1px] outline-[#006580] inline-flex justify-start items-center gap-4"
+              >
+                <div className="flex-1 justify-start text-[#e0e0e0] text-sm font-medium font-['Inter'] uppercase tracking-wider">
+                  Registered Investment Advisor
+                </div>
+                <div className="size-5 inline-flex flex-col justify-center items-center gap-2.5">
+                  <div className="w-[12.50px] h-[7.20px] bg-white" />
+                </div>
+              </div>
             </div>
             <section className="flex items-center w-screen m-auto px-20">
               <div className="w-1/2 flex justify-center flex-col items-center">
@@ -327,6 +466,7 @@ export default function LeftSection() {
           {/* Second content (two-column section) */}
           <div
             ref={secondContentRef}
+            id="secondContentRef"
             className="w-full h-full absolute top-0 flex justify-center items-center"
           >
             <div className="flex flex-row w-full h-full">

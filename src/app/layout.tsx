@@ -20,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-[inter]`}>
+      <body
+        id="myDiv"
+        className={`${inter.variable} font-[inter] overflow-x-hidden`}
+      >
         <AppProvider>{children}</AppProvider>
       </body>
     </html>

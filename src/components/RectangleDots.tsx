@@ -1,32 +1,24 @@
 "use client";
-import gsap from "gsap";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function RectangleDotsRandom() {
   const containerOneRef = useRef<HTMLDivElement>(null);
-
-  const dotsPerRing = 30;
-
-  const halfWidth = 150;
-
+  const animationRef = useRef<any>(null);
+  const dotsPerRing = 20; // 🔽 reduce for smoother perf
+  const halfWidth = 200;
   const halfHeight = 150;
-
-  const spacingZ = 20;
-
-  const speed = 0.3;
-
-  const visibleDepth = 450;
-
+  const spacingZ = 15;
+  const speed = 0.8;
+  const visibleDepth = 500;
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
 
   useEffect(() => {
     if (!containerOneRef.current) return;
-
     const dots =
       containerOneRef.current.querySelectorAll<HTMLDivElement>(".dot");
 
-    gsap.ticker.add(() => {
+    function animate() {
       dots.forEach((dot) => {
         const [x, y, z] = dot.dataset.pos!.split(",").map(Number);
         let newZ = z + speed;
@@ -35,8 +27,15 @@ export default function RectangleDotsRandom() {
         dot.dataset.pos = `${x},${y},${newZ}`;
         dot.style.transform = `translate3d(${x}px, ${y}px, ${newZ}px)`;
       });
-    });
-  }, [rings, dotsPerRing, spacingZ, speed, containerOneRef]);
+      animationRef.current = requestAnimationFrame(animate);
+    }
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [rings, dotsPerRing, spacingZ, speed]);
 
   return (
     <div
@@ -50,6 +49,7 @@ export default function RectangleDotsRandom() {
         background: "black",
       }}
     >
+      {/* Overlay content */}
       <div
         style={{
           background: "black",
@@ -70,51 +70,36 @@ export default function RectangleDotsRandom() {
       >
         <div className="w-[784px] inline-flex flex-col justify-start items-center gap-10">
           <div className="self-stretch flex flex-col justify-start items-center gap-5">
-            <div className="size- px-3 py-2.5 bg-[#222222]/40 rounded-[100px] backdrop-blur-[20px] inline-flex justify-center items-center gap-2">
+            <div className="px-3 py-2.5 bg-[#222222]/40 rounded-[100px] backdrop-blur-[20px] inline-flex justify-center items-center gap-2">
               <Image
                 src="/verifiedCheck.svg"
                 alt="Verified check"
                 width={20}
                 height={20}
                 priority
-              />{" "}
-              <div className="text-center justify-start text-[#cce0e6] text-sm font-normal font-['Inter'] leading-snug">
-                Some trustworthy small line{" "}
+              />
+              <div className="text-center text-neutral-100 text-sm">
+                Simplify. Streamline. Succeed
               </div>
             </div>
-            <div className="self-stretch text-center justify-start text-white text-[56px] font-semibold font-['Inter']">
-              Smarter Wealth
-              <br />
-              Management Starts Here
+            <div className="self-stretch text-center text-white text-[56px] font-semibold">
+              One Platform to Power Your Entire Wealth Business
             </div>
-            <div className="w-[376px] text-center justify-start text-[#cce0e6] text-base font-normal font-['Inter'] leading-7">
-              All your investments, reports, and compliance, simplified into one
-              powerful platform.
+            <div className="w-[600px] text-center text-neutral-300 text-base leading-7">
+              Designed for Family Offices, Financial Advisors, Portfolio
+              Managers, Brokers, and Wealth Businesses seeking to manage and
+              scale their business.
             </div>
           </div>
-          <div className="size- inline-flex justify-center items-center gap-4">
-            <div
-              data-button-label="true"
-              data-show-heading-icon="false"
-              data-show-tailing-icon="false"
-              data-white-button="Default"
-              className="w-40 px-6 py-4 rounded-sm outline-1 outline-offset-[-1px] outline-[#d5dee5] flex justify-center items-center gap-2 overflow-hidden"
-            >
-              <div className="justify-start text-white text-sm font-medium font-['Inter']">
+          <div className="inline-flex justify-center items-center gap-4">
+            <div className="w-40 px-6 py-4 rounded-sm outline-[#d5dee5] flex justify-center items-center gap-2">
+              <div className="text-white text-sm font-medium">
                 Request a Demo
               </div>
             </div>
-            <div
-              data-blue-buttons="Default"
-              data-button-label="true"
-              data-show-heading-icon="false"
-              data-show-tailing-icon="true"
-              className="w-40 px-6 py-4 bg-linear-52 from-[#006580] via-[#107281] via 40% to-[#4ca485] rounded-sm flex justify-center items-center gap-2 overflow-hidden"
-            >
-              <div className="justify-start text-white text-sm font-medium font-['Inter']">
-                Get Started
-              </div>
-              <div className="size-4 relative overflow-hidden">
+            <div className="w-40 px-6 py-4 bg-gradient-to-r from-[#006580] via-[#107281] to-[#4ca485] rounded-sm flex justify-center items-center gap-2">
+              <div className="text-white text-sm font-medium">Get Started</div>
+              <div className="size-4 relative">
                 <Image
                   src="/rightArrow.svg"
                   alt="Arrow check"
@@ -127,11 +112,12 @@ export default function RectangleDotsRandom() {
           </div>
         </div>
       </div>
+
+      {/* Dots */}
       {[...Array(rings)].map((_, ring) =>
         [...Array(dotsPerRing)].map((_, dot) => {
           const side = Math.floor(dot / (dotsPerRing / 4));
           const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
-
           let x = 0,
             y = 0;
 
@@ -163,8 +149,9 @@ export default function RectangleDotsRandom() {
                 width: "3px",
                 height: "3px",
                 borderRadius: "50%",
-                background: "#006580",
+                background: "#00b3b3",
                 transform: `translate3d(${x}px, ${y}px, ${z}px)`,
+                willChange: "transform", // ⚡ GPU acceleration
               }}
             />
           );

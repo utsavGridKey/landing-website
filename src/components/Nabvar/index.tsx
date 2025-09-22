@@ -1,19 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export default function FloatingNavbar({
-  secondContentRef,
-}: {
-  secondContentRef: any;
-}) {
+export default function FloatingNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [scrolledIntoSecond, setScrolledIntoSecond] = useState(false);
 
+  const secondContentRef = useRef<any>(null);
+
   useEffect(() => {
-    if (!secondContentRef?.current) return;
+    const section = document.getElementById("secondContentRef");
+    if (!section) return;
+
+    secondContentRef.current = section;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -21,18 +22,15 @@ export default function FloatingNavbar({
           setScrolledIntoSecond(entry.isIntersecting);
         });
       },
-      {
-        threshold: 0.8, // adjust how much should be visible before triggering
-      },
+      { threshold: 1 },
     );
 
-    observer.observe(secondContentRef.current);
+    observer.observe(section);
 
     return () => {
-      if (secondContentRef.current)
-        observer.unobserve(secondContentRef.current);
+      observer.unobserve(section);
     };
-  }, [secondContentRef]);
+  }, []);
 
   return (
     <nav
@@ -60,7 +58,7 @@ export default function FloatingNavbar({
         <li
           className="hover:text-gray-300 cursor-pointer relative group"
           style={{
-            color: scrolledIntoSecond ? "black" : "white",
+            color: !scrolledIntoSecond ? "black" : "white",
           }}
         >
           Our Products
@@ -79,7 +77,7 @@ export default function FloatingNavbar({
         </li>
         <li
           style={{
-            color: scrolledIntoSecond ? "black" : "white",
+            color: !scrolledIntoSecond ? "black" : "white",
           }}
           className=" hover:text-gray-300 cursor-pointer"
         >
@@ -87,7 +85,7 @@ export default function FloatingNavbar({
         </li>
         <li
           style={{
-            color: scrolledIntoSecond ? "black" : "white",
+            color: !scrolledIntoSecond ? "black" : "white",
           }}
           className="hover:text-gray-300 cursor-pointer"
         >
