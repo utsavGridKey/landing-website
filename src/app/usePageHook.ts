@@ -304,9 +304,10 @@ const usePageHook = () => {
         "<",
       );
       tl.to(chooseORef.current, {
-        scale: 100,
+        scale: 20,
         ease: "power2.inOut",
         background: "#fff",
+        transformOrigin: "center center", // important
       });
       tl.fromTo(
         secondContentRef.current,

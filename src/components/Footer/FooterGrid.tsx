@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { gsap } from "gsap";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
@@ -97,7 +98,7 @@ export default function FooterGrid() {
 
         const dx = dot.cx - px;
         const dy = dot.cy - py;
-        const dsq = dx * dx + dy * dy;
+        const dsq = dx * dx + dy * dy - 1000;
 
         let style = baseColor;
         let shadowBlur = 0;
@@ -107,8 +108,8 @@ export default function FooterGrid() {
           const g = activeRgb.g;
           const b = activeRgb.b;
           style = `rgb(${r},${g},${b})`;
-          shadowBlur = 55; // glow intensity
-          shadowColor = style; // same color glow
+          shadowBlur = 100; // glow intensity
+          shadowColor = "#ffffff"; // same color glow
         }
 
         ctx.beginPath();
@@ -154,7 +155,7 @@ export default function FooterGrid() {
               gsap.to(dot, {
                 xOffset: 0,
                 yOffset: 0,
-                duration: 1.2,
+                duration: 12.2,
                 ease: "elastic.out(1,0.6)",
               });
             },
