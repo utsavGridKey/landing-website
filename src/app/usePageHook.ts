@@ -1,96 +1,313 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const usePageHook = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const dotRef = useRef<HTMLDivElement>(null);
-  const firstTextRef = useRef<HTMLParagraphElement>(null);
-  const oRef = useRef<HTMLSpanElement>(null);
-  const secondContentRef = useRef<HTMLDivElement>(null);
+const usePageHook = () => {
+  const nineDotsLeftRef = useRef<HTMLDivElement>(null);
+  const performanceSolutionRef = useRef<HTMLDivElement>(null);
+  const whyChooseSectionRef = useRef<HTMLDivElement>(null);
+  const chooseORef = useRef<HTMLDivElement>(null);
   const thirdContentRef = useRef<HTMLDivElement>(null);
+  const threeDotDestinationRef = useRef<HTMLDivElement>(null);
+  const nineDotsRightRef = useRef<HTMLDivElement>(null);
+  const mainDivContinerRef = useRef<HTMLDivElement>(null);
+  const heroSectionRef = useRef<HTMLDivElement>(null);
   const toolsRef = useRef<HTMLDivElement>(null);
+  const secondContentRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<any>(null);
+  const dotsPerRing = 40; // 🔽 reduce for smoother perf
+  const halfWidth = 150;
+  const halfHeight = 100;
+  const spacingZ = 20;
+  const speed = 0.1;
+  const visibleDepth = 250;
+  const rings = Math.ceil(visibleDepth / spacingZ) + 2;
 
   useEffect(() => {
-    if (
-      !containerRef.current ||
-      !dotRef.current ||
-      !oRef.current ||
-      !firstTextRef.current ||
-      !secondContentRef.current ||
-      !toolsRef.current ||
-      !thirdContentRef.current
-    )
-      return;
+    if (!mainDivContinerRef.current) return;
+    const dots =
+      mainDivContinerRef.current.querySelectorAll<HTMLDivElement>(".dot");
 
+    function animate() {
+      dots.forEach((dot) => {
+        const [x, y, z] = dot.dataset.pos!.split(",").map(Number);
+        let newZ = z + speed;
+        if (newZ > 1000) newZ -= rings * spacingZ;
+
+        dot.dataset.pos = `${x},${y},${newZ}`;
+        dot.style.transform = `translate3d(${x}px, ${y}px, ${newZ}px)`;
+      });
+      animationRef.current = requestAnimationFrame(animate);
+    }
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [rings, dotsPerRing, spacingZ, speed]);
+
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=5000",
+          end: "+=15000",
           scrub: true,
           pin: true,
-          // markers: true, // remove later
         },
       });
 
-      // Step 1: Fly "o" to "choose" position
-      tl.to(dotRef.current, {
-        x: () =>
-          oRef.current!.getBoundingClientRect().left -
-          dotRef.current!.getBoundingClientRect().left,
-        y: () =>
-          oRef.current!.getBoundingClientRect().top -
-          dotRef.current!.getBoundingClientRect().top,
-        scale: 1,
-        duration: 1.5,
-        ease: "power2.inOut",
-      });
-
-      // Step 1.5: Crossfade flying "o" → real "o"
-      tl.to(dotRef.current, {
-        opacity: 0,
-        duration: 0.3,
-        ease: "power1.out",
-      });
-      tl.to(
-        oRef.current,
-        { opacity: 1, duration: 0.3, ease: "power1.in" },
-        "<",
+      const liDots = gsap.utils.toArray<HTMLDivElement>(
+        mainDivContinerRef.current?.querySelectorAll(".nine-dot") || [],
       );
 
-      // Step 2: Zoom + glow
-      tl.to(firstTextRef.current, {
-        scale: () => Math.max(window.innerWidth, window.innerHeight) / 10,
-        duration: 1.5,
-        ease: "power2.inOut",
-        background: "#ffffff",
-        textShadow: "0px 2px 400px rgba(255,255,255)",
-      });
-
-      // Step 2.5: Fade background to white
-      tl.to(
-        containerRef.current,
-        { background: "#ffffff", duration: 1, ease: "power2.inOut" },
-        "<",
+      const liDotTexts = gsap.utils.toArray<HTMLParagraphElement>(
+        mainDivContinerRef.current?.querySelectorAll(".nine-dot p") || [],
       );
 
-      // Step 3: Fade out first text
-      tl.to(
-        firstTextRef.current,
+      const liDotSvg = gsap.utils.toArray<HTMLParagraphElement>(
+        mainDivContinerRef.current?.querySelectorAll(".nine-dot svg") || [],
+      );
+
+      const nineDotsContainer = gsap.utils.toArray<HTMLParagraphElement>(
+        mainDivContinerRef.current?.querySelectorAll(".dots-container") || [],
+      );
+
+      const el = document.getElementsByTagName("body")[0];
+
+      tl.fromTo(
+        heroSectionRef.current,
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+        },
         {
           opacity: 0,
-          textShadow: "0px 0px 0px rgba(0,0,0,0)",
-          duration: 1,
-          ease: "power2.out",
+          x: 0,
+          y: -500,
         },
-        "-=0.5",
+        "removingHeroAndShowingDots",
       );
+      tl.fromTo(
+        liDots,
+        {
+          opacity: 0,
+          x: () => gsap.utils.random(-500, 0),
+          y: () => gsap.utils.random(-500, 0),
+        },
+        {
+          opacity: 1,
+          x: () => (el?.clientWidth ?? 0) / 5,
+          y: 0,
+          borderRadius: 100,
+        },
+        "removingHeroAndShowingDots",
+      );
+      tl.to(liDots, {
+        opacity: 1,
+        borderRadius: 16,
+        width: "auto",
+        height: "auto",
+      });
+      tl.to(
+        liDotTexts,
+        {
+          color: "#ffffff",
+        },
+        "<",
+      );
+      tl.to(
+        liDotSvg,
+        {
+          color: "#ffffff",
+        },
+        "<",
+      );
+      tl.fromTo(
+        nineDotsLeftRef.current,
+        {
+          opacity: 0,
+          y: 500,
+        },
+        {
+          opacity: 1,
+          y: 0,
+        },
+      );
+      tl.to({}, { duration: 1 }); // pause for a second
+      tl.to(nineDotsLeftRef.current, {
+        opacity: 0,
+        y: -500,
+      });
+      tl.to([liDotSvg, liDotTexts], {
+        color: "transparent",
+      });
+      tl.to(liDots, {
+        x: () => (el?.clientWidth ?? 0) / 5,
+        y: 0,
+        width: "4px",
+        height: "4px",
+      });
+      tl.to(
+        nineDotsContainer,
+        {
+          width: "100vw",
+        },
+        "<",
+      );
+      tl.to(liDots, {
+        opacity: 1,
+        borderRadius: 16,
+        width: "auto",
+        height: "auto",
+      });
+      tl.to(
+        liDotTexts,
+        {
+          color: "#ffffff",
+          textContent: (i: any) =>
+            [
+              "PPF / EPF",
+              "Bonds",
+              "AIF",
+              "Mutual Funds",
+              "Equity Basket",
+              "PMS",
+              "Private Equity",
+              "Fixed Deposit",
+              "Gold / Silver",
+            ][i],
+        },
+        "<",
+      );
+      tl.to(
+        liDotSvg,
 
-      // Step 4: Fade in second content
+        {
+          color: "#ffffff",
+        },
+        "<",
+      );
+      tl.fromTo(
+        nineDotsRightRef.current,
+        {
+          opacity: 0,
+          y: 500,
+        },
+        {
+          opacity: 1,
+          y: 0,
+        },
+      );
+      tl.to({}, { duration: 1 }); // pause for a second
+      tl.to(nineDotsRightRef.current, {
+        opacity: 0,
+        y: -500,
+      });
+      tl.to(
+        liDots,
+        {
+          x: () => (el?.clientWidth ?? 0) / 5,
+          y: 0,
+          width: "4px",
+          height: "4px",
+        },
+        "<",
+      );
+      tl.to(
+        liDots,
+        {
+          opacity: 0,
+        },
+        "<",
+      );
+      tl.to(
+        liDotTexts,
+        {
+          opacity: 0,
+        },
+        "<",
+      );
+      tl.to(
+        liDotSvg,
+        {
+          opacity: 0,
+        },
+        "<",
+      );
+      tl.to(
+        [liDots[4], liDots[5], liDots[3]],
+        {
+          opacity: 1,
+          background: "#fff",
+        },
+        "<",
+      );
+      tl.to(
+        [liDots[4], liDots[5], liDots[3]],
+        {
+          x: (i) => {
+            return window.innerWidth / 2.87 + i * 5;
+          },
+          y: (i, dot) => {
+            const dest = threeDotDestinationRef.current;
+            if (!dest) return 0;
+            const dotBox = (dot as HTMLElement).getBoundingClientRect();
+            const destBox = dest.getBoundingClientRect();
+
+            return (
+              destBox.top +
+              destBox.height / 2 -
+              (dotBox.top + dotBox.height / 2) +
+              2
+            );
+          },
+          scale: 0.1,
+          ease: "power2.inOut",
+        },
+        "<",
+      );
+      tl.fromTo(
+        performanceSolutionRef.current,
+        { opacity: 0 },
+        { opacity: 1 },
+        "<",
+      );
+      tl.to({}, { duration: 1 }); // pause for a second
+      tl.to(performanceSolutionRef.current, {
+        y: -600,
+        opacity: 0,
+      });
+      tl.fromTo(
+        whyChooseSectionRef.current,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+      );
+      tl.to(
+        [liDots[4], liDots[5], liDots[3]],
+        {
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 8,
+          ease: "power2.inOut",
+          scale: 0.5,
+          opacity: 0,
+        },
+        "<",
+      );
+      tl.to(chooseORef.current, {
+        scale: 100,
+        ease: "power2.inOut",
+        background: "#fff",
+      });
       tl.fromTo(
         secondContentRef.current,
         { opacity: 0, z: -400, transformPerspective: 1000 },
@@ -110,31 +327,44 @@ export const usePageHook = () => {
         "+=0.5",
       );
 
-      // Step 6: Transition to third content
+      // ✅ Step 6: Fade in third content after scroll is done
       tl.fromTo(
         secondContentRef.current,
         { opacity: 1, y: 0 },
-        { opacity: 0, y: -800, duration: 1.5, ease: "power3.out" },
-        "+=0.5",
+        { opacity: 0, y: -400, ease: "power3.out" },
       );
+
       tl.fromTo(
         thirdContentRef.current,
         { opacity: 0, y: 100 },
-        { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" },
-        "+=0.5",
+        { opacity: 1, y: 0, ease: "power3.out" },
       );
-    }, containerRef);
+    });
 
     return () => ctx.revert();
   }, []);
 
   return {
-    containerRef,
-    dotRef,
-    firstTextRef,
-    oRef,
+    rings,
+    speed,
+    spacingZ,
+    halfWidth,
+    halfHeight,
+    dotsPerRing,
+    visibleDepth,
+    animationRef,
+    heroSectionRef,
+    nineDotsLeftRef,
+    nineDotsRightRef,
+    whyChooseSectionRef,
+    mainDivContinerRef,
+    performanceSolutionRef,
+    threeDotDestinationRef,
     secondContentRef,
-    thirdContentRef,
     toolsRef,
+    chooseORef,
+    thirdContentRef,
   };
 };
+
+export default usePageHook;

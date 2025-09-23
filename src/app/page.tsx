@@ -1,230 +1,549 @@
 "use client";
-import useLeftFirst from "@/components/SecondSection/useLeftFirst";
+import FooterGrid from "@/components/Footer/FooterGrid";
+import { Globe } from "@/components/magicui/globe";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import SolarShareIcon from "../assets/solarShare.svg";
+import usePageHook from "./usePageHook";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function LeftSection() {
+export default function Page() {
   const {
-    dotsPerRing,
-    spacingZ,
     rings,
-    mainDivContinerRef,
+    spacingZ,
     halfWidth,
     halfHeight,
+    dotsPerRing,
     heroSectionRef,
-  } = useLeftFirst();
+    nineDotsLeftRef,
+    nineDotsRightRef,
+    mainDivContinerRef,
+    whyChooseSectionRef,
+    threeDotDestinationRef,
+    performanceSolutionRef,
+    chooseORef,
+    toolsRef,
+    secondContentRef,
+    thirdContentRef,
+  } = usePageHook();
 
   return (
-    <div
-      ref={mainDivContinerRef}
-      style={{
-        position: "relative",
-        width: "100vw",
-        height: "100vh",
-        overflowX: "hidden",
-        background: "black",
-      }}
-    >
-      {/**heroSectionRef================================================= */}
+    <div>
       <div
-        ref={heroSectionRef}
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          perspective: "1000px",
-          overflowX: "hidden",
-          background: "black",
-        }}
+        ref={mainDivContinerRef}
+        className="relative w-screen h-screen overflow-idden bg-black"
       >
+        {/**heroSectionRef================================================= */}
         <div
-          style={{
-            background: "black",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "70vw",
-            minHeight: "50vh",
-            zIndex: 9999,
-            boxShadow: "0 0 4000px 150px #000000",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            gap: 40,
-          }}
+          ref={heroSectionRef}
+          className="absolute h-full w-full perspective-[1000px]"
         >
-          <div className="w-[784px] inline-flex flex-col justify-start items-center gap-10">
-            <div className="self-stretch flex flex-col justify-start items-center gap-5">
-              <div className="px-3 py-2.5 bg-[#222222]/40 rounded-[100px] backdrop-blur-[20px] inline-flex justify-center items-center gap-2">
-                <Image
-                  src="/verifiedCheck.svg"
-                  alt="Verified check"
-                  width={20}
-                  height={20}
-                  priority
-                />
-                <div className="text-center text-neutral-100 text-sm">
-                  Simplify. Streamline. Succeed
-                </div>
-              </div>
-              <div className="self-stretch text-center text-white text-[56px] font-semibold">
-                One Platform to Power Your Entire Wealth Business
-              </div>
-              <div className="w-[600px] text-center text-neutral-300 text-base leading-7">
-                Designed for Family Offices, Financial Advisors, Portfolio
-                Managers, Brokers, and Wealth Businesses seeking to manage and
-                scale their business.
-              </div>
-            </div>
-            <div className="inline-flex justify-center items-center gap-4">
-              <div className="w-40 px-6 py-4 rounded-sm outline-[#d5dee5] flex justify-center items-center gap-2">
-                <div className="text-white text-sm font-medium">
-                  Request a Demo
-                </div>
-              </div>
-              <div className="w-40 px-6 py-4 bg-gradient-to-r from-[#006580] via-[#107281] to-[#4ca485] rounded-sm flex justify-center items-center gap-2">
-                <div className="text-white text-sm font-medium">
-                  Get Started
-                </div>
-                <div className="size-4 relative">
+          <div
+            style={{
+              background: "black",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "70vw",
+              minHeight: "50vh",
+              zIndex: 9999,
+              boxShadow: "0 0 4000px 150px #000000",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              gap: 40,
+            }}
+          >
+            <div className="w-[784px] inline-flex flex-col justify-start items-center gap-10">
+              <div className="self-stretch flex flex-col justify-start items-center gap-5">
+                <div className="px-3 py-2.5 bg-[#222222]/40 rounded-[100px] backdrop-blur-[20px] inline-flex justify-center items-center gap-2">
                   <Image
-                    src="/rightArrow.svg"
-                    alt="Arrow check"
+                    src="/verifiedCheck.svg"
+                    alt="Verified check"
                     width={20}
                     height={20}
                     priority
                   />
+                  <div className="text-center text-neutral-100 text-sm">
+                    Simplify. Streamline. Succeed
+                  </div>
+                </div>
+                <div className="self-stretch text-center text-white text-[56px] font-semibold">
+                  One Platform to Power Your Entire Wealth Business
+                </div>
+                <div className="w-[600px] text-center text-neutral-300 text-base leading-7">
+                  Designed for Family Offices, Financial Advisors, Portfolio
+                  Managers, Brokers, and Wealth Businesses seeking to manage and
+                  scale their business.
+                </div>
+              </div>
+              <div className="inline-flex justify-center items-center gap-4">
+                <div className="w-40 px-6 py-4 rounded-sm outline-[#d5dee5] flex justify-center items-center gap-2">
+                  <div className="text-white text-sm font-medium">
+                    Request a Demo
+                  </div>
+                </div>
+                <div className="w-40 px-6 py-4 bg-gradient-to-r from-[#006580] via-[#107281] to-[#4ca485] rounded-sm flex justify-center items-center gap-2">
+                  <div className="text-white text-sm font-medium">
+                    Get Started
+                  </div>
+                  <div className="size-4 relative">
+                    <Image
+                      src="/rightArrow.svg"
+                      alt="Arrow check"
+                      width={20}
+                      height={20}
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          {[...Array(rings)].map((_, ring) =>
+            [...Array(dotsPerRing)].map((_, dot) => {
+              const side = Math.floor(dot / (dotsPerRing / 4));
+              const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
+              let x = 0,
+                y = 0;
+
+              if (side === 0) {
+                x = -halfWidth + progress * (2 * halfWidth);
+                y = -halfHeight;
+              } else if (side === 1) {
+                x = halfWidth;
+                y = -halfHeight + progress * (2 * halfHeight);
+              } else if (side === 2) {
+                x = halfWidth - progress * (2 * halfWidth);
+                y = halfHeight;
+              } else {
+                x = -halfWidth;
+                y = halfHeight - progress * (2 * halfHeight);
+              }
+
+              const z = 1000 - ring * spacingZ;
+
+              return (
+                <div
+                  key={`${ring}-${dot}`}
+                  className="dot"
+                  data-pos={`${x},${y},${z}`}
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    width: "1.5px",
+                    height: "1.5px",
+                    borderRadius: "50%",
+                    background: "#00b3b3",
+                    transform: `translate3d(${x}px, ${y}px, ${z}px)`,
+                    willChange: "transform", // ⚡ GPU acceleration
+                  }}
+                />
+              );
+            }),
+          )}
         </div>
-        {[...Array(rings)].map((_, ring) =>
-          [...Array(dotsPerRing)].map((_, dot) => {
-            const side = Math.floor(dot / (dotsPerRing / 4));
-            const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
-            let x = 0,
-              y = 0;
+        {/**=============================================================== */}
+        <div className="dots-container absolute  flex justify-center items-start gap-4 flex-col pointer-events-none h-full w-[50vw]  right-0 top-0">
+          {[
+            {
+              name: "Streamlined Fee Tracking",
+              icon: "/founder.svg",
 
-            if (side === 0) {
-              x = -halfWidth + progress * (2 * halfWidth);
-              y = -halfHeight;
-            } else if (side === 1) {
-              x = halfWidth;
-              y = -halfHeight + progress * (2 * halfHeight);
-            } else if (side === 2) {
-              x = halfWidth - progress * (2 * halfWidth);
-              y = halfHeight;
-            } else {
-              x = -halfWidth;
-              y = halfHeight - progress * (2 * halfHeight);
-            }
+              opacity: 0.2,
+              size: 12,
+            },
+            {
+              name: "Data-Driven Insights & Analytics",
+              icon: "/founder.svg",
 
-            const z = 1000 - ring * spacingZ;
+              opacity: 0.4,
+              size: 14,
+            },
+            {
+              name: "Intuitive Lead Handling",
+              icon: "/founder.svg",
 
+              opacity: 0.6,
+              size: 16,
+            },
+            {
+              name: "Comprehensive Client Reporting",
+              icon: "/founder.svg",
+
+              opacity: 0.8,
+              size: 18,
+            },
+            {
+              name: "Smooth Client Onboarding",
+              icon: "/founder.svg",
+
+              opacity: 1,
+              size: 24,
+            },
+            {
+              name: "Seamless Portfolio Management",
+              icon: "/founder.svg",
+
+              opacity: 0.8,
+              size: 18,
+            },
+            {
+              name: "Scalable Partner Ecosystem",
+              icon: "/founder.svg",
+
+              opacity: 0.6,
+              size: 16,
+            },
+            {
+              name: "Effortless Compliance",
+              icon: "/founder.svg",
+
+              opacity: 0.4,
+              size: 14,
+            },
+            {
+              name: "Frictionless Order Execution",
+              icon: "/founder.svg",
+
+              opacity: 0.2,
+              size: 12,
+            },
+          ].map((_, i) => {
             return (
               <div
-                key={`${ring}-${dot}`}
-                className="dot"
-                data-pos={`${x},${y},${z}`}
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  width: "3px",
-                  height: "3px",
-                  borderRadius: "50%",
-                  background: "#00b3b3",
-                  transform: `translate3d(${x}px, ${y}px, ${z}px)`,
-                  willChange: "transform", // ⚡ GPU acceleration
-                }}
-              />
-            );
-          }),
-        )}
-      </div>
-      {/**================================================= */}
-      <div className="dots-container absolute  flex justify-center items-center gap-4 flex-col pointer-events-none h-[100vh] w-[100vw]">
-        {[
-          {
-            name: "Streamlined Fee Tracking",
-            icon: "",
-            opacity: 0.2,
-            size: 12,
-          },
-          {
-            name: "Data-Driven Insights & Analytics",
-            icon: "",
-            opacity: 0.4,
-            size: 14,
-          },
-          {
-            name: "Intuitive Lead Handling",
-            icon: "",
-            opacity: 0.6,
-            size: 16,
-          },
-          {
-            name: "Comprehensive Client Reporting",
-            icon: "",
-            opacity: 0.8,
-            size: 18,
-          },
-          {
-            name: "Smooth Client Onboarding",
-            icon: "",
-            opacity: 1,
-            size: 24,
-          },
-          {
-            name: "Seamless Portfolio Management",
-            icon: "",
-            opacity: 0.8,
-            size: 18,
-          },
-          {
-            name: "Scalable Partner Ecosystem",
-            icon: "",
-            opacity: 0.6,
-            size: 16,
-          },
-          {
-            name: "Effortless Compliance",
-            icon: "",
-            opacity: 0.4,
-            size: 14,
-          },
-          {
-            name: "Frictionless Order Execution",
-            icon: "",
-            opacity: 0.2,
-            size: 12,
-          },
-        ].map((_, i) => {
-          return (
-            <div
-              key={i}
-              className="w-4 h-4 nine-dot rounded-[16px]  bg-black-900 flex items-center gap-4 p-4 justify-center text-nowrap opacity-0"
-            >
-              <SolarShareIcon color="#fff" height={_.size} width={_.size} />
-              <p
-                className={`text-white font-bold opacity-0`}
-                style={{
-                  fontSize: _.size,
-                  opacity: _.opacity,
-                }}
+                key={i}
+                className="w-1 h-1 nine-dot rounded-[16px]  bg-black-900 flex items-center gap-4 p-4 justify-start text-nowrap opacity-0"
               >
-                {_.name}
+                <SolarShareIcon
+                  color="transparent"
+                  style={{
+                    minHeight: _.size,
+                    minWidth: _.size,
+                  }}
+                  height={_.size}
+                  width={_.size}
+                />
+                <p
+                  className={`text-transparent font-bold`}
+                  style={{
+                    fontSize: _.size,
+                    opacity: _.opacity,
+                  }}
+                >
+                  {_.name}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+        {/**=============================================================== */}
+        <div
+          ref={nineDotsLeftRef}
+          className="w-1/2  flex items-center justify-center absolute opacity-0 top-1/2 -translate-y-1/2"
+        >
+          <div
+            className="flex flex-col w-[80%] gap-4 ml-50 rounded-full bg-[#000f13]"
+            style={{
+              boxShadow: "0 0 1000px 200px #000f13",
+            }}
+          >
+            <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
+              <p className="text-grey-500 uppercase text-">tech tools</p>
+            </div>
+            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[64px] font-bold">
+              Your Back-Office, Mid-Office & Front-Office, Digitized.{" "}
+            </p>
+            <div>
+              <p className="text-grey-500 text-2xl">
+                Your clients don’t invest in silos, why should your tools?
               </p>
             </div>
-          );
-        })}
+          </div>
+        </div>
+        {/**=============================================================== */}
+        <div
+          ref={nineDotsRightRef}
+          className="w-1/2  flex items-center justify-center absolute opacity-0 right-0 top-1/2 -translate-y-1/2"
+        >
+          <div
+            className="flex flex-col w-[90%] gap-4 ml-50 rounded-full bg-[#000f13]"
+            style={{
+              boxShadow: "0 0 1000px 200px #000f13",
+            }}
+          >
+            <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
+              <p className="text-grey-500 uppercase text-">Financial assets</p>
+            </div>
+            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[64px] font-bold">
+              Integrated Holistic Portfolio Management Starts Here
+            </p>
+            <div>
+              <p className="text-grey-500 text-2xl">
+                Our intuitive app simplifies tracking and managing diverse
+                financial assets.
+              </p>
+            </div>
+          </div>
+        </div>
+        {/**=============================================================== */}
+        <div
+          ref={performanceSolutionRef}
+          className="w-full h-full  flex-col flex items-center justify-center absolute gap-4 opacity-0"
+        >
+          <p className="bg-gradient-to-r from-[#006580]  to-[#4CA485] inline-block text-transparent bg-clip-text text-[64px] font-bold">
+            One Platform, Many Solutions!
+          </p>
+          <div className="flex items-center w-1/3 gap-6">
+            <p
+              ref={threeDotDestinationRef}
+              className="text-white text-[20px] text-nowrap"
+            >
+              I am
+            </p>
+            <div
+              data-property-1="Selected"
+              className="w-full px-4 py-3 bg-[#111111] rounded-xl  outline-1 outline-offset-[-1px] outline-[#006580] inline-flex justify-start items-center gap-4"
+            >
+              <div className="flex-1 justify-start text-[#e0e0e0] text-sm font-medium font-['Inter'] uppercase tracking-wider">
+                Registered Investment Advisor
+              </div>
+              <div className="size-5 inline-flex flex-col justify-center items-center gap-2.5">
+                <div className="w-[12.50px] h-[7.20px] bg-white" />
+              </div>
+            </div>
+          </div>
+          <section className="flex items-center w-screen px-20 mt-20">
+            <div className="w-1/2 flex justify-center flex-col items-center">
+              <div className="self-stretch justify-start text-[#ececec] text-[40px] font-medium font-['Inter'] leading-[52px]">
+                Stay informed through data driven insights
+              </div>{" "}
+              <div className="self-stretch justify-start text-[#828282] text-xl font-normal font-['Inter'] leading-loose">
+                Gain valuable insights and analysis of your investments and make
+                better informed decisions.
+                <br />
+                Advisor dashboards to get a comprehensive view of your business
+                <br />
+                Holdings Summary to get holistic perspective of client
+                investments
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-center items-center ">
+              <img
+                src="/productImg2.svg"
+                alt=""
+                width={"60%"}
+                height={"auto"}
+              />
+            </div>
+          </section>
+        </div>
+        {/**=============================================================== */}
+        <section
+          ref={whyChooseSectionRef}
+          className="absolute flex-col gap-4  w-full top-0 flex justify-center items-center opacity-0 h-full"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(0, 35, 43, 0.8) 0%, rgba(0, 0, 0, 1) 50%)",
+          }}
+        >
+          <p
+            ref={chooseORef}
+            className="text-center justify-start  text-[55.04px] text-white font-medium font-['Inter']"
+          >
+            Why Choose us?
+          </p>
+          <p className="w-[703.78px] text-center justify-start  text-base text-white font-normal font-['Inter'] leading-7">
+            Advisory runs on trust. Our platform helps you deliver personal
+            experiences, build client confidence, and turn complexity into
+            lasting growth. With every feature designed for clarity and ease,
+            you stay focused on what matters most: your clients.
+          </p>
+        </section>
+        {/**=============================================================== */}
+        <section
+          ref={secondContentRef}
+          id="secondContentRef"
+          className="w-full h-full absolute top-0 flex justify-center items-center"
+        >
+          <div className="flex flex-row w-full h-full">
+            {/* Left section */}
+            <div className="w-1/2 flex items-center justify-center ">
+              <p className="bg-[linear-gradient(142deg,#006580_3.91%,#107281_47.82%,#4CA485_113.7%)] bg-clip-text text-transparent text-6xl font-bold ">
+                Built on trust. <br />
+                Driven by insight. <br />
+                Made for you.{" "}
+              </p>
+            </div>
+
+            {/* Right section with scrollable grid */}
+            <div className="w-1/2 relative overflow-hidden h-[95vh] m-auto">
+              <div
+                ref={toolsRef}
+                className="p-6 h-full w-full flex flex-col gap-4"
+              >
+                {[
+                  {
+                    title: "Founder’s Vision",
+                    description:
+                      "Industry experts with a vision to revolutionize wealth management space.",
+                    icon: "/founder.svg",
+                  },
+                  {
+                    title: "Client-Centric Approach",
+                    description:
+                      "We ensure that every feature is designed to meet the unique needs of our users.",
+                    icon: "/founder.svg",
+                  },
+                  {
+                    title: "Holistic Wealth Management",
+                    description:
+                      "Gridkey covers every aspect of wealth management in one integrated platform.",
+                    icon: "/founder.svg",
+                  },
+                  {
+                    title: "Intuitive Tools",
+                    description:
+                      "Leverage cutting-edge tools for growing your advisory business.",
+                    icon: "/founder.svg",
+                  },
+                  {
+                    title: "Data Driven Insights",
+                    description:
+                      "Make informed decision with insights and reports, empowering you to stay aheah in the game",
+                    icon: "/founder.svg",
+                  },
+                  {
+                    title: "Innovation at Core",
+                    description:
+                      "We continuosly strive to bring innovative solutions to simpliy complex financial landscape.",
+                    icon: "/founder.svg",
+                  },
+                ].map((dataItem, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-center bg-transparent bg-opacity-50 rounded-md transition-all hover:bg-opacity-100 hover:shadow-md min-h-1/3"
+                  >
+                    <div className="w-1/2 ">
+                      <p className="self-stretch justify-start text-[#333333] text-xl font-semibold font-['Inter'] leading-relaxed">
+                        {dataItem.title}
+                      </p>{" "}
+                      <p className="self-stretch justify-start text-[#4f4f4f] text-sm font-medium font-['Inter'] leading-snug max-w-2/3">
+                        {dataItem.description}
+                      </p>
+                    </div>
+                    <img src="/founder.svg" alt="" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+        {/**=============================================================== */}
+        <section
+          ref={thirdContentRef}
+          className="absolute bottom-0 opacity-0 h-full w-full text-4xl font-bold  text-black flex px-28"
+        >
+          <div className="w-1/2 pl-10 h-screen flex flex-col items-start justify-center gap-4 ">
+            <img src="/security1.svg" alt="" />
+            <p className="self-stretch justify-start text-[#006580] text-5xl font-semibold font-['Inter'] leading-[62.40px]">
+              Security You Can Trust
+            </p>
+            <p className="self-stretch justify-start text-[#333333] text-base font-normal font-['Inter'] leading-relaxed">
+              Where regulatory compliance, client trust, and business growth
+              align seamlessly through technology.
+            </p>
+            <ol className="w-full">
+              {[
+                {
+                  title: "",
+                  description: "",
+                  icon: "",
+                },
+                {
+                  title: "",
+                  description: "",
+                  icon: "",
+                },
+                {
+                  title: "",
+                  description: "",
+                  icon: "",
+                },
+              ].map((dataItem, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="flex items-start gap-4 justify-start mb-9"
+                  >
+                    <img src="/security1.svg" alt="" height={24} width={24} />
+                    <div className="flex flex-col gap-2 items-start justify-start">
+                      <p className="self-stretch justify-start text-[#333333] text-base font-semibold font-['Inter'] leading-tight">
+                        Cloud-based platform
+                      </p>
+                      <p className="self-stretch justify-start text-[#4f4f4f] text-xs font-medium font-['Inter'] leading-tight">
+                        Access your wealth management tools securely from
+                        anywhere.
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+          <div className="w-full bg-white relative">
+            <Globe
+              config={{
+                width: 100,
+                height: 100,
+                onRender: () => {},
+                devicePixelRatio: 1.78,
+                phi: 0,
+                theta: 0.3,
+                dark: 0,
+                diffuse: 0.4,
+                mapSamples: 16000,
+                mapBrightness: 1.2,
+                baseColor: [0.89, 0.89, 0.89],
+                markerColor: [0 / 255, 101 / 255, 128 / 255],
+                glowColor: [1, 1, 1],
+                markers: [
+                  { location: [14.5995, 120.9842], size: 0.04 },
+                  { location: [19.076, 72.8777], size: 0.04 },
+                  { location: [23.8103, 90.4125], size: 0.04 },
+                  { location: [30.0444, 31.2357], size: 0.04 },
+                  { location: [39.9042, 116.4074], size: 0.04 },
+                  { location: [-23.5505, -46.6333], size: 0.04 },
+                  { location: [19.4326, -99.1332], size: 0.04 },
+                  { location: [40.7128, -74.006], size: 0.04 },
+                  { location: [34.6937, 135.5022], size: 0.04 },
+                  { location: [41.0082, 28.9784], size: 0.04 },
+                ],
+              }}
+            />
+          </div>
+        </section>
+        {/**=============================================================== */}
+        {/**=============================================================== */}
+        {/**=============================================================== */}
+        {/**=============================================================== */}
+      </div>
+      <div className="relative w-full flex flex-col items-center justify-center overflow-hidden  border bg-[#163F4A] min-h-[450px]">
+        <FooterGrid />
+        <p className="text-4xl text-white">Start your free trial today</p>
+        <p className="text-white">
+          Put your marketing on autopilot and focus on scaling. We’ll do all the
+          heavy lifting for your while you grow your business.
+        </p>
+        <div>
+          <button>Request Demo</button>
+          <button>Get Started</button>
+        </div>
       </div>
     </div>
   );

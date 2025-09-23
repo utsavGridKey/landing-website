@@ -20,11 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        id="myDiv"
-        className={`${inter.variable} font-[inter] overflow-x-hidden`}
-      >
-        <AppProvider>{children}</AppProvider>
+      <body className={`${inter.variable} font-[inter] overflow-x-hidden`}>
+        <div id="app-root" className="min-h-screen w-full">
+          <AppProvider>{children}</AppProvider>
+        </div>
       </body>
     </html>
   );

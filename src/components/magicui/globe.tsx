@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import createGlobe, { COBEOptions } from "cobe";
@@ -103,7 +104,7 @@ export function Globe({
   return (
     <div
       className={cn(
-        "absolute aspect-[1/1] w-full bottom-[-190px] right-[-120px]",
+        "absolute aspect-[1/1] w-full bottom-[-300px] right-[-280px]",
         className,
       )}
     >
