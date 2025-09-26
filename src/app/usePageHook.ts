@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +11,7 @@ const usePageHook = () => {
   const chooseORef = useRef<HTMLDivElement>(null);
   const thirdContentRef = useRef<HTMLDivElement>(null);
   const threeDotDestinationRef = useRef<HTMLDivElement>(null);
+  const navbarRef = useRef<HTMLDivElement>(null);
   const nineDotsRightRef = useRef<HTMLDivElement>(null);
   const mainDivContinerRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLDivElement>(null);
@@ -24,6 +25,10 @@ const usePageHook = () => {
   const speed = 0.1;
   const visibleDepth = 250;
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [scrolledIntoSecond, setScrolledIntoSecond] = useState(false);
 
   useEffect(() => {
     if (!mainDivContinerRef.current) return;
@@ -77,6 +82,10 @@ const usePageHook = () => {
         mainDivContinerRef.current?.querySelectorAll(".dots-container") || [],
       );
 
+      const securityTrustPoints = gsap.utils.toArray<HTMLParagraphElement>(
+        mainDivContinerRef.current?.querySelectorAll(".security-trust-point") ||
+          [],
+      );
       const el = document.getElementsByTagName("body")[0];
 
       tl.fromTo(
@@ -139,7 +148,7 @@ const usePageHook = () => {
           y: 0,
         },
       );
-      tl.to({}, { duration: 1 }); // pause for a second
+      tl.to({}, { duration: 1 });
       tl.to(nineDotsLeftRef.current, {
         opacity: 0,
         y: -500,
@@ -204,7 +213,7 @@ const usePageHook = () => {
           y: 0,
         },
       );
-      tl.to({}, { duration: 1 }); // pause for a second
+      tl.to({}, { duration: 1 });
       tl.to(nineDotsRightRef.current, {
         opacity: 0,
         y: -500,
@@ -278,7 +287,7 @@ const usePageHook = () => {
         { opacity: 1 },
         "<",
       );
-      tl.to({}, { duration: 1 }); // pause for a second
+      tl.to({}, { duration: 1 });
       tl.to(performanceSolutionRef.current, {
         y: -600,
         opacity: 0,
@@ -310,13 +319,17 @@ const usePageHook = () => {
         transformOrigin: "center center", // important
       });
       tl.fromTo(
+        navbarRef.current,
+        { background: "rgba(255, 255, 255, 0.05)" },
+        { background: "#ffffff88" },
+        "<",
+      );
+      tl.fromTo(
         secondContentRef.current,
         { opacity: 0, z: -400, transformPerspective: 1000 },
         { opacity: 1, z: 0, duration: 1.5, ease: "power3.out" },
         "<",
       );
-
-      // Step 5: Scroll right side toolsRef content upward
       tl.to(
         toolsRef.current,
         {
@@ -327,17 +340,30 @@ const usePageHook = () => {
         },
         "+=0.5",
       );
-
-      // ✅ Step 6: Fade in third content after scroll is done
       tl.fromTo(
         secondContentRef.current,
         { opacity: 1, y: 0 },
         { opacity: 0, y: -400, ease: "power3.out" },
       );
-
       tl.fromTo(
         thirdContentRef.current,
         { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, ease: "power3.out" },
+      );
+
+      tl.fromTo(
+        securityTrustPoints[0],
+        { opacity: 0, y: 200 },
+        { opacity: 1, y: 0, ease: "power3.out" },
+      );
+      tl.fromTo(
+        securityTrustPoints[1],
+        { opacity: 0, y: 200 },
+        { opacity: 1, y: 0, ease: "power3.out" },
+      );
+      tl.fromTo(
+        securityTrustPoints[2],
+        { opacity: 0, y: 200 },
         { opacity: 1, y: 0, ease: "power3.out" },
       );
     });
@@ -365,6 +391,13 @@ const usePageHook = () => {
     toolsRef,
     chooseORef,
     thirdContentRef,
+    menuOpen,
+    setMenuOpen,
+    productsOpen,
+    setProductsOpen,
+    scrolledIntoSecond,
+    setScrolledIntoSecond,
+    navbarRef,
   };
 };
 

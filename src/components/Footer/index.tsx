@@ -14,7 +14,7 @@ const Footer = () => {
           <button className="cursor-pointer z-20">
             <div
               data-property-1="Default"
-              className="w-40 px-6 py-4 rounded-sm  outline-1 outline-offset-[-1px] outline-white inline-flex justify-center items-center gap-2 overflow-hidden"
+              className="w-40 px-6 py-4 rounded-sm  outline-offset-[-1px] outline-white inline-flex justify-center items-center gap-2 overflow-hidden"
             >
               <div className="justify-start text-white text-sm font-medium font-['Inter']">
                 Request a Demo
@@ -27,7 +27,7 @@ const Footer = () => {
               data-show-heading-icon="false"
               data-show-tailing-icon="true"
               data-white-button="Default"
-              className="w-40 px-6 py-4 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-[#d5dee5] inline-flex justify-center items-center gap-2 overflow-hidden"
+              className="w-40 px-6 py-4 bg-white rounded-sm outline outline-offset-[-1px] outline-[#d5dee5] inline-flex justify-center items-center gap-2 overflow-hidden"
             >
               <div className="justify-start text-[#163f4a] text-sm font-medium font-['Inter']">
                 Get Started
@@ -60,8 +60,8 @@ const Footer = () => {
             <div className="self-stretch flex flex-col justify-start items-start gap-1">
               <div className="self-stretch inline-flex justify-center items-center gap-2">
                 <div className="size-4 relative overflow-hidden">
-                  <div className="w-[13.33px] h-[10.67px] left-[1.33px] top-[2.67px] absolute rounded-xs outline outline-1 outline-offset-[-0.50px] outline-[#828282]" />
-                  <div className="w-2 h-[2.73px] left-[4px] top-[5.33px] absolute outline outline-1 outline-offset-[-0.50px] outline-[#828282]" />
+                  <div className="w-[13.33px] h-[10.67px] left-[1.33px] top-[2.67px] absolute rounded-xs outline outline-offset-[-0.50px] outline-[#828282]" />
+                  <div className="w-2 h-[2.73px] left-[4px] top-[5.33px] absolute outline outline-offset-[-0.50px] outline-[#828282]" />
                 </div>
                 <div className="flex-1 justify-start text-[#828282] text-sm font-normal font-['Inter'] leading-normal">
                   Email Id
@@ -187,8 +187,8 @@ const Footer = () => {
                     </div>
                   </div>
                   <div className="size-4 relative overflow-hidden">
-                    <div className="w-[13.33px] h-[10.67px] left-[1.33px] top-[2.67px] absolute rounded-xs outline outline-1 outline-offset-[-0.50px] outline-[#697586]" />
-                    <div className="w-2 h-[2.73px] left-[4px] top-[5.33px] absolute outline outline-1 outline-offset-[-0.50px] outline-[#697586]" />
+                    <div className="w-[13.33px] h-[10.67px] left-[1.33px] top-[2.67px] absolute rounded-xs outline outline-offset-[-0.50px] outline-[#697586]" />
+                    <div className="w-2 h-[2.73px] left-[4px] top-[5.33px] absolute outline outline-offset-[-0.50px] outline-[#697586]" />
                   </div>
                 </div>
               </div>
@@ -203,8 +203,8 @@ const Footer = () => {
                   Get In Touch
                 </div>
                 <div className="size-4 relative overflow-hidden">
-                  <div className="w-[9.33px] h-0 left-[3.33px] top-[8px] absolute outline outline-[1.20px] outline-offset-[-0.60px] outline-white" />
-                  <div className="w-[4.67px] h-[9.33px] left-[8px] top-[3.33px] absolute outline outline-[1.20px] outline-offset-[-0.60px] outline-white" />
+                  <div className="w-[9.33px] h-0 left-[3.33px] top-[8px] absolute outline outline-offset-[-0.60px] outline-white" />
+                  <div className="w-[4.67px] h-[9.33px] left-[8px] top-[3.33px] absolute outline outline-offset-[-0.60px] outline-white" />
                 </div>
               </div>
             </div>
@@ -232,9 +232,6 @@ const Footer = () => {
             Copyright © 2024 Gridkey Technologies Private Limited. All rights
             reserved.
           </div>
-        </div>
-        <div className="self-stretch text-right justify-start text-white text-[330px] font-normal font-['Inter']">
-          gridkey
         </div>
       </div>
     </div>

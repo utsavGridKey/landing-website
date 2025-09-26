@@ -1,36 +1,11 @@
 "use client";
-
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 export default function FloatingNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [scrolledIntoSecond, setScrolledIntoSecond] = useState(false);
-
-  const secondContentRef = useRef<any>(null);
-
-  useEffect(() => {
-    const section = document.getElementById("secondContentRef");
-    if (!section) return;
-
-    secondContentRef.current = section;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setScrolledIntoSecond(entry.isIntersecting);
-        });
-      },
-      { threshold: 1 },
-    );
-
-    observer.observe(section);
-
-    return () => {
-      observer.unobserve(section);
-    };
-  }, []);
 
   return (
     <nav
