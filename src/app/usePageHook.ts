@@ -27,6 +27,7 @@ const usePageHook = () => {
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [scrolledIntoSecond, setScrolledIntoSecond] = useState(false);
 
@@ -261,7 +262,7 @@ const usePageHook = () => {
         [liDots[4], liDots[5], liDots[3]],
         {
           x: (i) => {
-            return window.innerWidth / 2.87 + i * 5;
+            return window.innerWidth / 2.84 + i * 5;
           },
           y: (i, dot) => {
             const dest = threeDotDestinationRef.current;
@@ -273,7 +274,7 @@ const usePageHook = () => {
               destBox.top +
               destBox.height / 2 -
               (dotBox.top + dotBox.height / 2) +
-              2
+              5
             );
           },
           scale: 0.1,
@@ -398,6 +399,8 @@ const usePageHook = () => {
     scrolledIntoSecond,
     setScrolledIntoSecond,
     navbarRef,
+    openDropdown,
+    setOpenDropdown,
   };
 };
 

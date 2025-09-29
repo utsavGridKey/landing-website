@@ -6,7 +6,16 @@ import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pa
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import BarChartIcon from "../assets/barChart.svg";
+import BasketIcon from "../assets/basketWheel.svg";
+import DocumentIcon from "../assets/document.svg";
+import DropdownIcon from "../assets/dropdown.svg";
+import LineChartIcon from "../assets/lineChart.svg";
+import MultiUserIcon from "../assets/multiUsers.svg";
+import RupeeIcon from "../assets/rupee.svg";
 import SolarShareIcon from "../assets/solarShare.svg";
+import UserOnboardIcon from "../assets/userOnboard.svg";
+import VerifyCheckIcon from "../assets/verifyCheck.svg";
 import usePageHook from "./usePageHook";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -33,10 +42,13 @@ export default function Page() {
     setMenuOpen,
     productsOpen,
     setProductsOpen,
-    scrolledIntoSecond,
     navbarRef,
+    openDropdown,
+    setOpenDropdown,
   } = usePageHook();
-  console.log("scrolledIntoSecond", scrolledIntoSecond);
+
+  console.log("openDropdown", openDropdown);
+
   return (
     <div className="relative">
       <nav
@@ -183,7 +195,7 @@ export default function Page() {
         {/**heroSectionRef================================================= */}
         <div
           ref={heroSectionRef}
-          className="absolute h-full w-full perspective-[1000px]"
+          className="absolute h-full w-full perspective-[1000px] z-10"
         >
           <div
             style={{
@@ -227,12 +239,15 @@ export default function Page() {
                 </div>
               </div>
               <div className="inline-flex justify-center items-center gap-4">
-                <div className="w-40 px-6 py-4 rounded-sm outline-[#d5dee5] flex justify-center items-center gap-2">
-                  <div className="text-white text-sm font-medium">
+                <button
+                  data-property-1="Default"
+                  className="w-40 px-6 py-4 rounded-sm  outline-1 outline-offset-[-1px] outline-white inline-flex justify-center items-center gap-2 overflow-hidden"
+                >
+                  <div className="justify-start text-white text-sm font-medium font-['Inter']">
                     Request a Demo
                   </div>
-                </div>
-                <div className="w-40 px-6 py-4 bg-gradient-to-r from-[#006580] via-[#107281] to-[#4ca485] rounded-sm flex justify-center items-center gap-2">
+                </button>
+                <button className="w-40 px-6 py-4 bg-gradient-to-r from-[#006580] via-[#107281] to-[#4ca485] rounded-sm flex justify-center items-center gap-2">
                   <div className="text-white text-sm font-medium">
                     Get Started
                   </div>
@@ -245,7 +260,7 @@ export default function Page() {
                       priority
                     />
                   </div>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -298,66 +313,66 @@ export default function Page() {
           {[
             {
               name: "Streamlined Fee Tracking",
-              icon: "/founder.svg",
-
+              icon: RupeeIcon,
+              iconSize: 20,
               opacity: 0.2,
               size: 12,
             },
             {
               name: "Data-Driven Insights & Analytics",
-              icon: "/founder.svg",
-
+              icon: LineChartIcon,
+              iconSize: 20,
               opacity: 0.4,
               size: 14,
             },
             {
               name: "Intuitive Lead Handling",
-              icon: "/founder.svg",
-
+              icon: MultiUserIcon,
               opacity: 0.6,
+              iconSize: 20,
               size: 16,
             },
             {
               name: "Comprehensive Client Reporting",
-              icon: "/founder.svg",
-
+              icon: DocumentIcon,
               opacity: 0.8,
+              iconSize: 24,
               size: 18,
             },
             {
               name: "Smooth Client Onboarding",
-              icon: "/founder.svg",
-
+              icon: UserOnboardIcon,
               opacity: 1,
+              iconSize: 40,
               size: 24,
             },
             {
               name: "Seamless Portfolio Management",
-              icon: "/founder.svg",
-
+              icon: BarChartIcon,
               opacity: 0.8,
+              iconSize: 24,
               size: 18,
             },
             {
               name: "Scalable Partner Ecosystem",
-              icon: "/founder.svg",
-
+              icon: SolarShareIcon,
               opacity: 0.6,
+              iconSize: 20,
               size: 16,
             },
             {
               name: "Effortless Compliance",
-              icon: "/founder.svg",
-
+              icon: VerifyCheckIcon,
               opacity: 0.4,
+              iconSize: 20,
               size: 14,
             },
             {
               name: "Frictionless Order Execution",
-              icon: "/founder.svg",
-
+              icon: BasketIcon,
               opacity: 0.2,
               size: 12,
+              iconSize: 20,
             },
           ].map((_, i) => {
             return (
@@ -365,14 +380,14 @@ export default function Page() {
                 key={i}
                 className="w-1 h-1 nine-dot rounded-[16px]  bg-black-900 flex items-center gap-4 p-4 justify-start text-nowrap opacity-0"
               >
-                <SolarShareIcon
+                <_.icon
                   color="transparent"
                   style={{
-                    minHeight: _.size,
-                    minWidth: _.size,
+                    minHeight: _.iconSize,
+                    minWidth: _.iconSize,
                   }}
-                  height={_.size}
-                  width={_.size}
+                  height={_.iconSize}
+                  width={_.iconSize}
                 />
                 <p
                   className={`text-transparent font-bold`}
@@ -449,19 +464,44 @@ export default function Page() {
               ref={threeDotDestinationRef}
               className="text-white text-[20px] text-nowrap"
             >
-              I am
+              {`I'M A`}
             </p>
-            <div
-              data-property-1="Selected"
-              className="w-full px-4 py-3 bg-[#111111] rounded-xl  outline-1 outline-offset-[-1px] outline-[#006580] inline-flex justify-start items-center gap-4"
-            >
-              <div className="flex-1 justify-start text-[#e0e0e0] text-sm font-medium font-['Inter'] uppercase tracking-wider">
-                Registered Investment Advisor
-              </div>
-              <div className="size-5 inline-flex flex-col justify-center items-center gap-2.5">
-                <div className="w-[12.50px] h-[7.20px] bg-white" />
-              </div>
+
+            <div className="relative w-full ">
+              <button
+                onClick={() => setOpenDropdown(!openDropdown)}
+                data-property-1="Selected"
+                className="w-full px-4 py-3 bg-[#111111] rounded-xl  outline-1 outline-offset-[-1px] outline-[#006580] inline-flex justify-start items-center gap-4 "
+              >
+                <div className="flex-1 justify-start text-[#e0e0e0] text-sm font-medium font-['Inter'] uppercase tracking-wider">
+                  Registered Investment Advisor
+                </div>
+                <div className="size-5 inline-flex flex-col justify-center items-center gap-2.5">
+                  <DropdownIcon
+                    color="transparent"
+                    style={{
+                      minHeight: 14,
+                      minWidth: 14,
+                    }}
+                  />
+                </div>
+              </button>
             </div>
+            {openDropdown && (
+              <div className="absolute mt-2 w-full bg-[#1a1a1a] rounded-xl shadow-lg border border-[#006580] z-10">
+                {["hello"].map((option) => (
+                  <div
+                    key={option}
+                    onClick={() => {
+                      setOpenDropdown(false);
+                    }}
+                    className="px-4 py-2 text-sm text-[#e0e0e0] hover:bg-[#006580] hover:text-white cursor-pointer rounded-lg"
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <section className="flex items-center w-screen px-20 mt-20">
             <div className="w-1/2 flex justify-center flex-col items-center">
@@ -538,37 +578,37 @@ export default function Page() {
                     title: "Founder’s Vision",
                     description:
                       "Industry experts with a vision to revolutionize wealth management space.",
-                    icon: "/founder.svg",
+                    icon: SolarShareIcon,
                   },
                   {
                     title: "Client-Centric Approach",
                     description:
                       "We ensure that every feature is designed to meet the unique needs of our users.",
-                    icon: "/founder.svg",
+                    icon: SolarShareIcon,
                   },
                   {
                     title: "Holistic Wealth Management",
                     description:
                       "Gridkey covers every aspect of wealth management in one integrated platform.",
-                    icon: "/founder.svg",
+                    icon: SolarShareIcon,
                   },
                   {
                     title: "Intuitive Tools",
                     description:
                       "Leverage cutting-edge tools for growing your advisory business.",
-                    icon: "/founder.svg",
+                    icon: SolarShareIcon,
                   },
                   {
                     title: "Data Driven Insights",
                     description:
                       "Make informed decision with insights and reports, empowering you to stay aheah in the game",
-                    icon: "/founder.svg",
+                    icon: SolarShareIcon,
                   },
                   {
                     title: "Innovation at Core",
                     description:
                       "We continuosly strive to bring innovative solutions to simpliy complex financial landscape.",
-                    icon: "/founder.svg",
+                    icon: SolarShareIcon,
                   },
                 ].map((dataItem, index) => (
                   <div
