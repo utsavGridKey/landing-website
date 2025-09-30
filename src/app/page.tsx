@@ -467,7 +467,11 @@ export default function Page() {
               {`I'M A`}
             </p>
 
-            <div className="relative w-full ">
+            <div
+              className="relative w-full "
+              onMouseEnter={() => setOpenDropdown(true)}
+              onMouseLeave={() => setOpenDropdown(false)}
+            >
               <button
                 onClick={() => setOpenDropdown(!openDropdown)}
                 data-property-1="Selected"
