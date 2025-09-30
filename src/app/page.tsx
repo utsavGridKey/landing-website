@@ -454,12 +454,12 @@ export default function Page() {
         {/**=============================================================== */}
         <div
           ref={performanceSolutionRef}
-          className="w-full h-full  flex-col flex items-center justify-center absolute gap-4 opacity-0"
+          className="w-full h-full  flex-col flex items-center justify-center absolute gap-4 opacity-0 z-10 "
         >
           <p className="bg-gradient-to-r from-[#006580]  to-[#4CA485] inline-block text-transparent bg-clip-text text-[64px] font-bold">
             One Platform, Many Solutions!
           </p>
-          <div className="flex items-center w-1/3 gap-6">
+          <div className="flex items-center w-1/3 gap-6 ">
             <p
               ref={threeDotDestinationRef}
               className="text-white text-[20px] text-nowrap"
@@ -486,22 +486,22 @@ export default function Page() {
                   />
                 </div>
               </button>
+              {openDropdown && (
+                <div className="absolute mt-2 w-full bg-[#1a1a1a] rounded-xl shadow-lg border border-[#00658022] z-10">
+                  {["hello", "hgewasf", "asdad"].map((option) => (
+                    <div
+                      key={option}
+                      onClick={() => {
+                        setOpenDropdown(false);
+                      }}
+                      className="px-4 py-2 text-sm text-[#e0e0e0] hover:bg-[#006580] hover:text-white cursor-pointer rounded-lg"
+                    >
+                      {option}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-            {openDropdown && (
-              <div className="absolute mt-2 w-full bg-[#1a1a1a] rounded-xl shadow-lg border border-[#006580] z-10">
-                {["hello"].map((option) => (
-                  <div
-                    key={option}
-                    onClick={() => {
-                      setOpenDropdown(false);
-                    }}
-                    className="px-4 py-2 text-sm text-[#e0e0e0] hover:bg-[#006580] hover:text-white cursor-pointer rounded-lg"
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
           <section className="flex items-center w-screen px-20 mt-20">
             <div className="w-1/2 flex justify-center flex-col items-center">
