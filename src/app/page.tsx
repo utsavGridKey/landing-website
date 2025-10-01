@@ -6,6 +6,7 @@ import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pa
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { useState } from "react";
 import BarChartIcon from "../assets/barChart.svg";
 import BasketIcon from "../assets/basketWheel.svg";
 import DocumentIcon from "../assets/document.svg";
@@ -46,6 +47,71 @@ export default function Page() {
     openDropdown,
     setOpenDropdown,
   } = usePageHook();
+
+  const [selectedOption, setSelectedOption] = useState(
+    "Registered Investment Advisor",
+  );
+
+  const optionsData = [
+    {
+      name: "Registered Investment Advisor",
+      title: "The Complete Tech Stack for Scaling RIA Practice",
+      descriptions: [
+        "Monitor AUM, client growth, and revenue in one dashboard",
+        "Offer goal-based planning, model portfolios, and investment recommendations",
+        "Use Gridkey as your digital backend for client onboarding, documentation, and client engagement",
+        "Stay ready for SEBI audits with all advice logs, documents, and approvals logged in one place.",
+        "Automate fee invoicing and payment tracking",
+      ],
+      imgSrc: "/ria.png",
+    },
+    {
+      name: "Research Analyst",
+      title:
+        "One Platform to Publish, Onboard, and Monetize Your Investment Ideas",
+      descriptions: [
+        "Create and publish investment baskets with rationale and disclosures on branded microwebsite.",
+        "Fully digitized onboarding with KYC, agreement signing, risk profiling and payments.",
+        "Collect subscription fees and automate renewal collections with ease",
+        "Enable users to execute model investments and rebalances orders via 18+ top brokers in India with 4 clicks.",
+        "Stay compliant with auto-managed audit logs, activity history, client interactions and disclosures.",
+      ],
+      imgSrc: "/ra.png",
+    },
+    {
+      name: "Portfolio Management Services",
+      title: "Powering India’s Next Generation of PMS Fund Managers",
+      descriptions: [
+        "Generate performance reports with XIRR, NAV, TWRR, benchmark comparisons",
+        "Integrate with custodians, RTAs, and brokers for seamless pre- and post-trade workflows.",
+        "Unified dashboard across portfolios, clients, and distributors",
+        "Comply with PMS regulations — documentation, agreement tracking, audit readiness",
+        "Publish performance reports to clients along with offering web and mobile logins to clients",
+      ],
+      imgSrc: "/pms.png",
+    },
+    {
+      name: "Sub-Brokers",
+      title: "Plug-and-Play Advisory Tech for Broker Ecosystems",
+      descriptions: [
+        "Convert your infra into an all-in-one wealth execution & advisory suite.",
+        "Offer an advisory stack bundled with your execution stack",
+        "Give your sub-brokers an edge with advisory-ready infra",
+        "Keep all order histories, trade logs, and actions audit-ready.",
+      ],
+      imgSrc: "/subBroker.png",
+    },
+    {
+      name: "Multi-Family Offices",
+      title: "Your Family’s Wealth, Consolidated. Organized. Future-Ready",
+      descriptions: [
+        "Get consolidated view & reporting across asset classes – equity, mutual funds, PMS, AIF, Bonds, unlisted shares and more.",
+        "Seamlessly import data and continuous data sync via broker files and contract notes",
+        "Share your investment portfolio with family members accessible via web and mobile apps to maintain transparency and collective decision-making.",
+      ],
+      imgSrc: "/familyOffice.png",
+    },
+  ];
 
   console.log("openDropdown", openDropdown);
 
@@ -478,7 +544,7 @@ export default function Page() {
                 className="w-full px-4 py-3 bg-[#111111] rounded-xl  outline-1 outline-offset-[-1px] outline-[#006580] inline-flex justify-start items-center gap-4 "
               >
                 <div className="flex-1 justify-start text-[#e0e0e0] text-sm font-medium font-['Inter'] uppercase tracking-wider">
-                  Registered Investment Advisor
+                  {selectedOption}
                 </div>
                 <div className="size-5 inline-flex flex-col justify-center items-center gap-2.5">
                   <DropdownIcon
@@ -492,45 +558,46 @@ export default function Page() {
               </button>
               {openDropdown && (
                 <div className="absolute mt-2 w-full bg-[#1a1a1a] rounded-xl shadow-lg border border-[#00658022] z-10">
-                  {["hello", "hgewasf", "asdad"].map((option) => (
+                  {optionsData.map((option) => (
                     <div
-                      key={option}
+                      key={option.name}
                       onClick={() => {
+                        setSelectedOption(option.name);
                         setOpenDropdown(false);
                       }}
                       className="px-4 py-2 text-sm text-[#e0e0e0] hover:bg-[#006580] hover:text-white cursor-pointer rounded-lg"
                     >
-                      {option}
+                      {option.name}
                     </div>
                   ))}
                 </div>
               )}
             </div>
           </div>
-          <section className="flex items-center w-screen px-20 mt-20">
-            <div className="w-1/2 flex justify-center flex-col items-center">
-              <div className="self-stretch justify-start text-[#ececec] text-[40px] font-medium font-['Inter'] leading-[52px]">
-                Stay informed through data driven insights
-              </div>{" "}
-              <div className="self-stretch justify-start text-[#828282] text-xl font-normal font-['Inter'] leading-loose">
-                Gain valuable insights and analysis of your investments and make
-                better informed decisions.
-                <br />
-                Advisor dashboards to get a comprehensive view of your business
-                <br />
-                Holdings Summary to get holistic perspective of client
-                investments
-              </div>
-            </div>
-            <div className="w-1/2 flex justify-center items-center ">
-              <img
-                src="/productImg2.svg"
-                alt=""
-                width={"60%"}
-                height={"auto"}
-              />
-            </div>
-          </section>
+          {optionsData
+            .filter((opt) => opt.name === selectedOption)
+            .map((opt) => (
+              <section
+                key={opt.name}
+                className="flex items-center w-screen px-20 mt-20"
+              >
+                <div className="w-1/2 flex justify-center flex-col items-center">
+                  <div className="self-stretch text-[#ececec] text-[40px] font-medium leading-[52px]">
+                    {opt.title}
+                  </div>
+                  <ol className="self-stretch text-[#828282] text-xl font-normal leading-loose list-disc list-outside mt-4 ml-6">
+                    {opt.descriptions.map((desc, index) => (
+                      <li key={index} className="text-[14px]">
+                        {desc}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                <div className="w-1/2 flex justify-center items-center">
+                  <img src={opt.imgSrc} alt="" width={"50%"} height={"50%"} />
+                </div>
+              </section>
+            ))}
         </div>
         {/**=============================================================== */}
         <section
