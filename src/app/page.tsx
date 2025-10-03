@@ -119,7 +119,9 @@ export default function Page() {
     <div className="relative">
       <nav
         ref={navbarRef}
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 rounded-full px-6 py-3 flex items-center justify-between w-[90%] max-w-7xl transition-colors duration-500`}
+        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 rounded-full px-4 md:px-6 py-3 flex items-center justify-between w-[94%] md:w-[90%] max-w-7xl transition-colors duration-500`}
+        role="navigation"
+        aria-label="Main navigation"
         style={{
           backdropFilter: "blur(10px)",
           background: "rgba(255, 255, 255, 0.05)",
@@ -214,6 +216,9 @@ export default function Page() {
         <button
           className="md:hidden flex flex-col gap-1 ml-4"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          aria-label="Toggle menu"
         >
           <span className="w-6 h-0.5 bg-white"></span>
           <span className="w-6 h-0.5 bg-white"></span>
@@ -222,17 +227,28 @@ export default function Page() {
 
         {/* Mobile Dropdown Menu */}
         {menuOpen && (
-          <div className="absolute top-16 right-4 bg-white/90 backdrop-blur-md shadow-lg rounded-lg p-4 w-64 flex flex-col gap-4 md:hidden">
+          <div
+            id="mobile-menu"
+            className="absolute top-16 right-4 bg-white/90 backdrop-blur-md shadow-lg rounded-lg p-4 w-[88vw] max-w-sm flex flex-col gap-4 md:hidden"
+            role="menu"
+            aria-label="Mobile"
+          >
             <div>
               <button
                 className="flex justify-between items-center w-full text-left text-black font-medium"
                 onClick={() => setProductsOpen(!productsOpen)}
+                aria-expanded={productsOpen}
+                aria-controls="mobile-products"
               >
                 Our Products
                 <span>{productsOpen ? "▲" : "▼"}</span>
               </button>
               {productsOpen && (
-                <ul className="mt-2 flex flex-col gap-2 pl-2 text-gray-700">
+                <ul
+                  id="mobile-products"
+                  className="mt-2 flex flex-col gap-2 pl-2 text-gray-700"
+                  role="menu"
+                >
                   <li className="hover:text-black cursor-pointer ">
                     Product 1
                   </li>
@@ -256,7 +272,7 @@ export default function Page() {
       </nav>
       <div
         ref={mainDivContinerRef}
-        className="relative w-screen h-screen overflow-idden bg-black"
+        className="relative w-screen h-screen overflow-hidden bg-black"
       >
         {/**heroSectionRef================================================= */}
         <div
@@ -375,7 +391,7 @@ export default function Page() {
           )}
         </div>
         {/**=============================================================== */}
-        <div className="dots-container absolute  flex justify-center items-start gap-4 flex-col pointer-events-none h-full w-[50vw]  right-0 top-0">
+        <div className="dots-container absolute flex justify-center items-start gap-4 flex-col pointer-events-none h-full w-[60vw] md:w-[50vw] right-0 top-0">
           {[
             {
               name: "Streamlined Fee Tracking",
@@ -471,10 +487,10 @@ export default function Page() {
         {/**=============================================================== */}
         <div
           ref={nineDotsLeftRef}
-          className="w-1/2  flex items-center justify-center absolute opacity-0 top-1/2 -translate-y-1/2"
+          className="w-full md:w-1/2 flex items-center justify-center absolute opacity-0 top-1/2 -translate-y-1/2 px-4"
         >
           <div
-            className="flex flex-col w-[80%] gap-4 ml-50 rounded-full bg-[#000f13]"
+            className="flex flex-col w-full md:w-[80%] gap-4 rounded-full bg-[#000f13]"
             style={{
               boxShadow: "0 0 1000px 200px #000f13",
             }}
@@ -482,11 +498,11 @@ export default function Page() {
             <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
               <p className="text-grey-500 uppercase text-">tech tools</p>
             </div>
-            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[64px] font-bold">
+            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-3xl md:text-[64px] font-bold leading-tight">
               Your Back-Office, Mid-Office & Front-Office, Digitized.{" "}
             </p>
             <div>
-              <p className="text-grey-500 text-2xl">
+              <p className="text-grey-500 text-base md:text-2xl">
                 Your clients don’t invest in silos, why should your tools?
               </p>
             </div>
@@ -495,10 +511,10 @@ export default function Page() {
         {/**=============================================================== */}
         <div
           ref={nineDotsRightRef}
-          className="w-1/2  flex items-center justify-center absolute opacity-0 right-0 top-1/2 -translate-y-1/2"
+          className="w-full md:w-1/2 flex items-center justify-center absolute opacity-0 right-0 top-1/2 -translate-y-1/2 px-4"
         >
           <div
-            className="flex flex-col w-[90%] gap-4 ml-50 rounded-full bg-[#000f13]"
+            className="flex flex-col w-full md:w-[90%] gap-4 rounded-full bg-[#000f13]"
             style={{
               boxShadow: "0 0 1000px 200px #000f13",
             }}
@@ -506,11 +522,11 @@ export default function Page() {
             <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
               <p className="text-grey-500 uppercase text-">Financial assets</p>
             </div>
-            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[64px] font-bold">
+            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-3xl md:text-[64px] font-bold leading-tight">
               Integrated Holistic Portfolio Management Starts Here
             </p>
             <div>
-              <p className="text-grey-500 text-2xl">
+              <p className="text-grey-500 text-base md:text-2xl">
                 Our intuitive app simplifies tracking and managing diverse
                 financial assets.
               </p>
@@ -520,15 +536,15 @@ export default function Page() {
         {/**=============================================================== */}
         <div
           ref={performanceSolutionRef}
-          className="w-full h-full  flex-col flex items-center justify-center absolute gap-4 opacity-0 z-10 "
+          className="w-full h-full flex-col flex items-center justify-center absolute gap-4 opacity-0 z-10 px-4"
         >
-          <p className="bg-gradient-to-r from-[#006580]  to-[#4CA485] inline-block text-transparent bg-clip-text text-[64px] font-bold">
+          <p className="bg-gradient-to-r from-[#006580]  to-[#4CA485] inline-block text-transparent bg-clip-text text-3xl md:text-[64px] font-bold leading-tight text-center">
             One Platform, Many Solutions!
           </p>
-          <div className="flex items-center w-1/3 gap-6 ">
+          <div className="flex items-center w-full md:w-1/2 gap-3 md:gap-6">
             <p
               ref={threeDotDestinationRef}
-              className="text-white text-[20px] text-nowrap"
+              className="text-white text-sm md:text-[20px] text-nowrap"
             >
               {`I'M A`}
             </p>
@@ -542,6 +558,8 @@ export default function Page() {
                 onClick={() => setOpenDropdown(!openDropdown)}
                 data-property-1="Selected"
                 className="w-full px-4 py-3 bg-[#111111] rounded-xl  outline-1 outline-offset-[-1px] outline-[#006580] inline-flex justify-start items-center gap-4 "
+                aria-haspopup="listbox"
+                aria-expanded={openDropdown}
               >
                 <div className="flex-1 justify-start text-[#e0e0e0] text-sm font-medium font-['Inter'] uppercase tracking-wider">
                   {selectedOption}
@@ -557,7 +575,10 @@ export default function Page() {
                 </div>
               </button>
               {openDropdown && (
-                <div className="absolute mt-2 w-full bg-[#1a1a1a] rounded-xl shadow-lg border border-[#00658022] z-10">
+                <div
+                  className="absolute mt-2 w-full bg-[#1a1a1a] rounded-xl shadow-lg border border-[#00658022] z-10"
+                  role="listbox"
+                >
                   {optionsData.map((option) => (
                     <div
                       key={option.name}
@@ -566,6 +587,10 @@ export default function Page() {
                         setOpenDropdown(false);
                       }}
                       className="px-4 py-2 text-sm text-[#e0e0e0] hover:bg-[#006580] hover:text-white cursor-pointer rounded-lg"
+                      role="option"
+                      aria-selected={
+                        selectedOption === option.name ? "true" : "false"
+                      }
                     >
                       {option.name}
                     </div>
@@ -579,13 +604,13 @@ export default function Page() {
             .map((opt) => (
               <section
                 key={opt.name}
-                className="flex items-center w-screen px-20 mt-20"
+                className="flex flex-col md:flex-row items-center w-screen px-6 md:px-20 mt-10 md:mt-20 gap-8 md:gap-0"
               >
-                <div className="w-1/2 flex justify-center flex-col items-center">
-                  <div className="self-stretch text-[#ececec] text-[40px] font-medium leading-[52px]">
+                <div className="w-full md:w-1/2 flex justify-center flex-col items-center">
+                  <div className="self-stretch text-[#ececec] text-2xl md:text-[40px] font-medium leading-[1.3] md:leading-[52px] text-center md:text-left">
                     {opt.title}
                   </div>
-                  <ol className="self-stretch text-[#828282] text-xl font-normal leading-loose list-disc list-outside mt-4 ml-6">
+                  <ol className="self-stretch text-[#828282] text-base md:text-xl font-normal leading-loose list-disc list-outside mt-4 md:ml-6 ml-4">
                     {opt.descriptions.map((desc, index) => (
                       <li key={index} className="text-[14px]">
                         {desc}
@@ -593,8 +618,12 @@ export default function Page() {
                     ))}
                   </ol>
                 </div>
-                <div className="w-1/2 flex justify-center items-center">
-                  <img src={opt.imgSrc} alt="" width={"50%"} height={"50%"} />
+                <div className="w-full md:w-1/2 flex justify-center items-center">
+                  <img
+                    src={opt.imgSrc}
+                    alt=""
+                    className="w-3/4 md:w-1/2 h-auto"
+                  />
                 </div>
               </section>
             ))}
@@ -602,7 +631,7 @@ export default function Page() {
         {/**=============================================================== */}
         <section
           ref={whyChooseSectionRef}
-          className="absolute flex-col gap-4  w-full top-0 flex justify-center items-center opacity-0 h-full"
+          className="absolute flex-col gap-4 w-full top-0 flex justify-center items-center opacity-0 h-full px-4"
           style={{
             background:
               "radial-gradient(circle,rgba(0, 35, 43, 0.8) 0%, rgba(0, 0, 0, 1) 50%)",
@@ -610,11 +639,11 @@ export default function Page() {
         >
           <p
             ref={chooseORef}
-            className="text-center justify-start  text-[55.04px] text-white font-medium font-['Inter']"
+            className="text-center justify-start text-3xl md:text-[55.04px] text-white font-medium font-['Inter']"
           >
             Why Choose us?
           </p>
-          <p className="w-[703.78px] text-center justify-start  text-base text-white font-normal font-['Inter'] leading-7">
+          <p className="w-full max-w-[703.78px] px-2 md:px-0 text-center justify-start text-sm md:text-base text-white font-normal font-['Inter'] leading-6 md:leading-7">
             Advisory runs on trust. Our platform helps you deliver personal
             experiences, build client confidence, and turn complexity into
             lasting growth. With every feature designed for clarity and ease,
@@ -625,12 +654,12 @@ export default function Page() {
         <section
           ref={secondContentRef}
           id="secondContentRef"
-          className="w-full h-full absolute top-0 flex justify-center items-center"
+          className="w-full h-full absolute top-0 flex justify-center items-center px-4"
         >
-          <div className="flex flex-row w-full h-full">
+          <div className="flex flex-col md:flex-row w-full h-full gap-8 md:gap-0">
             {/* Left section */}
-            <div className="w-1/2 flex items-center justify-center ">
-              <p className="bg-[linear-gradient(142deg,#006580_3.91%,#107281_47.82%,#4CA485_113.7%)] bg-clip-text text-transparent text-6xl font-bold ">
+            <div className="w-full md:w-1/2 flex items-center justify-center ">
+              <p className="bg-[linear-gradient(142deg,#006580_3.91%,#107281_47.82%,#4CA485_113.7%)] bg-clip-text text-transparent text-3xl md:text-6xl font-bold leading-tight text-center md:text-left">
                 Built on trust. <br />
                 Driven by insight. <br />
                 Made for you.{" "}
@@ -638,7 +667,7 @@ export default function Page() {
             </div>
 
             {/* Right section with scrollable grid */}
-            <div className="w-1/2 relative overflow-hidden h-[95vh] m-auto">
+            <div className="w-full md:w-1/2 relative overflow-hidden h-[70vh] md:h-[95vh] m-auto">
               <InteractiveGridPattern width={150} height={150} />
               <div
                 ref={toolsRef}
@@ -704,15 +733,15 @@ export default function Page() {
         {/**=============================================================== */}
         <section
           ref={thirdContentRef}
-          className="absolute bottom-0 opacity-0 h-full w-full text-4xl font-bold  text-black flex px-28"
+          className="absolute bottom-0 opacity-0 h-full w-full text-2xl md:text-4xl font-bold  text-black flex px-6 md:px-28"
         >
-          <div className="w-1/2 pl-10 h-screen flex flex-col items-start justify-center gap-10 ">
+          <div className="w-full md:w-1/2 md:pl-10 h-screen flex flex-col items-start justify-center gap-6 md:gap-10 ">
             <img src="/security1.svg" alt="" />
             <div>
-              <p className="bg-[linear-gradient(142deg,#006580_3.91%,#107281_47.82%,#4CA485_113.7%)] bg-clip-text text-transparent text-5xl font-semibold ">
+              <p className="bg-[linear-gradient(142deg,#006580_3.91%,#107281_47.82%,#4CA485_113.7%)] bg-clip-text text-transparent text-2xl md:text-5xl font-semibold leading-tight">
                 Security You Can Trust
               </p>
-              <p className="self-stretch justify-start text-[#333333] text-base font-normal font-['Inter'] leading-relaxed">
+              <p className="self-stretch justify-start text-[#333333] text-sm md:text-base font-normal font-['Inter'] leading-relaxed">
                 Where regulatory compliance, client trust, and business growth
                 align seamlessly through technology.
               </p>
@@ -745,7 +774,7 @@ export default function Page() {
                   >
                     <img src="/security1.svg" alt="" height={24} width={24} />
                     <div className="flex flex-col gap-2 items-start justify-start">
-                      <p className="self-stretch justify-start text-[#333333] text-base font-semibold font-['Inter'] leading-tight">
+                      <p className="self-stretch justify-start text-[#333333] text-sm md:text-base font-semibold font-['Inter'] leading-tight">
                         {dataItem.title}
                       </p>
                       <p className="self-stretch justify-start text-[#4f4f4f] text-xs font-medium font-['Inter'] leading-tight">
@@ -757,7 +786,7 @@ export default function Page() {
               })}
             </ol>
           </div>
-          <div className="w-full bg-white relative">
+          <div className="hidden md:block w-full bg-white relative">
             <Globe
               config={{
                 width: 100,
