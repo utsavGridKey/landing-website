@@ -262,7 +262,7 @@ const usePageHook = () => {
         [liDots[4], liDots[5], liDots[3]],
         {
           x: (i) => {
-            return window.innerWidth / 2.84 + i * 5;
+            return window.innerWidth / 3.61 + i * 5;
           },
           y: (i, dot) => {
             const dest = threeDotDestinationRef.current;
