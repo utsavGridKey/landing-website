@@ -61,7 +61,7 @@ const usePageHook = () => {
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=15000",
+          end: "+=18000",
           scrub: true,
           pin: true,
         },
@@ -289,10 +289,14 @@ const usePageHook = () => {
         "<",
       );
       tl.to({}, { duration: 1 });
-      tl.to(performanceSolutionRef.current, {
-        y: -600,
-        opacity: 0,
-      });
+      tl.to(
+        performanceSolutionRef.current,
+        {
+          y: -600,
+          opacity: 0,
+        },
+        "<",
+      );
       tl.fromTo(
         whyChooseSectionRef.current,
         {
@@ -301,6 +305,7 @@ const usePageHook = () => {
         {
           opacity: 1,
         },
+        "<",
       );
       tl.to(
         [liDots[4], liDots[5], liDots[3]],

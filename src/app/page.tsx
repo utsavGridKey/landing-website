@@ -463,10 +463,10 @@ export default function Page() {
                 className="w-1 h-1 nine-dot rounded-[16px]  bg-black-900 flex items-center gap-4 p-4 justify-start text-nowrap opacity-0"
               >
                 <_.icon
-                  color="transparent"
                   style={{
                     minHeight: _.iconSize,
                     minWidth: _.iconSize,
+                    color: "transparent",
                   }}
                   height={_.iconSize}
                   width={_.iconSize}
@@ -723,7 +723,7 @@ export default function Page() {
                         {dataItem.description}
                       </p>
                     </div>
-                    <img src="/founder.svg" alt="" />
+                    <img src="/founder.svg" alt="" className="opacity-0" />
                   </div>
                 ))}
               </div>
