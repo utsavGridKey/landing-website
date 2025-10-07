@@ -61,7 +61,7 @@ const usePageHook = () => {
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=18000",
+          end: "+=10000",
           scrub: true,
           pin: true,
         },
@@ -328,7 +328,6 @@ const usePageHook = () => {
         navbarRef.current,
         { background: "rgba(255, 255, 255, 0.05)" },
         { background: "#ffffff88" },
-        "<",
       );
       tl.fromTo(
         secondContentRef.current,

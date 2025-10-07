@@ -17,8 +17,6 @@ const MobileScreen = () => {
     "Registered Investment Advisor",
   );
 
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const [openDropdown, setOpenDropdown] = useState(false);
 
   return (
