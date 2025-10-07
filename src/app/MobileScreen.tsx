@@ -22,7 +22,7 @@ const MobileScreen = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
 
   return (
-    <div className="bg-[#000] relative">
+    <div className="bg-[#000] relative block lg:hidden">
       <div className="z-20 sticky left-0 top-4  w-full h-16 p-4 bg-white/5 rounded-[32px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.10)] outline-1 outline-offset-[-1px] outline-white/10 backdrop-blur-[10px] inline-flex flex-col justify-start items-start gap-8 overflow-hidden">
         <div className="self-stretch inline-flex justify-between items-center">
           <Image width={115} height={31} alt="a" src="/fullLogo.svg" />
