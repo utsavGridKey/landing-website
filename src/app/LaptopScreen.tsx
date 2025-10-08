@@ -521,7 +521,7 @@ export default function LaptopScreen() {
                         setSelectedOption(option.name);
                         setOpenDropdown(false);
                       }}
-                      className="px-4 py-2 text-sm text-[#e0e0e0] hover:bg-[#006580] hover:text-white cursor-pointer rounded-lg"
+                      className="px-4 py-2 text-sm text-[#e0e0e0] hover:bg-[#222222] hover:text-white cursor-pointer rounded-lg"
                       role="option"
                       aria-selected={
                         selectedOption === option.name ? "true" : "false"
