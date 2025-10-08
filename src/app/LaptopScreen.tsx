@@ -24,11 +24,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function LaptopScreen() {
   const {
-    rings,
-    spacingZ,
-    halfWidth,
-    halfHeight,
-    dotsPerRing,
+    // rings,
+    // spacingZ,
+    // halfWidth,
+    // halfHeight,
+    // dotsPerRing,
     heroSectionRef,
     nineDotsLeftRef,
     nineDotsRightRef,
@@ -284,7 +284,7 @@ export default function LaptopScreen() {
               </div>
             </div>
           </div>
-          {[...Array(rings)].map((_, ring) =>
+          {/* {[...Array(rings)].map((_, ring) =>
             [...Array(dotsPerRing)].map((_, dot) => {
               const side = Math.floor(dot / (dotsPerRing / 4));
               const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
@@ -326,10 +326,10 @@ export default function LaptopScreen() {
                 />
               );
             }),
-          )}
+          )} */}
         </div>
         {/**=============================================================== */}
-        <div className="dots-container absolute flex justify-center items-start gap-4 flex-col pointer-events-none h-full w-[60vw] md:w-[50vw] right-0 top-0">
+        <div className="dots-container absolute flex justify-center items-start gap-2 flex-col pointer-events-none h-full w-[60vw] md:w-[50vw] right-0 top-0">
           {[
             {
               name: "Streamlined Fee Tracking",
@@ -436,7 +436,7 @@ export default function LaptopScreen() {
             <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
               <p className="text-grey-500 uppercase text-">tech tools</p>
             </div>
-            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-3xl md:text-[64px] font-bold leading-tight">
+            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[48px] leading-tight">
               Your Back-Office, Mid-Office & Front-Office, Digitized.{" "}
             </p>
             <div>
@@ -460,7 +460,7 @@ export default function LaptopScreen() {
             <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
               <p className="text-grey-500 uppercase text-">Financial assets</p>
             </div>
-            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-3xl md:text-[64px] font-bold leading-tight">
+            <p className="bg-gradient-to-r from-[#006580] via-[#107281] to-[#4CA485] inline-block text-transparent bg-clip-text text-[48px] leading-tight">
               Integrated Holistic Portfolio Management Starts Here
             </p>
             <div>
