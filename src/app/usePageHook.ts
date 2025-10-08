@@ -61,7 +61,7 @@ const usePageHook = () => {
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=10000",
+          end: "+=12000",
           scrub: true,
           pin: true,
         },
@@ -258,45 +258,31 @@ const usePageHook = () => {
         },
         "<",
       );
-      tl.to(
-        [liDots[4], liDots[5], liDots[3]],
-        {
-          x: (i) => {
-            return window.innerWidth / 3.61 + i * 5;
-          },
-          y: (i, dot) => {
-            const dest = threeDotDestinationRef.current;
-            if (!dest) return 0;
-            const dotBox = (dot as HTMLElement).getBoundingClientRect();
-            const destBox = dest.getBoundingClientRect();
+      tl.to([liDots[4], liDots[5], liDots[3]], {
+        x: (i) => {
+          return window.innerWidth / 3.61 + i * 5;
+        },
+        y: (i, dot) => {
+          const dest = threeDotDestinationRef.current;
+          if (!dest) return 0;
+          const dotBox = (dot as HTMLElement).getBoundingClientRect();
+          const destBox = dest.getBoundingClientRect();
 
-            return (
-              destBox.top +
-              destBox.height / 2 -
-              (dotBox.top + dotBox.height / 2) +
-              5
-            );
-          },
-          scale: 0.1,
-          ease: "power2.inOut",
+          return (
+            destBox.top +
+            destBox.height / 2 -
+            (dotBox.top + dotBox.height / 2) +
+            5
+          );
         },
-        "<",
-      );
-      tl.fromTo(
-        performanceSolutionRef.current,
-        { opacity: 0 },
-        { opacity: 1 },
-        "<",
-      );
-      tl.to({}, { duration: 1 });
-      tl.to(
-        performanceSolutionRef.current,
-        {
-          y: -600,
-          opacity: 0,
-        },
-        "<",
-      );
+        scale: 0.1,
+        ease: "power2.inOut",
+      });
+      tl.fromTo(performanceSolutionRef.current, { opacity: 0 }, { opacity: 1 });
+      tl.to(performanceSolutionRef.current, {
+        y: -600,
+        opacity: 0,
+      });
       tl.fromTo(
         whyChooseSectionRef.current,
         {

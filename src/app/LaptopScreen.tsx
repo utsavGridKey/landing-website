@@ -5,6 +5,7 @@ import { Globe } from "@/components/magicui/globe";
 import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import BarChartIcon from "../assets/barChart.svg";
@@ -487,11 +488,7 @@ export default function LaptopScreen() {
               {`I'M A`}
             </p>
 
-            <div
-              className="relative w-full "
-              onMouseEnter={() => setOpenDropdown(true)}
-              onMouseLeave={() => setOpenDropdown(false)}
-            >
+            <div className="relative w-full ">
               <button
                 onClick={() => setOpenDropdown(!openDropdown)}
                 data-property-1="Selected"
@@ -540,30 +537,36 @@ export default function LaptopScreen() {
           {optionsData
             .filter((opt) => opt.name === selectedOption)
             .map((opt) => (
-              <section
+              <motion.div
                 key={opt.name}
-                className="flex flex-col md:flex-row items-center w-screen px-6 md:px-20 mt-10 md:mt-20 gap-8 md:gap-0"
+                initial={{ opacity: 0, y: 500 }}
+                whileInView={{ opacity: 1, y: 0 }}
               >
-                <div className="w-full md:w-1/2 flex justify-center flex-col items-center">
-                  <div className="self-stretch text-[#ececec] text-2xl md:text-[40px] font-medium leading-[1.3] md:leading-[52px] text-center md:text-left">
-                    {opt.title}
+                <section
+                  key={opt.name}
+                  className="flex flex-col md:flex-row items-center w-screen px-6 md:px-20 mt-10 md:mt-20 gap-8 md:gap-0"
+                >
+                  <div className="w-full md:w-1/2 flex justify-center flex-col items-center">
+                    <div className="self-stretch text-[#ececec] text-2xl md:text-[40px] font-medium leading-[1.3] md:leading-[52px] text-center md:text-left">
+                      {opt.title}
+                    </div>
+                    <ol className="self-stretch text-[#828282] text-base md:text-xl font-normal leading-loose list-disc list-outside mt-4 md:ml-6 ml-4">
+                      {opt.descriptions.map((desc, index) => (
+                        <li key={index} className="text-[14px]">
+                          {desc}
+                        </li>
+                      ))}
+                    </ol>
                   </div>
-                  <ol className="self-stretch text-[#828282] text-base md:text-xl font-normal leading-loose list-disc list-outside mt-4 md:ml-6 ml-4">
-                    {opt.descriptions.map((desc, index) => (
-                      <li key={index} className="text-[14px]">
-                        {desc}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-                <div className="w-full md:w-1/2 flex justify-center items-center">
-                  <img
-                    src={opt.imgSrc}
-                    alt=""
-                    className="w-3/4 md:w-1/2 h-auto"
-                  />
-                </div>
-              </section>
+                  <div className="w-full md:w-1/2 flex justify-center items-center">
+                    <img
+                      src={opt.imgSrc}
+                      alt=""
+                      className="w-3/4 md:w-1/2 h-auto"
+                    />
+                  </div>
+                </section>
+              </motion.div>
             ))}
         </div>
         {/**=============================================================== */}
