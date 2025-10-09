@@ -31,21 +31,6 @@ const usePageHook = () => {
 
   useEffect(() => {
     if (!mainDivContinerRef.current) return;
-    // Respect user/device reduced-motion and low-power devices
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const lowPower = (() => {
-      const nav = navigator as any;
-      const fewCores =
-        typeof nav?.hardwareConcurrency === "number" &&
-        nav.hardwareConcurrency <= 4;
-      const lowMemory =
-        typeof nav?.deviceMemory === "number" && nav.deviceMemory <= 4;
-      return fewCores || lowMemory;
-    })();
-    if (prefersReduced || lowPower) return;
     const dots =
       mainDivContinerRef.current.querySelectorAll<HTMLDivElement>(".dot");
 
@@ -85,51 +70,28 @@ const usePageHook = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Respect reduced-motion and low-power devices: avoid heavy timelines
-      const prefersReduced =
-        typeof window !== "undefined" &&
-        window.matchMedia &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const nav = navigator as any;
-      const fewCores =
-        typeof nav?.hardwareConcurrency === "number" &&
-        nav.hardwareConcurrency <= 4;
-      const lowMemory =
-        typeof nav?.deviceMemory === "number" && nav.deviceMemory <= 4;
-      const lowPower = fewCores || lowMemory;
-      if (prefersReduced) return;
-
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=8000",
-          scrub: lowPower ? 0.2 : true,
+          end: "+=10000",
+          scrub: true,
           pin: true,
           anticipatePin: 1,
-          invalidateOnRefresh: true,
-          pinSpacing: true,
         },
       });
 
-      let liDots = gsap.utils.toArray<HTMLDivElement>(
+      const liDots = gsap.utils.toArray<HTMLDivElement>(
         mainDivContinerRef.current?.querySelectorAll(".nine-dot") || [],
       );
 
-      let liDotTexts = gsap.utils.toArray<HTMLParagraphElement>(
+      const liDotTexts = gsap.utils.toArray<HTMLParagraphElement>(
         mainDivContinerRef.current?.querySelectorAll(".nine-dot p") || [],
       );
 
-      let liDotSvg = gsap.utils.toArray<HTMLParagraphElement>(
+      const liDotSvg = gsap.utils.toArray<HTMLParagraphElement>(
         mainDivContinerRef.current?.querySelectorAll(".nine-dot svg") || [],
       );
-
-      // On low-power devices, reduce the number of simultaneously animated elements
-      if (lowPower) {
-        liDots = liDots.slice(0, 6);
-        liDotTexts = liDotTexts.slice(0, 6);
-        liDotSvg = liDotSvg.slice(0, 6);
-      }
 
       const nineDotsContainer = gsap.utils.toArray<HTMLParagraphElement>(
         mainDivContinerRef.current?.querySelectorAll(".dots-container") || [],
