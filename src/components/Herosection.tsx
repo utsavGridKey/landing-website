@@ -17,7 +17,6 @@ const Herosection = () => {
     >
       <div
         style={{
-          background: "black",
           position: "absolute",
           top: "50%",
           left: "50%",
@@ -25,7 +24,6 @@ const Herosection = () => {
           width: "70vw",
           minHeight: "50vh",
           zIndex: 9999,
-          boxShadow: "0 0 4000px 150px #000000",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
