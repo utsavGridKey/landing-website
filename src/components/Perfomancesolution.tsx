@@ -19,7 +19,7 @@ const Perfomancesolution = () => {
       <p className="bg-gradient-to-r from-[#006580]  to-[#4CA485] inline-block text-transparent bg-clip-text text-3xl md:text-[64px] font-bold leading-tight text-center">
         One Platform, Many Solutions!
       </p>
-      <div className="flex items-center w-full md:w-1/2 gap-3 md:gap-6">
+      <div className="flex items-center w-full justify-center gap-3 md:gap-6">
         <p
           ref={threeDotDestinationRef}
           className="text-white text-sm md:text-[20px] text-nowrap"
@@ -27,7 +27,7 @@ const Perfomancesolution = () => {
           {`I'M A`}
         </p>
 
-        <div className="relative w-full ">
+        <div className="relative min-w-[340px]">
           <button
             onClick={() => setOpenDropdown(!openDropdown)}
             data-property-1="Selected"
@@ -40,7 +40,7 @@ const Perfomancesolution = () => {
             </div>
             <div className="size-5 inline-flex flex-col justify-center items-center gap-2.5">
               <DropdownIcon
-                color="transparent"
+                color="#fff"
                 style={{
                   minHeight: 14,
                   minWidth: 14,
@@ -80,6 +80,9 @@ const Perfomancesolution = () => {
             key={opt.name}
             initial={{ opacity: 0, y: 500 }}
             whileInView={{ opacity: 1, y: 0 }}
+            style={{
+              minHeight: "calc(100vh - 40%)",
+            }}
           >
             <section
               key={opt.name}

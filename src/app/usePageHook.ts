@@ -113,6 +113,7 @@ const usePageHook = () => {
           x: () => (el?.clientWidth ?? 0) / 5,
           y: 0,
           borderRadius: 100,
+          background: "#fff",
         },
         "removingHeroAndShowingDots",
       );
@@ -121,6 +122,7 @@ const usePageHook = () => {
         borderRadius: 16,
         width: "auto",
         height: "auto",
+        background: "#222",
       });
       tl.to(
         liDotTexts,
@@ -159,6 +161,7 @@ const usePageHook = () => {
         x: () => (el?.clientWidth ?? 0) / 5,
         y: 0,
         width: "4px",
+        background: "#fff",
         height: "4px",
       });
       tl.to(
@@ -173,6 +176,7 @@ const usePageHook = () => {
         borderRadius: 16,
         width: "auto",
         height: "auto",
+        background: "#222",
       });
       tl.to(
         liDotTexts,
@@ -258,7 +262,7 @@ const usePageHook = () => {
       );
       tl.to([liDots[4], liDots[5], liDots[3]], {
         x: (i) => {
-          return window.innerWidth / 3.61 + i * 5;
+          return window.innerWidth / 2.49 + i * 5;
         },
         y: (i, dot) => {
           const dest = threeDotDestinationRef.current;
@@ -273,10 +277,11 @@ const usePageHook = () => {
             5
           );
         },
-        scale: 0.1,
+        scale: 0.12,
         ease: "power2.inOut",
       });
       tl.fromTo(performanceSolutionRef.current, { opacity: 0 }, { opacity: 1 });
+      tl.to({}, { duration: 1 });
       tl.to(performanceSolutionRef.current, {
         y: -600,
         opacity: 0,
@@ -289,7 +294,6 @@ const usePageHook = () => {
         {
           opacity: 1,
         },
-        "<",
       );
       tl.to(
         [liDots[4], liDots[5], liDots[3]],

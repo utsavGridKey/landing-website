@@ -3,11 +3,11 @@ import Image from "next/image";
 
 const Herosection = () => {
   const { heroSectionRef } = useAppContext();
-  const dotsPerRing = 40; // 🔽 reduce for smoother perf
+  const dotsPerRing = 30; // 🔽 reduce for smoother perf
   const halfWidth = 150;
   const halfHeight = 100;
-  const spacingZ = 10;
-  const visibleDepth = 250;
+  const spacingZ = 20;
+  const visibleDepth = 500;
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
 
   return (
