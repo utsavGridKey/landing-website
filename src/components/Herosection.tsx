@@ -80,7 +80,7 @@ const Herosection = () => {
           </div>
         </div>
       </div>
-      {[...Array(rings)].map((_, ring) =>
+      {/* {[...Array(rings)].map((_, ring) =>
         [...Array(dotsPerRing)].map((_, dot) => {
           const side = Math.floor(dot / (dotsPerRing / 4));
           const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
@@ -122,7 +122,7 @@ const Herosection = () => {
             />
           );
         }),
-      )}
+      )} */}
     </div>
   );
 };
