@@ -1,10 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useAppContext } from "./appContent";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const usePageHook = () => {
   const {
@@ -20,53 +17,7 @@ const usePageHook = () => {
     mainDivContinerRef,
     toolsRef,
     secondContentRef,
-    animationRef,
   } = useAppContext();
-
-  const dotsPerRing = 40;
-  const spacingZ = 20;
-  const speed = 0.1;
-  const visibleDepth = 250;
-  const rings = Math.ceil(visibleDepth / spacingZ) + 2;
-
-  useEffect(() => {
-    if (!mainDivContinerRef.current) return;
-    const dots =
-      mainDivContinerRef.current.querySelectorAll<HTMLDivElement>(".dot");
-
-    // Skip rAF setup if there are no dots to move
-    if (!dots || dots.length === 0) return;
-
-    let paused = document.hidden;
-
-    function animate() {
-      if (paused) {
-        animationRef.current = requestAnimationFrame(animate);
-        return;
-      }
-      dots.forEach((dot) => {
-        const [x, y, z] = dot.dataset.pos!.split(",").map(Number);
-        let newZ = z + speed;
-        if (newZ > 1000) newZ -= rings * spacingZ;
-
-        dot.dataset.pos = `${x},${y},${newZ}`;
-        dot.style.transform = `translate3d(${x}px, ${y}px, ${newZ}px)`;
-      });
-      animationRef.current = requestAnimationFrame(animate);
-    }
-
-    const onVisibility = () => {
-      paused = document.hidden;
-    };
-    document.addEventListener("visibilitychange", onVisibility);
-
-    animationRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
-      document.removeEventListener("visibilitychange", onVisibility);
-    };
-  }, [rings, dotsPerRing, spacingZ, speed]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
