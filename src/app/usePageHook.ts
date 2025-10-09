@@ -74,7 +74,7 @@ const usePageHook = () => {
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=6000",
+          end: "+=10000",
           scrub: true,
           pin: true,
           anticipatePin: 1,
