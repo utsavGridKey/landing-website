@@ -1,35 +1,33 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect } from "react";
+import { useAppContext } from "./appContent";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const usePageHook = () => {
-  const nineDotsLeftRef = useRef<HTMLDivElement>(null);
-  const performanceSolutionRef = useRef<HTMLDivElement>(null);
-  const whyChooseSectionRef = useRef<HTMLDivElement>(null);
-  const chooseORef = useRef<HTMLDivElement>(null);
-  const thirdContentRef = useRef<HTMLDivElement>(null);
-  const threeDotDestinationRef = useRef<HTMLDivElement>(null);
-  const navbarRef = useRef<HTMLDivElement>(null);
-  const nineDotsRightRef = useRef<HTMLDivElement>(null);
-  const mainDivContinerRef = useRef<HTMLDivElement>(null);
-  const heroSectionRef = useRef<HTMLDivElement>(null);
-  const toolsRef = useRef<HTMLDivElement>(null);
-  const secondContentRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<any>(null);
-  const dotsPerRing = 40; // 🔽 reduce for smoother perf
-  const halfWidth = 150;
-  const halfHeight = 100;
+  const {
+    heroSectionRef,
+    nineDotsLeftRef,
+    performanceSolutionRef,
+    whyChooseSectionRef,
+    chooseORef,
+    thirdContentRef,
+    threeDotDestinationRef,
+    navbarRef,
+    nineDotsRightRef,
+    mainDivContinerRef,
+    toolsRef,
+    secondContentRef,
+    animationRef,
+  } = useAppContext();
+
+  const dotsPerRing = 40;
   const spacingZ = 20;
   const speed = 0.1;
   const visibleDepth = 250;
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
-
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
-  const [scrolledIntoSecond, setScrolledIntoSecond] = useState(false);
 
   useEffect(() => {
     if (!mainDivContinerRef.current) return;
@@ -61,7 +59,7 @@ const usePageHook = () => {
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=10000",
+          end: "+=12000",
           scrub: true,
           pin: true,
         },
@@ -115,6 +113,7 @@ const usePageHook = () => {
           x: () => (el?.clientWidth ?? 0) / 5,
           y: 0,
           borderRadius: 100,
+          background: "#fff",
         },
         "removingHeroAndShowingDots",
       );
@@ -123,6 +122,7 @@ const usePageHook = () => {
         borderRadius: 16,
         width: "auto",
         height: "auto",
+        background: "#222",
       });
       tl.to(
         liDotTexts,
@@ -161,6 +161,7 @@ const usePageHook = () => {
         x: () => (el?.clientWidth ?? 0) / 5,
         y: 0,
         width: "4px",
+        background: "#fff",
         height: "4px",
       });
       tl.to(
@@ -175,6 +176,7 @@ const usePageHook = () => {
         borderRadius: 16,
         width: "auto",
         height: "auto",
+        background: "#222",
       });
       tl.to(
         liDotTexts,
@@ -258,45 +260,32 @@ const usePageHook = () => {
         },
         "<",
       );
-      tl.to(
-        [liDots[4], liDots[5], liDots[3]],
-        {
-          x: (i) => {
-            return window.innerWidth / 3.61 + i * 5;
-          },
-          y: (i, dot) => {
-            const dest = threeDotDestinationRef.current;
-            if (!dest) return 0;
-            const dotBox = (dot as HTMLElement).getBoundingClientRect();
-            const destBox = dest.getBoundingClientRect();
+      tl.to([liDots[4], liDots[5], liDots[3]], {
+        x: (i) => {
+          return window.innerWidth / 2.49 + i * 5;
+        },
+        y: (i, dot) => {
+          const dest = threeDotDestinationRef.current;
+          if (!dest) return 0;
+          const dotBox = (dot as HTMLElement).getBoundingClientRect();
+          const destBox = dest.getBoundingClientRect();
 
-            return (
-              destBox.top +
-              destBox.height / 2 -
-              (dotBox.top + dotBox.height / 2) +
-              5
-            );
-          },
-          scale: 0.1,
-          ease: "power2.inOut",
+          return (
+            destBox.top +
+            destBox.height / 2 -
+            (dotBox.top + dotBox.height / 2) +
+            5
+          );
         },
-        "<",
-      );
-      tl.fromTo(
-        performanceSolutionRef.current,
-        { opacity: 0 },
-        { opacity: 1 },
-        "<",
-      );
+        scale: 0.12,
+        ease: "power2.inOut",
+      });
+      tl.fromTo(performanceSolutionRef.current, { opacity: 0 }, { opacity: 1 });
       tl.to({}, { duration: 1 });
-      tl.to(
-        performanceSolutionRef.current,
-        {
-          y: -600,
-          opacity: 0,
-        },
-        "<",
-      );
+      tl.to(performanceSolutionRef.current, {
+        y: -600,
+        opacity: 0,
+      });
       tl.fromTo(
         whyChooseSectionRef.current,
         {
@@ -305,7 +294,6 @@ const usePageHook = () => {
         {
           opacity: 1,
         },
-        "<",
       );
       tl.to(
         [liDots[4], liDots[5], liDots[3]],
@@ -377,34 +365,8 @@ const usePageHook = () => {
   }, []);
 
   return {
-    rings,
-    speed,
-    spacingZ,
-    halfWidth,
-    halfHeight,
-    dotsPerRing,
-    visibleDepth,
-    animationRef,
-    heroSectionRef,
-    nineDotsLeftRef,
-    nineDotsRightRef,
-    whyChooseSectionRef,
     mainDivContinerRef,
-    performanceSolutionRef,
-    threeDotDestinationRef,
-    secondContentRef,
-    toolsRef,
-    chooseORef,
-    thirdContentRef,
-    menuOpen,
-    setMenuOpen,
-    productsOpen,
-    setProductsOpen,
-    scrolledIntoSecond,
-    setScrolledIntoSecond,
     navbarRef,
-    openDropdown,
-    setOpenDropdown,
   };
 };
 
