@@ -1,5 +1,5 @@
 import { useAppContext } from "@/app/appContent";
-import { Globe } from "lucide-react";
+import { Globe } from "./magicui/globe";
 
 const Thirdrefcontainer = () => {
   const { thirdContentRef } = useAppContext();
