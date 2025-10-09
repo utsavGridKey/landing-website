@@ -7,7 +7,7 @@ export const optionsData = [
       "Offer goal-based planning, model portfolios, and investment recommendations",
       "Use Gridkey as your digital backend for client onboarding, documentation, and client engagement",
       "Stay ready for SEBI audits with all advice logs, documents, and approvals logged in one place.",
-      "Automate fee invoicing and payment tracking",
+      "Automate fee invoicing and payment tracking.",
     ],
     imgSrc: "/ria.png",
   },
