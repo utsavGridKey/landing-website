@@ -34,7 +34,16 @@ const usePageHook = () => {
     const dots =
       mainDivContinerRef.current.querySelectorAll<HTMLDivElement>(".dot");
 
+    // Skip rAF setup if there are no dots to move
+    if (!dots || dots.length === 0) return;
+
+    let paused = document.hidden;
+
     function animate() {
+      if (paused) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
       dots.forEach((dot) => {
         const [x, y, z] = dot.dataset.pos!.split(",").map(Number);
         let newZ = z + speed;
@@ -46,10 +55,16 @@ const usePageHook = () => {
       animationRef.current = requestAnimationFrame(animate);
     }
 
+    const onVisibility = () => {
+      paused = document.hidden;
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
     animationRef.current = requestAnimationFrame(animate);
 
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, [rings, dotsPerRing, spacingZ, speed]);
 
@@ -59,9 +74,10 @@ const usePageHook = () => {
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=12000",
+          end: "+=6000",
           scrub: true,
           pin: true,
+          anticipatePin: 1,
         },
       });
 
