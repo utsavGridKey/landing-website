@@ -61,7 +61,7 @@ const usePageHook = () => {
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=10000", // Reduced from 20000
+          end: "+=20000", // Reduced from 20000
           scrub: 1, // Smoother scrubbing
           pin: true,
           anticipatePin: 1,
@@ -194,7 +194,12 @@ const usePageHook = () => {
       );
 
       tl.to([liDots[4], liDots[5], liDots[3]], {
-        x: (i) => window.innerWidth / 2.49 + i * 5,
+        x: (i) => {
+          const dest = threeDotDestinationRef.current;
+          if (!dest) return 0;
+          return dest.getBoundingClientRect().right - 10 + i * 5;
+          // window.innerWidth / 2.49 + i * 5,
+        },
         y: (i, dot) => {
           const dest = threeDotDestinationRef.current;
           if (!dest) return 0;

@@ -20,11 +20,9 @@ const Perfomancesolution = () => {
         One Platform, Many Solutions!
       </p>
       <div className="flex items-center w-full justify-center gap-3 md:gap-6">
-        <p
-          ref={threeDotDestinationRef}
-          className="text-white text-sm md:text-[20px] text-nowrap"
-        >
+        <p className="text-white text-sm md:text-[20px] text-nowrap">
           {`I'M A`}
+          <span ref={threeDotDestinationRef} />
         </p>
 
         <div className="relative min-w-[340px]">
