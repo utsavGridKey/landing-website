@@ -61,7 +61,7 @@ const usePageHook = () => {
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=20000", // Reduced from 20000
+          end: "+=10000", // Reduced from 20000
           scrub: 1, // Smoother scrubbing
           pin: true,
           anticipatePin: 1,
