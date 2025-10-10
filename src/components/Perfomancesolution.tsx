@@ -100,12 +100,8 @@ const Perfomancesolution = () => {
                   ))}
                 </ol>
               </div>
-              <div className="w-full md:w-1/2 flex justify-center items-center">
-                <img
-                  src={opt.imgSrc}
-                  alt=""
-                  className="w-3/4 md:w-1/2 h-auto"
-                />
+              <div className="w-full md:w-1/2 flex justify-center items-center ">
+                <img src={opt.imgSrc} alt="" className="w-[60%] h-auto" />
               </div>
             </section>
           </motion.div>

@@ -117,8 +117,6 @@ const usePageHook = () => {
         { opacity: 1, y: 0, force3D: true },
       );
 
-      tl.to({}, { duration: 0.5 }); // Reduced pause duration
-
       tl.to(nineDotsLeftRef.current, {
         opacity: 0,
         y: -500,
@@ -147,29 +145,11 @@ const usePageHook = () => {
         force3D: true,
       });
 
-      // Optimize text updates
-      const newTexts = [
-        "PPF / EPF",
-        "Bonds",
-        "AIF",
-        "Mutual Funds",
-        "Equity Basket",
-        "PMS",
-        "Private Equity",
-        "Fixed Deposit",
-        "Gold / Silver",
-      ];
-
       tl.to(
         liDotTexts,
         {
           color: "#ffffff",
           duration: 0.3,
-          onStart: function () {
-            liDotTexts.forEach((text, i) => {
-              if (text) text.textContent = newTexts[i];
-            });
-          },
         },
         "<",
       );
@@ -181,8 +161,6 @@ const usePageHook = () => {
         { opacity: 0, y: 500 },
         { opacity: 1, y: 0, force3D: true },
       );
-
-      tl.to({}, { duration: 0.5 });
 
       tl.to(nineDotsRightRef.current, {
         opacity: 0,
