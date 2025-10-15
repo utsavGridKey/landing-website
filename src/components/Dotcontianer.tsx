@@ -15,71 +15,71 @@ const Dotcontianer = () => {
         {
           name: "Streamlined Fee Tracking",
           icon: RupeeIcon,
-          iconSize: 20,
+          iconSize: 18,
           opacity: 0.2,
-          size: 12,
+          size: 10,
         },
         {
           name: "Data-Driven Insights & Analytics",
           icon: LineChartIcon,
-          iconSize: 20,
+          iconSize: 18,
           opacity: 0.4,
-          size: 14,
+          size: 12,
         },
         {
           name: "Intuitive Lead Handling",
           icon: MultiUserIcon,
           opacity: 0.6,
-          iconSize: 20,
-          size: 16,
+          iconSize: 18,
+          size: 14,
         },
         {
           name: "Comprehensive Client Reporting",
           icon: DocumentIcon,
           opacity: 0.8,
-          iconSize: 24,
-          size: 18,
+          iconSize: 18,
+          size: 16,
         },
         {
           name: "Smooth Client Onboarding",
           icon: UserOnboardIcon,
           opacity: 1,
-          iconSize: 40,
-          size: 24,
+          iconSize: 18,
+          size: 18,
         },
         {
           name: "Seamless Portfolio Management",
           icon: BarChartIcon,
           opacity: 0.8,
-          iconSize: 24,
-          size: 18,
+          iconSize: 18,
+          size: 16,
         },
         {
           name: "Scalable Partner Ecosystem",
           icon: SolarShareIcon,
           opacity: 0.6,
-          iconSize: 20,
-          size: 16,
+          iconSize: 18,
+          size: 14,
         },
         {
           name: "Effortless Compliance",
           icon: VerifyCheckIcon,
           opacity: 0.4,
-          iconSize: 20,
-          size: 14,
+          iconSize: 18,
+          size: 12,
         },
         {
           name: "Frictionless Order Execution",
           icon: BasketIcon,
           opacity: 0.2,
-          size: 12,
-          iconSize: 20,
+          size: 10,
+          iconSize: 18,
         },
       ].map((_, i) => {
         return (
           <div
             key={i}
-            className="w-1 h-1 nine-dot rounded-[16px]  bg-black-900 flex items-center gap-4 p-4 justify-start text-nowrap opacity-0"
+            className="w-1 h-1 nine-dot rounded-[8px]  bg-black-900 flex items-center gap-4 p-2 justify-start text-nowrap opacity-0"
           >
             <_.icon
               style={{

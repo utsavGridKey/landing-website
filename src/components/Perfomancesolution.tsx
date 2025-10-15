@@ -16,13 +16,15 @@ const Perfomancesolution = () => {
       ref={performanceSolutionRef}
       className="w-full h-full flex-col flex items-center justify-center absolute gap-4 opacity-0 z-10 px-4"
     >
-      <p className="bg-gradient-to-r from-[#006580]  to-[#4CA485] inline-block text-transparent bg-clip-text text-3xl md:text-[64px] font-bold leading-tight text-center">
+      <p className="bg-gradient-to-r from-[#006580]  to-[#4CA485] inline-block text-transparent bg-clip-text text-[48px] font-bold leading-tight text-center">
         One Platform, Many Solutions!
       </p>
       <div className="flex items-center w-full justify-center gap-3 md:gap-6">
-        <p className="text-white text-sm md:text-[20px] text-nowrap">
+        <p
+          ref={threeDotDestinationRef}
+          className="text-white text-sm md:text-[20px] text-nowrap"
+        >
           {`I'M A`}
-          <span ref={threeDotDestinationRef} />
         </p>
 
         <div className="relative min-w-[340px]">
@@ -84,7 +86,7 @@ const Perfomancesolution = () => {
           >
             <section
               key={opt.name}
-              className="flex flex-col md:flex-row items-center w-screen px-6 md:px-20 mt-10 md:mt-20 gap-8 md:gap-0"
+              className="flex flex-col md:flex-row items-center w-screen px-6 md:px-20  gap-8 md:gap-0"
             >
               <div className="w-full md:w-1/2 flex justify-center flex-col items-center">
                 <div className="self-stretch text-[#ececec] text-2xl md:text-[40px] font-medium leading-[1.3] md:leading-[52px] text-center md:text-left">
@@ -98,8 +100,12 @@ const Perfomancesolution = () => {
                   ))}
                 </ol>
               </div>
-              <div className="w-full md:w-1/2 flex justify-center items-center ">
-                <img src={opt.imgSrc} alt="" className="w-[60%] h-auto" />
+              <div className="w-full md:w-1/2 flex justify-center items-center">
+                <img
+                  src={opt.imgSrc}
+                  alt=""
+                  className="w-3/4 md:w-1/2 h-auto"
+                />
               </div>
             </section>
           </motion.div>

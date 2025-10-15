@@ -9,7 +9,11 @@ import Perfomancesolution from "@/components/Perfomancesolution";
 import Secondrefcontainer from "@/components/Secondrefcontainer";
 import Thirdrefcontainer from "@/components/Thirdrefcontainer";
 import Whychoosesection from "@/components/Whychoosesection";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import usePageHook from "./usePageHook";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LaptopScreen() {
   const { mainDivContinerRef, navbarRef } = usePageHook();

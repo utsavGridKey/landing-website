@@ -6,9 +6,14 @@ const Ninedotleftref = () => {
   return (
     <div
       ref={nineDotsLeftRef}
-      className="gradiantBg w-full md:w-1/2 flex items-center justify-center absolute opacity-0 top-1/2 -translate-y-1/2 px-4 h-full"
+      className="w-full md:w-1/2 flex items-center justify-center absolute opacity-0 top-1/2 -translate-y-1/2 px-4"
     >
-      <div className="flex flex-col w-full md:w-[80%] gap-4 rounded-full">
+      <div
+        className="flex flex-col w-full md:w-[80%] gap-4 rounded-full bg-[#000f13]"
+        style={{
+          boxShadow: "0 0 1000px 200px #000f13",
+        }}
+      >
         <div className="border border-grey-700  rounded-[8px] p-2 w-fit">
           <p className="text-grey-500 uppercase text-">tech tools</p>
         </div>
