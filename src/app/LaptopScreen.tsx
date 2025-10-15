@@ -6,9 +6,6 @@ import Navbar from "@/components/Navbar";
 import Ninedotleftref from "@/components/Ninedotleftref";
 import Ninedotrightref from "@/components/Ninedotrightref";
 import Perfomancesolution from "@/components/Perfomancesolution";
-import Secondrefcontainer from "@/components/Secondrefcontainer";
-import Thirdrefcontainer from "@/components/Thirdrefcontainer";
-import Whychoosesection from "@/components/Whychoosesection";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import usePageHook from "./usePageHook";
@@ -36,11 +33,11 @@ export default function LaptopScreen() {
         {/**=============================================================== */}
         <Perfomancesolution />
         {/**=============================================================== */}
-        <Whychoosesection />
+        {/* <Whychoosesection /> */}
         {/**=============================================================== */}
-        <Secondrefcontainer />
+        {/* <Secondrefcontainer /> */}
         {/**=============================================================== */}
-        <Thirdrefcontainer />
+        {/* <Thirdrefcontainer /> */}
         {/**=============================================================== */}
       </div>
       <Footer />
