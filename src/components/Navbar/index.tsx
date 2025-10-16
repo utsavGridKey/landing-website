@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const Navbar = ({ navbarRef }: { navbarRef?: any }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const { push } = useRouter();
-  const [productsOpen, setProductsOpen] = useState(false);
 
   return (
     <nav
@@ -24,35 +22,39 @@ const Navbar = ({ navbarRef }: { navbarRef?: any }) => {
       {/* Logo */}
       <div className="flex items-center">
         <Image
+          className="hover:cursor-pointer"
           src="/fullLogo.svg"
           alt="fullLogo"
           width={120}
           height={40}
           priority
+          onClick={() => {
+            push("/");
+          }}
         />
       </div>
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex gap-6 text-white relative">
-        <li
+        <Link
           style={{
             mixBlendMode: "difference",
           }}
           className=" hover:text-gray-300 cursor-pointer"
-          onClick={() => {
-            push("/aboutus");
-          }}
+          prefetch
+          href={"/aboutus"}
         >
           About Us
-        </li>
-        <li
+        </Link>
+        <Link
+          href={"/contactus"}
           style={{
             mixBlendMode: "difference",
           }}
           className="hover:text-gray-300 cursor-pointer"
         >
           Contact Us
-        </li>
+        </Link>
       </ul>
 
       {/* Desktop Sign In Button */}
@@ -86,62 +88,6 @@ const Navbar = ({ navbarRef }: { navbarRef?: any }) => {
           />
         </svg>
       </button>
-
-      {/* Mobile Menu Toggle */}
-      <button
-        className="md:hidden flex flex-col gap-1 ml-4"
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-expanded={menuOpen}
-        aria-controls="mobile-menu"
-        aria-label="Toggle menu"
-      >
-        <span className="w-6 h-0.5 bg-white"></span>
-        <span className="w-6 h-0.5 bg-white"></span>
-        <span className="w-6 h-0.5 bg-white"></span>
-      </button>
-
-      {/* Mobile Dropdown Menu */}
-      {menuOpen && (
-        <div
-          id="mobile-menu"
-          className="absolute top-16 right-4 bg-white/90 backdrop-blur-md shadow-lg rounded-lg p-4 w-[88vw] max-w-sm flex flex-col gap-4 md:hidden"
-          role="menu"
-          aria-label="Mobile"
-        >
-          <div>
-            <button
-              className="flex justify-between items-center w-full text-left text-black font-medium"
-              onClick={() => setProductsOpen(!productsOpen)}
-              aria-expanded={productsOpen}
-              aria-controls="mobile-products"
-            >
-              Our Products
-              <span>{productsOpen ? "▲" : "▼"}</span>
-            </button>
-            {productsOpen && (
-              <ul
-                id="mobile-products"
-                className="mt-2 flex flex-col gap-2 pl-2 text-gray-700"
-                role="menu"
-              >
-                <li className="hover:text-black cursor-pointer ">Product 1</li>
-                <li className="hover:text-black cursor-pointer">Product 2</li>
-                <li className="hover:text-black cursor-pointer">Product 3</li>
-              </ul>
-            )}
-          </div>
-          <button className="text-black text-left">About Us</button>
-          <button className="text-black text-left">Contact Us</button>
-          <button
-            className="px-4 py-3 rounded-full text-white flex items-center justify-center"
-            style={{
-              background: `linear-gradient(142deg, #006580 14.86%, #107281 71.32%, #4CA485 156.01%)`,
-            }}
-          >
-            Sign In
-          </button>
-        </div>
-      )}
     </nav>
   );
 };
