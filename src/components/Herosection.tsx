@@ -6,7 +6,7 @@ const Herosection = () => {
   const dotsPerRing = 40;
   const halfWidth = 150;
   const halfHeight = 100;
-  const spacingZ = 20;
+  const spacingZ = 10;
   const visibleDepth = 250;
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
 
@@ -99,7 +99,7 @@ const Herosection = () => {
             y = halfHeight - progress * (2 * halfHeight);
           }
 
-          const z = 700 - ring * spacingZ;
+          const z = 800 - ring * spacingZ;
 
           return (
             <div
