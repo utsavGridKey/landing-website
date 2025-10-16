@@ -35,26 +35,6 @@ const Navbar = ({ navbarRef }: { navbarRef?: any }) => {
       {/* Desktop Menu */}
       <ul className="hidden md:flex gap-6 text-white relative">
         <li
-          className="hover:text-gray-300 cursor-pointer relative group"
-          style={{
-            mixBlendMode: "difference",
-          }}
-        >
-          Our Products
-          {/* Dropdown */}
-          <ul className="absolute top-full left-0 mt-2 w-48 bg-white/90 text-black shadow-lg rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 invisible group-hover:visible">
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-              Product 1
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-              Product 2
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-              Product 3
-            </li>
-          </ul>
-        </li>
-        <li
           style={{
             mixBlendMode: "difference",
           }}

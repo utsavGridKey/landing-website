@@ -14,7 +14,7 @@ const Perfomancesolution = () => {
   return (
     <div
       ref={performanceSolutionRef}
-      className="w-full h-full flex-col flex items-center justify-center absolute gap-4 opacity-0 z-10 px-4"
+      className="w-full h-full flex-col flex items-center justify-center absolute gap-4 opacity-0 z-30 px-4 pt-20"
     >
       <p className="bg-gradient-to-r from-[#006580]  to-[#4CA485] inline-block text-transparent bg-clip-text text-[48px] font-bold leading-tight text-center">
         One Platform, Many Solutions!
@@ -25,6 +25,7 @@ const Perfomancesolution = () => {
           className="text-white text-sm md:text-[20px] text-nowrap"
         >
           {`I'M A`}
+          <span ref={threeDotDestinationRef} />
         </p>
 
         <div className="relative min-w-[340px]">
@@ -78,8 +79,8 @@ const Perfomancesolution = () => {
         .map((opt) => (
           <motion.div
             key={opt.name}
-            initial={{ opacity: 0, y: 500 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             style={{
               minHeight: "calc(100vh - 40%)",
             }}
@@ -89,7 +90,7 @@ const Perfomancesolution = () => {
               className="flex flex-col md:flex-row items-center w-screen px-6 md:px-20  gap-8 md:gap-0"
             >
               <div className="w-full md:w-1/2 flex justify-center flex-col items-center">
-                <div className="self-stretch text-[#ececec] text-2xl md:text-[40px] font-medium leading-[1.3] md:leading-[52px] text-center md:text-left">
+                <div className="self-stretch text-[#ececec] text-2xl font-medium text-center md:text-left">
                   {opt.title}
                 </div>
                 <ol className="self-stretch text-[#828282] text-base md:text-xl font-normal leading-loose list-disc list-outside mt-4 md:ml-6 ml-4">
@@ -100,12 +101,8 @@ const Perfomancesolution = () => {
                   ))}
                 </ol>
               </div>
-              <div className="w-full md:w-1/2 flex justify-center items-center">
-                <img
-                  src={opt.imgSrc}
-                  alt=""
-                  className="w-3/4 md:w-1/2 h-auto"
-                />
+              <div className="w-1/2 flex justify-center items-center min-h-[70%]">
+                <img src={opt.imgSrc} alt="" height={"auto"} width={"70%"} />
               </div>
             </section>
           </motion.div>

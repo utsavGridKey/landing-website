@@ -3,17 +3,17 @@ import Image from "next/image";
 
 const Herosection = () => {
   const { heroSectionRef } = useAppContext();
-  const dotsPerRing = 40; // 🔽 reduce for smoother perf
+  const dotsPerRing = 40;
   const halfWidth = 150;
   const halfHeight = 100;
-  const spacingZ = 10;
+  const spacingZ = 20;
   const visibleDepth = 250;
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
 
   return (
     <div
       ref={heroSectionRef}
-      className="Herosection absolute h-full w-full perspective-[1000px] z-10"
+      className="Herosection absolute h-full w-full perspective-[1000px] z-20"
     >
       <div
         style={{
@@ -22,10 +22,8 @@ const Herosection = () => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "70vw",
-          minHeight: "50vh",
           zIndex: 9999,
-          boxShadow: "0 0 4000px 150px #000000",
+          boxShadow: "0 0 1000px 200px #000000",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -33,7 +31,7 @@ const Herosection = () => {
           gap: 40,
         }}
       >
-        <div className="w-[784px] inline-flex flex-col justify-start items-center gap-10">
+        <div className="inline-flex flex-col justify-start items-center gap-10 ">
           <div className="self-stretch flex flex-col justify-start items-center gap-5">
             <div className="px-3 py-2.5 bg-[#222222]/40 rounded-[100px] backdrop-blur-[20px] inline-flex justify-center items-center gap-2">
               <Image
@@ -47,7 +45,7 @@ const Herosection = () => {
                 Simplify. Streamline. Succeed
               </div>
             </div>
-            <div className="self-stretch text-center text-white text-[56px] font-semibold">
+            <div className="self-stretch text-center text-white text-[48px] font-semibold">
               One Platform to Power Your Entire Wealth Business
             </div>
             <div className="w-[600px] text-center text-neutral-300 text-base leading-7">
@@ -80,7 +78,7 @@ const Herosection = () => {
           </div>
         </div>
       </div>
-      {/* {[...Array(rings)].map((_, ring) =>
+      {[...Array(rings)].map((_, ring) =>
         [...Array(dotsPerRing)].map((_, dot) => {
           const side = Math.floor(dot / (dotsPerRing / 4));
           const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
@@ -101,7 +99,7 @@ const Herosection = () => {
             y = halfHeight - progress * (2 * halfHeight);
           }
 
-          const z = 1000 - ring * spacingZ;
+          const z = 700 - ring * spacingZ;
 
           return (
             <div
@@ -122,7 +120,7 @@ const Herosection = () => {
             />
           );
         }),
-      )} */}
+      )}
     </div>
   );
 };

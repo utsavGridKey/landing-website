@@ -1,6 +1,5 @@
 import { useAppContext } from "@/app/appContent";
 import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern";
-import SolarShareIcon from "../assets/solarShare.svg";
 
 const Secondrefcontainer = () => {
   const { secondContentRef, toolsRef } = useAppContext();
@@ -30,37 +29,37 @@ const Secondrefcontainer = () => {
                 title: "Founder’s Vision",
                 description:
                   "Industry experts with a vision to revolutionize wealth management space.",
-                icon: SolarShareIcon,
+                icon: "founder.svg",
               },
               {
                 title: "Client-Centric Approach",
                 description:
                   "We ensure that every feature is designed to meet the unique needs of our users.",
-                icon: SolarShareIcon,
+                icon: "clientCentric.svg",
               },
               {
                 title: "Holistic Wealth Management",
                 description:
                   "Gridkey covers every aspect of wealth management in one integrated platform.",
-                icon: SolarShareIcon,
+                icon: "holisticWealth.svg",
               },
               {
                 title: "Intuitive Tools",
                 description:
                   "Leverage cutting-edge tools for growing your advisory business.",
-                icon: SolarShareIcon,
+                icon: "intuitive.svg",
               },
               {
                 title: "Data Driven Insights",
                 description:
                   "Make informed decision with insights and reports, empowering you to stay aheah in the game",
-                icon: SolarShareIcon,
+                icon: "dataDriven.svg",
               },
               {
                 title: "Innovation at Core",
                 description:
                   "We continuosly strive to bring innovative solutions to simpliy complex financial landscape.",
-                icon: SolarShareIcon,
+                icon: "innovationCore.svg",
               },
             ].map((dataItem, index) => (
               <div
@@ -75,7 +74,7 @@ const Secondrefcontainer = () => {
                     {dataItem.description}
                   </p>
                 </div>
-                <img src="/founder.svg" alt="" className="opacity-0" />
+                <img src={dataItem.icon} alt="" />
               </div>
             ))}
           </div>

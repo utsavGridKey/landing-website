@@ -98,7 +98,6 @@ const usePageHook = () => {
           opacity: 0,
           x: 0,
           y: -500,
-          display: "none",
         },
         "removingHeroAndShowingDots",
       );
@@ -120,7 +119,7 @@ const usePageHook = () => {
       );
       tl.to(liDots, {
         opacity: 1,
-        borderRadius: 16,
+        borderRadius: 8,
         width: "auto",
         height: "auto",
         background: "#222",
@@ -154,7 +153,6 @@ const usePageHook = () => {
       tl.to(nineDotsLeftRef.current, {
         opacity: 0,
         y: -500,
-        display: "none",
       });
       tl.to([liDotSvg, liDotTexts], {
         color: "transparent",
@@ -175,7 +173,7 @@ const usePageHook = () => {
       );
       tl.to(liDots, {
         opacity: 1,
-        borderRadius: 16,
+        borderRadius: 8,
         width: "auto",
         height: "auto",
         background: "#222",
@@ -194,7 +192,7 @@ const usePageHook = () => {
               "PMS",
               "Private Equity",
               "Fixed Deposit",
-              "Gold / Silver",
+              "Precious Metals / Gold ",
             ][i],
         },
         "<",
@@ -222,7 +220,6 @@ const usePageHook = () => {
       tl.to(nineDotsRightRef.current, {
         opacity: 0,
         y: -500,
-        display: "none",
       });
       tl.to(
         liDots,
@@ -238,7 +235,6 @@ const usePageHook = () => {
         liDots,
         {
           opacity: 0,
-          display: "none",
         },
         "<",
       );
@@ -246,7 +242,6 @@ const usePageHook = () => {
         liDotTexts,
         {
           opacity: 0,
-          display: "none",
         },
         "<",
       );
@@ -254,7 +249,6 @@ const usePageHook = () => {
         liDotSvg,
         {
           opacity: 0,
-          display: "none",
         },
         "<",
       );
@@ -268,7 +262,12 @@ const usePageHook = () => {
       );
       tl.to([liDots[4], liDots[5], liDots[3]], {
         x: (i) => {
-          return window.innerWidth / 2.49 + i * 5;
+          const dest = threeDotDestinationRef.current;
+          if (!dest) return 0;
+
+          const destBox = dest.getBoundingClientRect();
+
+          return destBox.left + destBox.width / 1.1 + i * 5;
         },
         y: (i, dot) => {
           const dest = threeDotDestinationRef.current;
@@ -280,7 +279,7 @@ const usePageHook = () => {
             destBox.top +
             destBox.height / 2 -
             (dotBox.top + dotBox.height / 2) +
-            5
+            6
           );
         },
         scale: 0.12,
@@ -291,7 +290,6 @@ const usePageHook = () => {
       tl.to(performanceSolutionRef.current, {
         y: -600,
         opacity: 0,
-        display: "none",
       });
       tl.fromTo(
         whyChooseSectionRef.current,
@@ -310,7 +308,6 @@ const usePageHook = () => {
           ease: "power2.inOut",
           scale: 0.5,
           opacity: 0,
-          display: "none",
         },
         "<",
       );
