@@ -175,3 +175,10 @@
     }
   }
 }
+
+.linear-gradient-bg {
+  background-image: url("../assets/gradiantBg.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

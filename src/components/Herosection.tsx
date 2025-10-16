@@ -6,8 +6,8 @@ const Herosection = () => {
   const dotsPerRing = 40;
   const halfWidth = 150;
   const halfHeight = 100;
-  const spacingZ = 10;
-  const visibleDepth = 250;
+  const spacingZ = 30;
+  const visibleDepth = 400;
   const rings = Math.ceil(visibleDepth / spacingZ) + 2;
 
   return (
