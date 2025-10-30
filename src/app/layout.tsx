@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AppProvider } from "./appContent";
@@ -27,11 +25,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} font-[inter] overflow-x-hidden`}>
         <div id="app-root" className="min-h-screen w-full">
-          <AppProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </AppProvider>
+          <AppProvider>{children}</AppProvider>
         </div>
       </body>
     </html>
