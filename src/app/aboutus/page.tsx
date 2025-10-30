@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 export default function AboutUs() {
@@ -65,76 +66,7 @@ export default function AboutUs() {
           <img className="flex-1 h-[300px] rounded-lg" src="buildGridkey.svg" />
         </div>
       </div>
-      <div className="w-full py-20 bg-[#222222] inline-flex flex-col justify-start items-center gap-10 overflow-hidden">
-        <div className="w-[768px] flex flex-col justify-start items-center gap-2">
-          <div className="self-stretch text-center justify-start text-[#e0e0e0] text-[32px] font-medium font-['Inter'] tracking-tight">
-            The People Behind the Mission
-          </div>
-          <div className="self-stretch text-center justify-start text-[#828282] text-sm font-medium font-['Inter'] leading-[21px] tracking-tight">
-            Founders with a passion for finance, technology, and advisor
-            success.
-          </div>
-        </div>
-        <div className="w-[988px] inline-flex justify-between items-center">
-          <div
-            data-property-1="Default"
-            className="w-[274px] inline-flex flex-col justify-center items-start gap-4"
-          >
-            <div className="self-stretch h-[350px] rounded-lg inline-flex justify-start items-center gap-2 overflow-hidden">
-              <img
-                className="flex-1 self-stretch mix-blend-luminosity"
-                src="https://placehold.co/274x350"
-              />
-            </div>
-            <div className="self-stretch flex flex-col justify-start items-center gap-1">
-              <div className="justify-start text-[#bdbdbd] text-xl font-medium font-['Inter']">
-                Ritesh Lahoti
-              </div>
-              <div className="justify-start text-[#828282] text-xs font-normal font-['Inter'] leading-tight">
-                Ex-NIMMS|10+ years in startups & strategy
-              </div>
-            </div>
-          </div>
-          <div
-            data-property-1="Default"
-            className="w-[274px] inline-flex flex-col justify-center items-start gap-4"
-          >
-            <div className="self-stretch h-[350px] rounded-lg inline-flex justify-start items-center gap-2 overflow-hidden">
-              <img
-                className="flex-1 self-stretch mix-blend-luminosity"
-                src="https://placehold.co/274x350"
-              />
-            </div>
-            <div className="self-stretch flex flex-col justify-start items-center gap-1">
-              <div className="justify-start text-[#bdbdbd] text-xl font-medium font-['Inter']">
-                Piyush Sarawagi
-              </div>
-              <div className="justify-start text-[#828282] text-xs font-normal font-['Inter'] leading-tight">
-                CFA|SEBI registered RIA 8+ years in finance{" "}
-              </div>
-            </div>
-          </div>
-          <div
-            data-property-1="Default"
-            className="w-[274px] inline-flex flex-col justify-center items-start gap-4"
-          >
-            <div className="self-stretch h-[350px] rounded-lg inline-flex justify-start items-center gap-2 overflow-hidden">
-              <img
-                className="flex-1 self-stretch mix-blend-luminosity"
-                src="https://placehold.co/274x350"
-              />
-            </div>
-            <div className="self-stretch flex flex-col justify-start items-center gap-1">
-              <div className="justify-start text-[#bdbdbd] text-xl font-medium font-['Inter']">
-                Deep Jethloja
-              </div>
-              <div className="justify-start text-[#828282] text-xs font-normal font-['Inter'] leading-tight">
-                IIT Roorkee|Ex-PhonePe 4+ years in tech
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 }

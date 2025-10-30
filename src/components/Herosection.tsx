@@ -99,7 +99,7 @@ const Herosection = () => {
             y = halfHeight - progress * (2 * halfHeight);
           }
 
-          const z = 500 - ring * spacingZ;
+          const z = 800 - ring * spacingZ;
 
           return (
             <div
