@@ -172,17 +172,11 @@ const usePageHook = () => {
         },
         "<"
       );
-      tl.to(liDots, {
-        opacity: 1,
-        borderRadius: 8,
-        width: "auto",
-        height: "auto",
-        background: "#222",
-      });
       tl.to(
         liDotTexts,
         {
           color: "#fff",
+          opacity: 0,
           textContent: (i: any) =>
             [
               "PPF / EPF",
@@ -198,6 +192,17 @@ const usePageHook = () => {
         },
         "<"
       );
+      tl.to(liDots, {
+        opacity: 1,
+        borderRadius: 8,
+        width: "auto",
+        height: "auto",
+        background: "#222",
+      });
+      tl.to(liDotTexts, {
+        color: "#fff",
+        opacity: (i: any) => [0.2, 0.4, 0.6, 0.8, 1, 0.8, 0.6, 0.4, 0.2][i],
+      });
       tl.to(
         liDotSvg,
 
