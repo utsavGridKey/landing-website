@@ -9,7 +9,7 @@ const Navbar = ({ navbarRef }: { navbarRef?: any }) => {
   return (
     <nav
       ref={navbarRef}
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 rounded-full px-4 md:px-6 py-3 flex items-center justify-between w-[94%] md:w-[90%] max-w-7xl transition-colors duration-500`}
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 rounded-full px-4 md:px-6 py-3 flex items-center justify-between w-[94%] md:w-[90%] max-w-7xl transition-colors duration-500 gap-8`}
       role="navigation"
       aria-label="Main navigation"
       style={{
@@ -35,7 +35,7 @@ const Navbar = ({ navbarRef }: { navbarRef?: any }) => {
       </div>
 
       {/* Desktop Menu */}
-      <ul className="hidden md:flex gap-6 text-white relative">
+      <ul className="hidden md:flex gap-8 text-white relative ml-auto">
         <Link
           style={{
             mixBlendMode: "difference",

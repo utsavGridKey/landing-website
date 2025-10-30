@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import FooterGrid from "./FooterGrid";
 
@@ -46,13 +45,7 @@ const Footer = () => {
             <div className="self-stretch flex flex-col justify-start items-start gap-1">
               <div className="self-stretch inline-flex justify-center items-center gap-2">
                 <div className="size-4 relative overflow-hidden">
-                  <Image
-                    src={"../../assets/address.svg"}
-                    priority
-                    width={20}
-                    height={20}
-                    alt=""
-                  />
+                  <img src={"/address.svg"} alt="" />
                 </div>
                 <div className="flex-1 justify-start text-[#828282] text-sm font-normal font-['Inter'] leading-normal">
                   Address
@@ -66,13 +59,7 @@ const Footer = () => {
             <div className="self-stretch flex flex-col justify-start items-start gap-1">
               <div className="self-stretch inline-flex justify-center items-center gap-2">
                 <div className="size-4 relative overflow-hidden">
-                  <Image
-                    src={"../../assets/address.svg"}
-                    priority
-                    width={20}
-                    height={20}
-                    alt=""
-                  />
+                  <img src={"/email.svg"} alt="" />
                 </div>
                 <div className="flex-1 justify-start text-[#828282] text-sm font-normal font-['Inter'] leading-normal">
                   Email Id
@@ -85,13 +72,7 @@ const Footer = () => {
             <div className="self-stretch flex flex-col justify-start items-start gap-1">
               <div className="self-stretch inline-flex justify-center items-center gap-2">
                 <div className="size-4 relative overflow-hidden">
-                  <Image
-                    src={"../../assets/address.svg"}
-                    priority
-                    width={20}
-                    height={20}
-                    alt=""
-                  />
+                  <img src={"/phone.svg"} alt="" />
                 </div>
                 <div className="flex-1 justify-start text-[#828282] text-sm font-normal font-['Inter'] leading-normal">
                   Phone No.
