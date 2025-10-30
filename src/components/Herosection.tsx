@@ -1,5 +1,6 @@
 import { useAppContext } from "@/app/appContent";
 import Image from "next/image";
+import Link from "next/link";
 
 const Herosection = () => {
   const { heroSectionRef } = useAppContext();
@@ -13,8 +14,53 @@ const Herosection = () => {
   return (
     <div
       ref={heroSectionRef}
-      className="Herosection absolute h-full w-full perspective-[1000px] z-20"
+      className="Herosection absolute h-full w-full perspective-[1000px] z-50"
     >
+      {[...Array(rings)].map((_, ring) =>
+        [...Array(dotsPerRing)].map((_, dot) => {
+          const side = Math.floor(dot / (dotsPerRing / 4));
+          const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
+          let x = 0,
+            y = 0;
+
+          if (side === 0) {
+            x = -halfWidth + progress * (2 * halfWidth);
+            y = -halfHeight;
+          } else if (side === 1) {
+            x = halfWidth;
+            y = -halfHeight + progress * (2 * halfHeight);
+          } else if (side === 2) {
+            x = halfWidth - progress * (2 * halfWidth);
+            y = halfHeight;
+          } else {
+            x = -halfWidth;
+            y = halfHeight - progress * (2 * halfHeight);
+          }
+
+          const z = 800 - ring * spacingZ;
+
+          return (
+            <div
+              key={`${ring}-${dot}`}
+              className="dot"
+              data-pos={`${x},${y},${z}`}
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                width: "1.5px",
+                height: "1.5px",
+                borderRadius: "50%",
+                background: "#00b3b3",
+                transform: `translate3d(${x}px, ${y}px, ${z}px)`,
+                willChange: "transform", // ⚡ GPU acceleration
+                zIndex: 0,
+                pointerEvents: "none",
+              }}
+            />
+          );
+        })
+      )}
       <div
         style={{
           background: "black",
@@ -54,16 +100,21 @@ const Herosection = () => {
               scale their business.
             </div>
           </div>
-          <div className="inline-flex justify-center items-center gap-4">
-            <button
+          <div className="inline-flex justify-center items-center gap-4 z-50">
+            <Link
+              href="https://calendly.com/gridkey/introduction-to-gridkey-platform?month=2024-01"
+              target="_blank"
               data-property-1="Default"
-              className="w-40 px-6 py-4 rounded-sm  outline-1 outline-offset-[-1px] outline-white inline-flex justify-center items-center gap-2 overflow-hidden"
+              className="w-40 px-6 py-4 rounded-sm  outline-1 outline-offset-[-1px] outline-white inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer"
             >
               <div className="justify-start text-white text-sm font-medium font-['Inter']">
                 Request a Demo
               </div>
-            </button>
-            <button className="w-40 px-6 py-4 bg-gradient-to-r from-[#006580] via-[#107281] to-[#4ca485] rounded-sm flex justify-center items-center gap-2">
+            </Link>
+            <Link
+              className="w-40 px-6 py-4 bg-gradient-to-r from-[#006580] via-[#107281] to-[#4ca485] rounded-sm flex justify-center items-center gap-2 cursor-pointer"
+              href="https://gridkey.in/app/dashboard"
+            >
               <div className="text-white text-sm font-medium">Get Started</div>
               <div className="size-4 relative">
                 <Image
@@ -74,53 +125,10 @@ const Herosection = () => {
                   priority
                 />
               </div>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
-      {[...Array(rings)].map((_, ring) =>
-        [...Array(dotsPerRing)].map((_, dot) => {
-          const side = Math.floor(dot / (dotsPerRing / 4));
-          const progress = (dot % (dotsPerRing / 4)) / (dotsPerRing / 4);
-          let x = 0,
-            y = 0;
-
-          if (side === 0) {
-            x = -halfWidth + progress * (2 * halfWidth);
-            y = -halfHeight;
-          } else if (side === 1) {
-            x = halfWidth;
-            y = -halfHeight + progress * (2 * halfHeight);
-          } else if (side === 2) {
-            x = halfWidth - progress * (2 * halfWidth);
-            y = halfHeight;
-          } else {
-            x = -halfWidth;
-            y = halfHeight - progress * (2 * halfHeight);
-          }
-
-          const z = 800 - ring * spacingZ;
-
-          return (
-            <div
-              key={`${ring}-${dot}`}
-              className="dot"
-              data-pos={`${x},${y},${z}`}
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                width: "1.5px",
-                height: "1.5px",
-                borderRadius: "50%",
-                background: "#00b3b3",
-                transform: `translate3d(${x}px, ${y}px, ${z}px)`,
-                willChange: "transform", // ⚡ GPU acceleration
-              }}
-            />
-          );
-        }),
-      )}
     </div>
   );
 };

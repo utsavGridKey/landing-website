@@ -58,7 +58,8 @@ const Navbar = ({ navbarRef }: { navbarRef?: any }) => {
       </ul>
 
       {/* Desktop Sign In Button */}
-      <button
+      <Link
+        href="https://gridkey.in/app/dashboard"
         className="hidden md:flex px-4 py-3 gap-2 rounded-full text-white items-center hover:opacity-90 transition"
         style={{
           background: `linear-gradient(142deg, #006580 14.86%, #107281 71.32%, #4CA485 156.01%)`,
@@ -87,7 +88,7 @@ const Navbar = ({ navbarRef }: { navbarRef?: any }) => {
             strokeLinejoin="round"
           />
         </svg>
-      </button>
+      </Link>
     </nav>
   );
 };

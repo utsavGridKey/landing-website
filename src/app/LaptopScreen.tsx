@@ -16,11 +16,10 @@ import usePageHook from "./usePageHook";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function LaptopScreen() {
-  const { mainDivContinerRef, navbarRef } = usePageHook();
+  const { mainDivContinerRef } = usePageHook();
 
   return (
     <div className="relative hidden lg:block">
-      <Navbar navbarRef={navbarRef} />
       <div
         ref={mainDivContinerRef}
         className="relative w-screen h-screen overflow-hidden bg-black"
@@ -43,7 +42,6 @@ export default function LaptopScreen() {
         <Thirdrefcontainer />
         {/**=============================================================== */}
       </div>
-      <Footer />
     </div>
   );
 }

@@ -59,31 +59,31 @@ const usePageHook = () => {
         scrollTrigger: {
           trigger: mainDivContinerRef.current,
           start: "top top",
-          end: "+=20000",
+          end: "+=12000",
           scrub: true,
           pin: true,
         },
       });
 
       const liDots = gsap.utils.toArray<HTMLDivElement>(
-        mainDivContinerRef.current?.querySelectorAll(".nine-dot") || [],
+        mainDivContinerRef.current?.querySelectorAll(".nine-dot") || []
       );
 
       const liDotTexts = gsap.utils.toArray<HTMLParagraphElement>(
-        mainDivContinerRef.current?.querySelectorAll(".nine-dot p") || [],
+        mainDivContinerRef.current?.querySelectorAll(".nine-dot p") || []
       );
 
       const liDotSvg = gsap.utils.toArray<HTMLParagraphElement>(
-        mainDivContinerRef.current?.querySelectorAll(".nine-dot svg") || [],
+        mainDivContinerRef.current?.querySelectorAll(".nine-dot svg") || []
       );
 
       const nineDotsContainer = gsap.utils.toArray<HTMLParagraphElement>(
-        mainDivContinerRef.current?.querySelectorAll(".dots-container") || [],
+        mainDivContinerRef.current?.querySelectorAll(".dots-container") || []
       );
 
       const securityTrustPoints = gsap.utils.toArray<HTMLParagraphElement>(
         mainDivContinerRef.current?.querySelectorAll(".security-trust-point") ||
-          [],
+          []
       );
       const el = document.getElementsByTagName("body")[0];
 
@@ -99,7 +99,7 @@ const usePageHook = () => {
           x: 0,
           y: -500,
         },
-        "removingHeroAndShowingDots",
+        "removingHeroAndShowingDots"
       );
       tl.fromTo(
         liDots,
@@ -115,7 +115,7 @@ const usePageHook = () => {
           borderRadius: 100,
           background: "#fff",
         },
-        "removingHeroAndShowingDots",
+        "removingHeroAndShowingDots"
       );
       tl.to(liDots, {
         opacity: 1,
@@ -129,14 +129,14 @@ const usePageHook = () => {
         {
           color: "#ffffff",
         },
-        "<",
+        "<"
       );
       tl.to(
         liDotSvg,
         {
           color: "#ffffff",
         },
-        "<",
+        "<"
       );
       tl.fromTo(
         nineDotsLeftRef.current,
@@ -147,7 +147,7 @@ const usePageHook = () => {
         {
           opacity: 1,
           y: 0,
-        },
+        }
       );
       tl.to({}, { duration: 1 });
       tl.to(nineDotsLeftRef.current, {
@@ -169,7 +169,7 @@ const usePageHook = () => {
         {
           width: "100vw",
         },
-        "<",
+        "<"
       );
       tl.to(liDots, {
         opacity: 1,
@@ -195,7 +195,7 @@ const usePageHook = () => {
               "Precious Metals / Gold ",
             ][i],
         },
-        "<",
+        "<"
       );
       tl.to(
         liDotSvg,
@@ -203,7 +203,7 @@ const usePageHook = () => {
         {
           color: "#ffffff",
         },
-        "<",
+        "<"
       );
       tl.fromTo(
         nineDotsRightRef.current,
@@ -214,7 +214,7 @@ const usePageHook = () => {
         {
           opacity: 1,
           y: 0,
-        },
+        }
       );
       tl.to({}, { duration: 1 });
       tl.to(nineDotsRightRef.current, {
@@ -229,28 +229,28 @@ const usePageHook = () => {
           width: "4px",
           height: "4px",
         },
-        "<",
+        "<"
       );
       tl.to(
         liDots,
         {
           opacity: 0,
         },
-        "<",
+        "<"
       );
       tl.to(
         liDotTexts,
         {
           opacity: 0,
         },
-        "<",
+        "<"
       );
       tl.to(
         liDotSvg,
         {
           opacity: 0,
         },
-        "<",
+        "<"
       );
       tl.to(
         [liDots[4], liDots[5], liDots[3]],
@@ -258,7 +258,7 @@ const usePageHook = () => {
           opacity: 1,
           background: "#fff",
         },
-        "<",
+        "<"
       );
       tl.to([liDots[4], liDots[5], liDots[3]], {
         x: (i) => {
@@ -298,7 +298,7 @@ const usePageHook = () => {
         },
         {
           opacity: 1,
-        },
+        }
       );
       tl.to(
         [liDots[4], liDots[5], liDots[3]],
@@ -309,7 +309,7 @@ const usePageHook = () => {
           scale: 0.5,
           opacity: 0,
         },
-        "<",
+        "<"
       );
       tl.to(chooseORef.current, {
         scale: 20,
@@ -320,13 +320,13 @@ const usePageHook = () => {
       tl.fromTo(
         navbarRef.current,
         { background: "rgba(255, 255, 255, 0.05)" },
-        { background: "#ffffff88" },
+        { background: "#ffffff88" }
       );
       tl.fromTo(
         secondContentRef.current,
         { opacity: 0, z: -400, transformPerspective: 1000 },
         { opacity: 1, z: 0, duration: 1.5, ease: "power3.out" },
-        "<",
+        "<"
       );
       tl.to(
         toolsRef.current,
@@ -336,33 +336,33 @@ const usePageHook = () => {
           duration: 3,
           ease: "none",
         },
-        "+=0.5",
+        "+=0.5"
       );
       tl.fromTo(
         secondContentRef.current,
         { opacity: 1, y: 0 },
-        { opacity: 0, y: -400, ease: "power3.out" },
+        { opacity: 0, y: -400, ease: "power3.out" }
       );
       tl.fromTo(
         thirdContentRef.current,
         { opacity: 0, y: 100 },
-        { opacity: 1, y: 0, ease: "power3.out" },
+        { opacity: 1, y: 0, ease: "power3.out" }
       );
 
       tl.fromTo(
         securityTrustPoints[0],
         { opacity: 0, y: 200 },
-        { opacity: 1, y: 0, ease: "power3.out" },
+        { opacity: 1, y: 0, ease: "power3.out" }
       );
       tl.fromTo(
         securityTrustPoints[1],
         { opacity: 0, y: 200 },
-        { opacity: 1, y: 0, ease: "power3.out" },
+        { opacity: 1, y: 0, ease: "power3.out" }
       );
       tl.fromTo(
         securityTrustPoints[2],
         { opacity: 0, y: 200 },
-        { opacity: 1, y: 0, ease: "power3.out" },
+        { opacity: 1, y: 0, ease: "power3.out" }
       );
     });
 
