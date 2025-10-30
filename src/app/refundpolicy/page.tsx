@@ -1,7 +1,7 @@
 const RefundPolicy = () => {
   return (
-    <div className="py-24 bg-[#111] flex items-center justify-center flex-col">
-      <div className="flex justify-center flex-col items-center  py-24 bg-[#111] gap-6">
+    <div className="py-24 bg-[#111] flex items-center justify-center flex-col w-screen normal-gradient-bg">
+      <div className="flex justify-center flex-col items-center  py-24  gap-6">
         <p className="self-stretch text-center justify-start text-3xl font-normal font-['Inter'] leading-10 text-white">
           Terms & Conditions
         </p>

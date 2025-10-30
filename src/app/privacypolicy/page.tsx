@@ -57,11 +57,11 @@ const PrivacyPolicy = () => {
     "Third Party Software &/or Open Source",
   ];
   return (
-    <div className="py-24 bg-[#111] flex items-center justify-center flex-col">
+    <div className="py-24 bg-[#111] flex items-center justify-center flex-col w-screen terms-bg">
       <p className="self-stretch text-center justify-start text-3xl font-normal font-['Inter'] leading-10 text-white py-6">
         Privacy Policy
       </p>
-      <div className="max-w-[784px] flex justify-center flex-col items-center  bg-[#111] gap-6">
+      <div className="max-w-[784px] flex justify-center flex-col items-center  gap-6">
         <p style={{ textAlign: "justify", color: "#999999" }}>
           {`This privacy policy (hereinafter referred to as “Privacy Policy”) is with respect to the use, protection and sharing of any Personal Information (as defined in the Privacy Policy) for Users (as defined in GRIDKEY's Terms of Use) of Gridkey Software (as defined in GRIDKEY's Terms of Use), Gridkey Services (as defined in GRIDKEY's Terms of Use) and Gridkey Websites (as defined in GRIDKEY's Terms of Use). Users may be required to provide Personal Information (as defined in the Privacy Policy). Users of Gridkey Software, Gridkey Services and Gridkey Websites consent to all terms in the Privacy Policy as well as the terms of the Payment Gateway or Payment Services provided by GRIDKEY or any third party Payment Service Provider(s) in connection thereto.`}
         </p>

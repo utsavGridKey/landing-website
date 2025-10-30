@@ -182,3 +182,16 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.normal-gradient-bg {
+  background-image: url("/pagesBg.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.terms-bg {
+  background-image: url("/termsBg.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top;
+}

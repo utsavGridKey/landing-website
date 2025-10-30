@@ -4,10 +4,11 @@ import FooterGrid from "./FooterGrid";
 const Footer = () => {
   return (
     <div className="w-screen">
-      <div className="relative gap-5  w-full flex flex-col items-center justify-center overflow-hidden  border bg-[#163F4A] min-h-[450px]">
-        <p className="text-center justify-center text-white text-5xl font-medium font-['Inter']">
+      <div className="relative gap-5  w-full flex flex-col items-center justify-center overflow-hidden   bg-[#163F4A] min-h-[350px] md:min-h-[450px]">
+        <p className="text-center justify-center text-white font-medium font-['Inter'] text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
           Book a Discovery Call
         </p>
+
         <p className="self-stretch text-center justify-center text-[#d5dee5] text-base font-normal font-['Inter'] leading-[27px]">
           See where automation can take your wealth advisory business
         </p>
@@ -37,7 +38,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="w-full px-[124px] py-[60px] bg-[#131313] inline-flex flex-col justify-start items-start gap-6 overflow-hidden">
-        <div className="self-stretch inline-flex justify-center items-start gap-8">
+        <div className="self-stretch inline-flex justify-center items-start gap-8 flex-col md:flex-row">
           <div className="inline-flex flex-col justify-start items-start gap-8">
             <div className="self-stretch justify-start text-white text-base font-medium font-['Inter'] leading-normal">
               Gridkey Technologies Private Limited
@@ -149,7 +150,8 @@ const Footer = () => {
                     Disclaimer
                   </div>
                 </Link>
-                <div
+                <Link
+                  href={"/contactus"}
                   data-color="Primary"
                   data-heading-icon="false"
                   data-property-1="Default"
@@ -159,7 +161,7 @@ const Footer = () => {
                   <div className="justify-center text-[#e0e0e0] text-[13px] font-medium font-['Inter'] leading-tight">
                     Contact Us
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>

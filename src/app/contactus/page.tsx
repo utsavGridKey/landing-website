@@ -1,7 +1,7 @@
 const ContactUs = () => {
   return (
-    <div className="py-24 w-screen bg-[#111] flex items-center justify-center flex-col">
-      <div className="max-w-[786px] flex justify-center flex-col items-center  py-8 bg-[#111] gap-6">
+    <div className="py-24 w-screen bg-[#111] flex items-center justify-center flex-col normal-gradient-bg">
+      <div className="max-w-[786px] flex justify-center flex-col items-center  py-8  gap-6">
         <div className=" inline-flex flex-col justify-start items-start gap-10">
           <div className="self-stretch flex flex-col justify-start items-start gap-4">
             <div className="self-stretch justify-start text-white text-3xl font-normal font-['Inter'] leading-10 ">

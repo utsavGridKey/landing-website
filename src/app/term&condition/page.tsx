@@ -342,12 +342,12 @@ const TermCondition = () => {
   ];
 
   return (
-    <div>
-      <div className="flex justify-center flex-col items-center py-24 bg-[#111] gap-6">
+    <div className="w-screen">
+      <div className="flex justify-center flex-col items-center py-24 bg-[#111] gap-6 terms-bg">
         <p className="self-stretch text-center justify-start text-3xl font-normal font-['Inter'] leading-10 text-white">
           Terms & Conditions
         </p>
-        <ol className="max-w-[784px] ">
+        <ol className="md:max-w-[784px] w-full px-4 ">
           {data?.map((item, index) => {
             return (
               <li
@@ -357,10 +357,9 @@ const TermCondition = () => {
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "flex-start",
-                  padding: 0,
                 }}
               >
-                <p className="self-stretch justify-start text-grey-300 text-xl font-semibold font-['Inter'] uppercase tracking-[3px] my-6">
+                <p className="self-stretch text-justify justify-start text-grey-300 text-xl font-semibold font-['Inter'] uppercase tracking-[3px] my-6">
                   {index + 1}. {item.title}
                 </p>
                 <ol style={{ padding: 0 }}>
@@ -376,7 +375,7 @@ const TermCondition = () => {
                           padding: 0,
                         }}
                       >
-                        <p className="self-stretch justify-start text-grey-100 text-base font-normal font-['Inter'] leading-7 mt-4">
+                        <p className="text-justify self-stretch justify-start text-grey-100 text-base font-normal font-['Inter'] leading-7 mt-4">
                           {index + 1}.{fIndex + 1} {fChild.description}
                         </p>
                         <ol>
@@ -384,7 +383,7 @@ const TermCondition = () => {
                             fChild.secondChild.map((sChild, index) => {
                               return (
                                 <li key={index}>
-                                  <p className=" justify-start text-grey-500 text-sm font-normal font-['Inter'] leading-6 flex ">
+                                  <p className="text-justify justify-start text-grey-500 text-sm font-normal font-['Inter'] leading-6 flex ">
                                     <DotIcon
                                       style={{ minWidth: 28, minHeight: 28 }}
                                     />
