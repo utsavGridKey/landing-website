@@ -20,16 +20,13 @@ export default function AboutUs() {
               experience in finance, technology, and business development.`}
             </div>
           </div>
-          <img
-            className="self-stretch h-[499px] rounded-lg"
-            src="https://placehold.co/988x499"
-          />
+          <video autoPlay loop muted playsInline className="w-full h-auto">
+            <source src="/aboutus.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
         <div className="w-[988px] inline-flex justify-start items-center gap-10">
-          <img
-            className="flex-1 h-[300px] rounded-lg"
-            src="https://placehold.co/474x300"
-          />
+          <img className="flex-1 h-[300px] rounded-lg" src="visionBehind.svg" />
           <div className="flex-1 inline-flex flex-col justify-start items-center gap-4">
             <div className="self-stretch justify-start text-white text-[32px] font-normal font-['Inter'] leading-[41.60px]">
               Our Story
@@ -65,10 +62,7 @@ export default function AboutUs() {
               with confidence and ease.
             </div>
           </div>
-          <img
-            className="flex-1 h-[300px] rounded-lg"
-            src="https://placehold.co/474x300"
-          />
+          <img className="flex-1 h-[300px] rounded-lg" src="buildGridkey.svg" />
         </div>
       </div>
       <div className="w-full py-20 bg-[#222222] inline-flex flex-col justify-start items-center gap-10 overflow-hidden">
