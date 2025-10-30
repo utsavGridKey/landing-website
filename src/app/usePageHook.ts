@@ -98,6 +98,7 @@ const usePageHook = () => {
           opacity: 0,
           x: 0,
           y: -500,
+          zIndex: 0,
         },
         "removingHeroAndShowingDots"
       );
