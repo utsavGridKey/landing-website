@@ -37,7 +37,7 @@ const Herosection = () => {
             y = halfHeight - progress * (2 * halfHeight);
           }
 
-          const z = 800 - ring * spacingZ;
+          const z = 900 - ring * spacingZ;
 
           return (
             <div
@@ -59,7 +59,7 @@ const Herosection = () => {
               }}
             />
           );
-        })
+        }),
       )}
       <div
         style={{
