@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",
   webpack(config) {
     // Remove .svg from Next.js default file loader
     config.module.rules.forEach((rule: any) => {
@@ -35,4 +36,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
