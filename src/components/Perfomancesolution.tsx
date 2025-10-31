@@ -8,7 +8,7 @@ const Perfomancesolution = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const { performanceSolutionRef, threeDotDestinationRef } = useAppContext();
   const [selectedOption, setSelectedOption] = useState(
-    "Registered Investment Advisor"
+    "Registered Investment Advisor",
   );
 
   return (
@@ -87,7 +87,7 @@ const Perfomancesolution = () => {
           >
             <section
               key={opt.name}
-              className="flex flex-col md:flex-row items-center w-screen px-6 md:px-20  gap-8 md:gap-0"
+              className="flex flex-col md:flex-row items-center w-screen px-6 md:px-20  gap-8 md:gap-0 min-h-[70%]"
             >
               <div className="w-full md:w-1/2 flex justify-center flex-col items-center min-h-[70%]">
                 <div className="self-stretch text-[#ececec] text-2xl font-medium text-center md:text-left">
