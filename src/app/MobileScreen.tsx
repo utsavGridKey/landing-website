@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import BarChartIcon from "../assets/barChart.svg";
 import BasketIcon from "../assets/basketWheel.svg";
@@ -25,9 +26,9 @@ const MobileScreen = () => {
         <div className="self-stretch inline-flex justify-between items-center">
           <Image width={115} height={31} alt="a" src="/fullLogo.svg" />
           <div className="size-6 relative rounded-md flex justify-center items-center">
-            <button>
+            <Link href="/">
               <Image width={100} height={100} alt="a" src="/burgermenu.svg" />
-            </button>
+            </Link>
           </div>
         </div>
         <div className="self-stretch opacity-0 flex flex-col justify-center items-center">
@@ -101,44 +102,31 @@ const MobileScreen = () => {
           </div>
         </div>
         <div className="self-stretch flex flex-col justify-center items-center gap-4">
-          <div
-            data-property-1="Default"
-            className="self-stretch px-6 py-4 bg-linear-52 from-[#006580] via-[#107281] via 40% to-[#4ca485] rounded-sm inline-flex justify-center items-center gap-2 overflow-hidden"
+          <Link
+            className="w-40 px-6 py-4 bg-gradient-to-r from-[#006580] via-[#107281] to-[#4ca485] rounded-sm flex justify-center items-center gap-2 cursor-pointer"
+            href="https://gridkey.in/app/dashboard"
           >
-            <div className="justify-start text-white text-sm font-medium ">
-              Get Started
+            <div className="text-white text-sm font-medium">Get Started</div>
+            <div className="size-4 relative">
+              <Image
+                src="/rightArrow.svg"
+                alt="Arrow check"
+                width={20}
+                height={20}
+                priority
+              />
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="17"
-              viewBox="0 0 16 17"
-              fill="none"
-            >
-              <path
-                d="M3.33325 8.5H12.6666"
-                stroke="#F6F8F9"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M8 3.83301L12.6667 8.49967L8 13.1663"
-                stroke="white"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-          <div
+          </Link>
+          <Link
+            href="https://calendly.com/gridkey/introduction-to-gridkey-platform?month=2024-01"
+            target="_blank"
             data-property-1="Default"
-            className="self-stretch px-6 py-4 rounded-sm outline-1 outline-offset-[-1px] outline-white inline-flex justify-center items-center gap-2 overflow-hidden"
+            className="w-40 px-6 py-4 rounded-sm  outline-1 outline-offset-[-1px] outline-white inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer"
           >
-            <div className="justify-start text-white text-sm font-medium ">
+            <div className="justify-start text-white text-sm font-medium font-['Inter']">
               Request a Demo
             </div>
-          </div>
+          </Link>
         </div>
       </div>
       {/**------------------------------------------------------------------------------- */}
